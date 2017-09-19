@@ -20,7 +20,7 @@ public class Airline implements ModelInterface<Integer> {
 	private Integer id;
 	@Column(name = "ALIRLINE_NAME", nullable = false)
 	private String name;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "airline")
+	@OneToMany(fetch = FetchType.LAZY)
 	private Collection<Flight> flightCollection;
 	
 	public Airline() {

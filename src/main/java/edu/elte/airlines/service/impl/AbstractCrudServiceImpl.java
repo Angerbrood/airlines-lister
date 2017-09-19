@@ -3,10 +3,10 @@ package edu.elte.airlines.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 
-import edu.elte.airlines.dao.interfaces.ICrudDao;
+import edu.elte.airlines.dao.interfaces.CrudDao;
 import edu.elte.airlines.domain.ModelInterface;
 import edu.elte.airlines.dto.DtoInterface;
-import edu.elte.airlines.service.interfaces.ICrudService;
+import edu.elte.airlines.service.interfaces.CrudService;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,16 +14,16 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public abstract class AbstractCrudServiceImpl<EntityType extends ModelInterface<IdType>, DtoType extends DtoInterface<IdType>, IdType extends Serializable>
-        implements ICrudService<EntityType, DtoType, IdType>{
+        implements CrudService<EntityType, DtoType, IdType>{
 
     @Autowired
     private ConversionService conversionService;
 
-    private final ICrudDao<EntityType, IdType> dao;
+    private final CrudDao<EntityType, IdType> dao;
     private final Class<EntityType> entityTypeClass;
     private final Class<DtoType> dtoTypeClass;
 
-    public AbstractCrudServiceImpl(Class<EntityType> entityTypeClass, Class<DtoType> dtoTypeClass, ICrudDao<EntityType, IdType> dao) {
+    public AbstractCrudServiceImpl(Class<EntityType> entityTypeClass, Class<DtoType> dtoTypeClass, CrudDao<EntityType, IdType> dao) {
         this.dao = dao;
         this.entityTypeClass = entityTypeClass;
         this.dtoTypeClass = dtoTypeClass;

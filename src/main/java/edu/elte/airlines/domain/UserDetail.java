@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_details")
-public class UserDetails implements ModelInterface<Integer> {
+@Table(name = "user_detail")
+public class UserDetail implements ModelInterface<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -25,7 +25,7 @@ public class UserDetails implements ModelInterface<Integer> {
 	private LocalDate dateOfBirth;
 	
 	
-	public UserDetails() {
+	public UserDetail() {
 		
 	}
 

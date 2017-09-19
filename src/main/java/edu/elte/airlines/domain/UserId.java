@@ -14,12 +14,12 @@ public class UserId implements ModelInterface<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@OneToOne(mappedBy = "user_id")
+	@OneToOne()
 	@PrimaryKeyJoinColumn
 	private UserAuth userAuth;
-	@OneToOne(mappedBy = "user_id")
+	@OneToOne()
 	@PrimaryKeyJoinColumn
-	private UserDetails userDetails;
+	private UserDetail userDetails;
 	
 	public UserId() {
 		
@@ -41,11 +41,11 @@ public class UserId implements ModelInterface<Integer> {
 		this.userAuth = userAuth;
 	}
 
-	public UserDetails getUserDetails() {
+	public UserDetail getUserDetails() {
 		return userDetails;
 	}
 
-	public void setUserDetails(UserDetails userDetails) {
+	public void setUserDetails(UserDetail userDetails) {
 		this.userDetails = userDetails;
 	}
 	

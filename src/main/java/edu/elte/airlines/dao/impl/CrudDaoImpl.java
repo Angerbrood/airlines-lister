@@ -8,7 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.elte.airlines.dao.interfaces.ICrudDao;
+import edu.elte.airlines.dao.interfaces.CrudDao;
 import edu.elte.airlines.domain.ModelInterface;
 
 import java.io.Serializable;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @Transactional
 public class CrudDaoImpl<EntityType extends ModelInterface<IdType>, IdType extends Serializable> extends HibernateDaoSupport
-        implements ICrudDao<EntityType, IdType>{
+        implements CrudDao<EntityType, IdType>{
 
     private final Class<EntityType> entityTypeClass;
 
@@ -42,7 +42,8 @@ public class CrudDaoImpl<EntityType extends ModelInterface<IdType>, IdType exten
         currentSession().delete(entity);
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public EntityType findById(IdType id) {
         DetachedCriteria criteria = DetachedCriteria.forClass(entityTypeClass);
         criteria.add(Restrictions.idEq(id));
@@ -59,7 +60,8 @@ public class CrudDaoImpl<EntityType extends ModelInterface<IdType>, IdType exten
         return 1L == (Long) executableCriteria.uniqueResult();
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<EntityType> list() {
         DetachedCriteria criteria = DetachedCriteria.forClass(entityTypeClass);
         Criteria executeableCriteria = criteria.getExecutableCriteria(currentSession());

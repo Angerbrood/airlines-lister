@@ -1,15 +1,14 @@
 package edu.elte.airlines.service.impl;
 
-import edu.elte.airlines.dao.interfaces.IAirlineDao;
-import edu.elte.airlines.dao.interfaces.ICrudDao;
+import edu.elte.airlines.dao.interfaces.AirlineDao;
 import edu.elte.airlines.domain.Airline;
 import edu.elte.airlines.dto.AirlineDto;
-import edu.elte.airlines.service.interfaces.IAirlineService;
+import edu.elte.airlines.service.interfaces.AirlineService;
 
 public class AirlineServiceImpl extends AbstractCrudServiceImpl<Airline, AirlineDto, Integer>
-	implements IAirlineService {
+	implements AirlineService {
 
-	public AirlineServiceImpl(IAirlineDao dao) {
+	public AirlineServiceImpl(AirlineDao dao) {
 		super(Airline.class, AirlineDto.class, dao);
 	}
 

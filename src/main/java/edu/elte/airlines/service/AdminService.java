@@ -9,15 +9,15 @@ import org.slf4j.LoggerFactory;
 import edu.elte.airlines.dto.DtoInterface;
 import edu.elte.airlines.response.CustomResponse;
 import edu.elte.airlines.response.CustomResponseFactory;
-import edu.elte.airlines.service.interfaces.ICrudService;
+import edu.elte.airlines.service.interfaces.CrudService;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class AdminService {
 
-    private final ICrudService crudService;
+    private final CrudService crudService;
     private final CustomResponseFactory customResponseFactory;
     private static Logger logger = LoggerFactory.getLogger(AdminService.class);
-    public AdminService(ICrudService<?, DtoInterface, String> crudService, CustomResponseFactory customResponseFactory) {
+    public AdminService(CrudService<?, DtoInterface, String> crudService, CustomResponseFactory customResponseFactory) {
         this.crudService = crudService;
         this.customResponseFactory = customResponseFactory;
     }

@@ -2,7 +2,7 @@ package edu.elte.airlines.service.interfaces;
 
 import java.util.List;
 
-public interface ICrudService<EntityType, DtoType, IdType> {
+public interface CrudService<EntityType, DtoType, IdType> {
     IdType create(DtoType dto);
     void delete(DtoType dto);
     void update(DtoType dto);

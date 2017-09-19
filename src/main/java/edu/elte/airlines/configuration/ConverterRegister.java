@@ -24,7 +24,8 @@ implements ApplicationListener<ApplicationEvent>, ApplicationContextAware {
         this.applicationContext = applicationContext;
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public void onApplicationEvent(ApplicationEvent event) {
         if (event instanceof ContextRefreshedEvent) {
             Collection<Converter> converters = applicationContext.getBeansOfType(Converter.class).values();

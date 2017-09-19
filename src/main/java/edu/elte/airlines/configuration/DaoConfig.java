@@ -11,14 +11,14 @@ import edu.elte.airlines.dao.impl.AirlineDaoImpl;
 import edu.elte.airlines.dao.impl.FlightDaoImpl;
 import edu.elte.airlines.dao.impl.LocationDaoImpl;
 import edu.elte.airlines.dao.impl.UserAuthDaoImpl;
-import edu.elte.airlines.dao.impl.UserDetailsDaoImpl;
+import edu.elte.airlines.dao.impl.UserDetailDaoImpl;
 import edu.elte.airlines.dao.impl.UserIdDaoImpl;
-import edu.elte.airlines.dao.interfaces.IAirlineDao;
-import edu.elte.airlines.dao.interfaces.IFlightDao;
-import edu.elte.airlines.dao.interfaces.ILocationDao;
-import edu.elte.airlines.dao.interfaces.IUserAuthDao;
-import edu.elte.airlines.dao.interfaces.IUserDetailsDao;
-import edu.elte.airlines.dao.interfaces.IUserIdDao;
+import edu.elte.airlines.dao.interfaces.AirlineDao;
+import edu.elte.airlines.dao.interfaces.FlightDao;
+import edu.elte.airlines.dao.interfaces.LocationDao;
+import edu.elte.airlines.dao.interfaces.UserAuthDao;
+import edu.elte.airlines.dao.interfaces.UserDetailDao;
+import edu.elte.airlines.dao.interfaces.UserIdDao;
 
 @Configuration
 @EnableTransactionManagement
@@ -29,27 +29,27 @@ public class DaoConfig {
     private SessionFactory sessionFactory;
 
     @Bean
-    IAirlineDao airlineDao() {
+    AirlineDao airlineDao() {
     	return new AirlineDaoImpl(sessionFactory);
     }
     @Bean
-    IFlightDao flightDao() {
+    FlightDao flightDao() {
     	return new FlightDaoImpl(sessionFactory);
     }
     @Bean
-    ILocationDao locationDao() {
+    LocationDao locationDao() {
     	return new LocationDaoImpl(sessionFactory);
     }
     @Bean
-    IUserAuthDao userAuthDao() {
+    UserAuthDao userAuthDao() {
     	return new UserAuthDaoImpl(sessionFactory);
     }
     @Bean
-    IUserDetailsDao userDetailsDao() {
-    	return new UserDetailsDaoImpl(sessionFactory);
+    UserDetailDao userDetailsDao() {
+    	return new UserDetailDaoImpl(sessionFactory);
     }
     @Bean
-    IUserIdDao userIdDao() {
+    UserIdDao userIdDao() {
     	return new UserIdDaoImpl(sessionFactory);
     }
 }

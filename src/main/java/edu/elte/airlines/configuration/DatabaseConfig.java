@@ -14,6 +14,13 @@ import org.springframework.context.annotation.Import;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
+import edu.elte.airlines.domain.Airline;
+import edu.elte.airlines.domain.Flight;
+import edu.elte.airlines.domain.Location;
+import edu.elte.airlines.domain.UserAuth;
+import edu.elte.airlines.domain.UserDetail;
+import edu.elte.airlines.domain.UserId;
+
 
 @Configuration
 @Import({ DatabasePropertiesNormalConfig.class, DatabasePropertiesCreateConfig.class })
@@ -39,7 +46,7 @@ public class DatabaseConfig {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         //factoryBean.setPackagesToScan("hu.elte.cinema.model");
         factoryBean.setDataSource(dataSource());
-        factoryBean.setAnnotatedClasses();
+        factoryBean.setAnnotatedClasses(Airline.class, Flight.class, Location.class, UserAuth.class, UserDetail.class, UserId.class);
         Properties hibernateProperties = hibernateProperties();
         factoryBean.setHibernateProperties(hibernateProperties);
         return factoryBean;

@@ -3,7 +3,7 @@ package edu.elte.airlines.dao.interfaces;
 import java.util.List;
 
 
-public interface ICrudDao<EntityType, IdType> {
+public interface CrudDao<EntityType, IdType> {
     void createEntity(EntityType entity);
     void updateEntity(EntityType entity);
     void deleteEntity(EntityType entity);

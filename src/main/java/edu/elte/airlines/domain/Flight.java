@@ -26,10 +26,10 @@ public class Flight implements ModelInterface<Integer> {
 	private Airline airline;
 	@Column(nullable = false)
 	private String flightNumber;
-	@OneToOne(mappedBy = "flight")
+	@OneToOne()
 	@PrimaryKeyJoinColumn
 	private Location start;
-	@OneToOne(mappedBy = "flight")
+	@OneToOne()
 	@PrimaryKeyJoinColumn
 	private Location destination;
 	@Column(nullable = false)
@@ -38,8 +38,8 @@ public class Flight implements ModelInterface<Integer> {
 	private LocalDate landingDate;
 	@Column(nullable = false)
 	private Integer travelTime;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "flight")
-	private Collection<UserDetails> passengerCollection;
+	@OneToMany(fetch = FetchType.LAZY)
+	private Collection<UserDetail> passengerCollection;
 	
 	public Flight() {
 		
@@ -109,11 +109,11 @@ public class Flight implements ModelInterface<Integer> {
 		this.travelTime = travelTime;
 	}
 
-	public Collection<UserDetails> getPassengerCollection() {
+	public Collection<UserDetail> getPassengerCollection() {
 		return passengerCollection;
 	}
 
-	public void setPassengerCollection(Collection<UserDetails> passengerCollection) {
+	public void setPassengerCollection(Collection<UserDetail> passengerCollection) {
 		this.passengerCollection = passengerCollection;
 	}
 	

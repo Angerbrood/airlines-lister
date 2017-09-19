@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>edu.elte.airlines</groupId>
-  <artifactId>elte-airlines</artifactId>
+  <artifactId>airlines-lister</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>elte-airlines</name>
+  <name>airlines-lister</name>
   <url>http://maven.apache.org</url>
 
   <properties>

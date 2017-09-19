@@ -19,6 +19,13 @@ import edu.elte.airlines.dao.interfaces.LocationDao;
 import edu.elte.airlines.dao.interfaces.UserAuthDao;
 import edu.elte.airlines.dao.interfaces.UserDetailDao;
 import edu.elte.airlines.dao.interfaces.UserIdDao;
+import edu.elte.airlines.domain.Airline;
+import edu.elte.airlines.domain.Flight;
+import edu.elte.airlines.domain.Location;
+import edu.elte.airlines.domain.UserAuth;
+import edu.elte.airlines.domain.UserDetail;
+import edu.elte.airlines.domain.UserId;
+import edu.elte.airlines.provider.DaoProvider;
 
 @Configuration
 @EnableTransactionManagement
@@ -45,11 +52,22 @@ public class DaoConfig {
     	return new UserAuthDaoImpl(sessionFactory);
     }
     @Bean
-    UserDetailDao userDetailsDao() {
+    UserDetailDao userDetailDao() {
     	return new UserDetailDaoImpl(sessionFactory);
     }
     @Bean
     UserIdDao userIdDao() {
     	return new UserIdDaoImpl(sessionFactory);
+    }
+    @Bean
+    DaoProvider daoProvider() {
+    	DaoProvider provider = new DaoProvider();
+    	provider.registerDao(Airline.class, airlineDao());
+    	provider.registerDao(Flight.class, flightDao());
+    	provider.registerDao(Location.class, locationDao());
+    	provider.registerDao(UserAuth.class, userAuthDao());
+    	provider.registerDao(UserDetail.class, userDetailDao());
+    	provider.registerDao(UserId.class, userIdDao());
+    	return provider;
     }
 }

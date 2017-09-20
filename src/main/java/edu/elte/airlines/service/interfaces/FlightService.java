@@ -1,8 +1,8 @@
 package edu.elte.airlines.service.interfaces;
 
 import edu.elte.airlines.domain.Flight;
-import edu.elte.airlines.dto.FligthDto;
+import edu.elte.airlines.dto.FlightDto;
 
-public interface FlightService extends CrudService<Flight, FligthDto, Integer> {
+public interface FlightService extends CrudService<Flight, FlightDto, Integer> {
 
 }

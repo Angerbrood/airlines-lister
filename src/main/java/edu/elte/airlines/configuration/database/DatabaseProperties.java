@@ -1,4 +1,4 @@
-package edu.elte.airlines.configuration;
+package edu.elte.airlines.configuration.database;
 
 import org.springframework.beans.factory.annotation.Value;
 

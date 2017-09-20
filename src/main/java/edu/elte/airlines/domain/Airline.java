@@ -1,6 +1,7 @@
 package edu.elte.airlines.domain;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Airline implements ModelInterface<Integer> {
 	@Column(name = "ALIRLINE_NAME", nullable = false)
 	private String name;
 	@OneToMany(fetch = FetchType.LAZY)
-	private Collection<Flight> flightCollection;
+	private Collection<Flight> flights;
 	
 	public Airline() {
 		
@@ -43,11 +44,12 @@ public class Airline implements ModelInterface<Integer> {
 		this.name = name;
 	}
 
-	public Collection<Flight> getFlightCollection() {
-		return flightCollection;
+	public Collection<Flight> getFlights() {
+		return Collections.unmodifiableCollection(flights);
 	}
 
-	public void setFlightCollection(Collection<Flight> flightCollection) {
-		this.flightCollection = flightCollection;
+	public void setFlights(Collection<Flight> flights) {
+		this.flights = flights;
 	}
+	
 }

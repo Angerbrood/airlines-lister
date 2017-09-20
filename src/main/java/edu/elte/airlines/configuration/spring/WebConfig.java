@@ -1,4 +1,4 @@
-package edu.elte.airlines.configuration;
+package edu.elte.airlines.configuration.spring;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -8,6 +8,8 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+
+import edu.elte.airlines.configuration.ApplicationConfig;
 
 public class WebConfig implements WebApplicationInitializer {
 

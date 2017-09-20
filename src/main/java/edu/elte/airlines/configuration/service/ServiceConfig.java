@@ -1,10 +1,11 @@
-package edu.elte.airlines.configuration;
+package edu.elte.airlines.configuration.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import edu.elte.airlines.configuration.dao.DaoConfig;
 import edu.elte.airlines.dao.interfaces.AirlineDao;
 import edu.elte.airlines.dao.interfaces.FlightDao;
 import edu.elte.airlines.dao.interfaces.LocationDao;

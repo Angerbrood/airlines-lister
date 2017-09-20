@@ -7,8 +7,11 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
 
+import edu.elte.airlines.configuration.service.ServiceConfig;
+import edu.elte.airlines.configuration.spring.SecurityConfig;
+
 @Configuration
-@Import(ServiceConfig.class)
+@Import({ServiceConfig.class, SecurityConfig.class})
 @ComponentScan(basePackages = {"edu.elte.airlines.domain", "edu.elte.airlines.dto", "edu.elte.airlines"})
 public class ApplicationConfig {
     @Bean

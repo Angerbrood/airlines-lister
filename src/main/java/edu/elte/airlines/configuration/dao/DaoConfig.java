@@ -1,4 +1,4 @@
-package edu.elte.airlines.configuration;
+package edu.elte.airlines.configuration.dao;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import edu.elte.airlines.configuration.database.DatabaseConfig;
 import edu.elte.airlines.dao.impl.AirlineDaoImpl;
 import edu.elte.airlines.dao.impl.FlightDaoImpl;
 import edu.elte.airlines.dao.impl.LocationDaoImpl;

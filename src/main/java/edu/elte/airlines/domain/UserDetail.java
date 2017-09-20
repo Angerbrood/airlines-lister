@@ -16,13 +16,19 @@ public class UserDetail implements ModelInterface<Integer> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	@Column(nullable = false)
-	private String name;
+	private String firstName;
+	@Column(nullable = false)
+	private String lastName;
 	@Column(nullable = false)
 	private Integer age;
 	@Column(nullable = false)
 	private String address;
 	@Column(nullable = false)
 	private LocalDate dateOfBirth;
+	@Column(nullable = false)
+	private String accountNumber;
+	@Column(nullable = false)
+	private String balance;
 	
 	
 	public UserDetail() {
@@ -38,17 +44,6 @@ public class UserDetail implements ModelInterface<Integer> {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 
 	public Integer getAge() {
 		return age;
@@ -77,6 +72,46 @@ public class UserDetail implements ModelInterface<Integer> {
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+
+	public String getBalance() {
+		return balance;
+	}
+
+
+	public void setBalance(String balance) {
+		this.balance = balance;
 	}
 	
 	

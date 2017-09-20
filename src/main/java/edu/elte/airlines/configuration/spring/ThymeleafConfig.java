@@ -1,4 +1,4 @@
-package edu.elte.airlines.configuration;
+package edu.elte.airlines.configuration.spring;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

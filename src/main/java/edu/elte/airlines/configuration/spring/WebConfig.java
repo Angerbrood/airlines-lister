@@ -26,7 +26,7 @@ public class WebConfig implements WebApplicationInitializer {
         // Create the dispatcher servlet's Spring application context
         AnnotationConfigWebApplicationContext dispatcherContext =
                 new AnnotationConfigWebApplicationContext();
-        dispatcherContext.register(DispatcherConfig.class);
+        dispatcherContext.register(ThymeleafConfig.class);
 
         // Register and map the dispatcher servlet
         ServletRegistration.Dynamic dispatcher =

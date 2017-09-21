@@ -9,7 +9,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -20,16 +22,17 @@ import edu.elte.airlines.domain.UserRole;
 import edu.elte.airlines.dto.UserAuthDto;
 import edu.elte.airlines.service.interfaces.UserAuthService;
 
+//@Service("userDetailsService")
 public class UserAuthServiceImpl extends AbstractCrudServiceImpl<UserAuth, UserAuthDto, Integer> 
-	implements UserAuthService {
+	implements UserAuthService/*, UserDetailsService*/ {
 
-	@Autowired
-	private UserAuthDao dao;
+	/*@Autowired
+	private UserAuthDao dao;*/
 	
 	public UserAuthServiceImpl(UserAuthDao dao) {
 		super(UserAuth.class, UserAuthDto.class, dao);
 	}
-
+/*
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserAuth user = dao.findByUserName(username);
@@ -54,5 +57,5 @@ public class UserAuthServiceImpl extends AbstractCrudServiceImpl<UserAuth, UserA
 
 		return Result;
 	}
-
+*/
 }

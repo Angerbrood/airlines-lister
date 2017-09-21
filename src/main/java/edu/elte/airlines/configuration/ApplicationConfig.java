@@ -9,9 +9,10 @@ import org.springframework.core.convert.support.DefaultConversionService;
 
 import edu.elte.airlines.configuration.service.ServiceConfig;
 import edu.elte.airlines.configuration.spring.SecurityConfig;
+import edu.elte.airlines.configuration.spring.ThymeleafConfig;
 
 @Configuration
-@Import({ServiceConfig.class, SecurityConfig.class})
+@Import({ServiceConfig.class, SecurityConfig.class, ThymeleafConfig.class})
 @ComponentScan(basePackages = {"edu.elte.airlines.domain", "edu.elte.airlines.dto", "edu.elte.airlines"})
 public class ApplicationConfig {
     @Bean

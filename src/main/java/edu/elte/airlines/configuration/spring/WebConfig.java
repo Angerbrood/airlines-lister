@@ -20,6 +20,7 @@ public class WebConfig implements WebApplicationInitializer {
                 new AnnotationConfigWebApplicationContext();
         rootContext.register(ApplicationConfig.class);
 
+
         // Manage the lifecycle of the root application context
         container.addListener(new ContextLoaderListener(rootContext));
 

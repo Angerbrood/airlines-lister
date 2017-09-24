@@ -108,7 +108,18 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Database dependeices -->
+        <dependency>
+          <groupId>ognl</groupId>
+          <artifactId>ognl</artifactId>
+          <version>3.1.12</version>
+        </dependency>
+      <dependency>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+          <version>2.2.11</version>
+      </dependency>
+
+      <!-- Database dependeices -->
          <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>

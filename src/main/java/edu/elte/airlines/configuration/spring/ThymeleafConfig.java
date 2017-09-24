@@ -1,5 +1,6 @@
 package edu.elte.airlines.configuration.spring;
 
+import edu.elte.airlines.util.CustomMessageResolver;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.messageresolver.IMessageResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -20,7 +22,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"edu.elte.airlines.controller"})
+@ComponentScan(basePackages = {"edu.elte.airlines.controller", "edu.elte.airlines.util"})
 public class ThymeleafConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     private static final String UTF8 = "UTF-8";
@@ -51,8 +53,13 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
     @Bean
     TemplateEngine templateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
+        engine.setMessageResolver(messageResolver());
         engine.setTemplateResolver(templateResolver());
         return engine;
+    }
+    @Bean
+    IMessageResolver messageResolver() {
+        return new CustomMessageResolver();
     }
     @Bean
     ITemplateResolver templateResolver() {

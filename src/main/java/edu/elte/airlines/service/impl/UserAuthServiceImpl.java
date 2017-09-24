@@ -22,17 +22,16 @@ import edu.elte.airlines.domain.UserRole;
 import edu.elte.airlines.dto.UserAuthDto;
 import edu.elte.airlines.service.interfaces.UserAuthService;
 
-//@Service("userDetailsService")
 public class UserAuthServiceImpl extends AbstractCrudServiceImpl<UserAuth, UserAuthDto, Integer> 
-	implements UserAuthService/*, UserDetailsService*/ {
+	implements UserAuthService {
 
-	/*@Autowired
-	private UserAuthDao dao;*/
+	private UserAuthDao dao;
 	
 	public UserAuthServiceImpl(UserAuthDao dao) {
 		super(UserAuth.class, UserAuthDto.class, dao);
+		this.dao = dao;
 	}
-/*
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserAuth user = dao.findByUserName(username);
@@ -47,15 +46,15 @@ public class UserAuthServiceImpl extends AbstractCrudServiceImpl<UserAuth, UserA
 
 	private List<GrantedAuthority> buildUserAuthority(Collection<UserRole> collection) {
 
-		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+		Set<GrantedAuthority> setAuths = new HashSet<>();
 
 		for (UserRole userRole : collection) {
 			setAuths.add(new SimpleGrantedAuthority(RoleEnum.getStringValue(userRole.getRole())));
 		}
 
-		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
+		List<GrantedAuthority> Result = new ArrayList<>(setAuths);
 
 		return Result;
 	}
-*/
+
 }

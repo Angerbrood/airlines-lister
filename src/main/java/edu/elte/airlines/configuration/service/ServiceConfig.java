@@ -56,6 +56,7 @@ public class ServiceConfig {
 	UserAuthService userAuthService() {
 		return new UserAuthServiceImpl((UserAuthDao) daoProvider.getDao(UserAuth.class));
 	}
+
 	@Bean
 	UserDetailService userDetailService() {
 		return new UserDetailServiceImpl((UserDetailDao) daoProvider.getDao(UserDetail.class));

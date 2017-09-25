@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_detail")
-public class UserDetail implements ModelInterface<Integer> {
+@Table(name = "user_personal_data")
+public class UserPersonalData implements ModelInterface<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -31,7 +31,7 @@ public class UserDetail implements ModelInterface<Integer> {
 	private String balance;
 	
 	
-	public UserDetail() {
+	public UserPersonalData() {
 		
 	}
 

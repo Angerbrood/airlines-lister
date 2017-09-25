@@ -6,12 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -20,14 +17,16 @@ import edu.elte.airlines.domain.RoleEnum;
 import edu.elte.airlines.domain.UserAuth;
 import edu.elte.airlines.domain.UserRole;
 import edu.elte.airlines.dto.UserAuthDto;
-import edu.elte.airlines.service.interfaces.UserAuthService;
+import edu.elte.airlines.service.interfaces.UserDetalsService;
+import org.springframework.transaction.annotation.Transactional;
 
-public class UserAuthServiceImpl extends AbstractCrudServiceImpl<UserAuth, UserAuthDto, Integer> 
-	implements UserAuthService {
+@Transactional
+public class UserDetailsServiceImpl extends AbstractCrudServiceImpl<UserAuth, UserAuthDto, Integer>
+	implements UserDetalsService {
 
 	private UserAuthDao dao;
 	
-	public UserAuthServiceImpl(UserAuthDao dao) {
+	public UserDetailsServiceImpl(UserAuthDao dao) {
 		super(UserAuth.class, UserAuthDto.class, dao);
 		this.dao = dao;
 	}

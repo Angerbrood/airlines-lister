@@ -15,11 +15,9 @@ public class UserId implements ModelInterface<Integer> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	@OneToOne()
-	@PrimaryKeyJoinColumn
 	private UserAuth userAuth;
 	@OneToOne()
-	@PrimaryKeyJoinColumn
-	private UserDetail userDetails;
+	private UserPersonalData userDetails;
 	
 	public UserId() {
 		
@@ -41,11 +39,11 @@ public class UserId implements ModelInterface<Integer> {
 		this.userAuth = userAuth;
 	}
 
-	public UserDetail getUserDetails() {
+	public UserPersonalData getUserDetails() {
 		return userDetails;
 	}
 
-	public void setUserDetails(UserDetail userDetails) {
+	public void setUserDetails(UserPersonalData userDetails) {
 		this.userDetails = userDetails;
 	}
 	

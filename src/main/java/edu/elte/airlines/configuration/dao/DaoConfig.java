@@ -24,7 +24,7 @@ import edu.elte.airlines.domain.Airline;
 import edu.elte.airlines.domain.Flight;
 import edu.elte.airlines.domain.Location;
 import edu.elte.airlines.domain.UserAuth;
-import edu.elte.airlines.domain.UserDetail;
+import edu.elte.airlines.domain.UserPersonalData;
 import edu.elte.airlines.domain.UserId;
 import edu.elte.airlines.provider.DaoProvider;
 
@@ -67,7 +67,7 @@ public class DaoConfig {
     	provider.registerDao(Flight.class, flightDao());
     	provider.registerDao(Location.class, locationDao());
     	provider.registerDao(UserAuth.class, userAuthDao());
-    	provider.registerDao(UserDetail.class, userDetailDao());
+    	provider.registerDao(UserPersonalData.class, userDetailDao());
     	provider.registerDao(UserId.class, userIdDao());
     	return provider;
     }

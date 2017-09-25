@@ -17,9 +17,8 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import edu.elte.airlines.domain.Airline;
 import edu.elte.airlines.domain.Flight;
 import edu.elte.airlines.domain.Location;
-import edu.elte.airlines.domain.RoleEnum;
 import edu.elte.airlines.domain.UserAuth;
-import edu.elte.airlines.domain.UserDetail;
+import edu.elte.airlines.domain.UserPersonalData;
 import edu.elte.airlines.domain.UserId;
 import edu.elte.airlines.domain.UserRole;
 
@@ -48,7 +47,7 @@ public class DatabaseConfig {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         //factoryBean.setPackagesToScan("hu.elte.cinema.model");
         factoryBean.setDataSource(dataSource());
-        factoryBean.setAnnotatedClasses(Airline.class, Flight.class, Location.class, UserAuth.class, UserDetail.class, UserId.class, UserRole.class);
+        factoryBean.setAnnotatedClasses(Airline.class, Flight.class, Location.class, UserAuth.class, UserPersonalData.class, UserId.class, UserRole.class);
         Properties hibernateProperties = hibernateProperties();
         factoryBean.setHibernateProperties(hibernateProperties);
         return factoryBean;

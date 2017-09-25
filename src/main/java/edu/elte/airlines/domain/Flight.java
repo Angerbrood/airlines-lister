@@ -40,7 +40,7 @@ public class Flight implements ModelInterface<Integer> {
 	@Column(nullable = false)
 	private Integer travelTime;
 	@OneToMany(fetch = FetchType.LAZY)
-	private Collection<UserDetail> passengers;
+	private Collection<UserPersonalData> passengers;
 	
 	public Flight() {
 		
@@ -110,11 +110,11 @@ public class Flight implements ModelInterface<Integer> {
 		this.travelTime = travelTime;
 	}
 
-	public Collection<UserDetail> getPassengerCollection() {
+	public Collection<UserPersonalData> getPassengerCollection() {
 		return Collections.unmodifiableCollection(passengers);
 	}
 
-	public void setPassengerCollection(Collection<UserDetail> passengerCollection) {
+	public void setPassengerCollection(Collection<UserPersonalData> passengerCollection) {
 		this.passengers = passengerCollection;
 	}
 	

@@ -16,7 +16,7 @@ import edu.elte.airlines.domain.Airline;
 import edu.elte.airlines.domain.Flight;
 import edu.elte.airlines.domain.Location;
 import edu.elte.airlines.domain.UserAuth;
-import edu.elte.airlines.domain.UserDetail;
+import edu.elte.airlines.domain.UserPersonalData;
 import edu.elte.airlines.domain.UserId;
 import edu.elte.airlines.provider.DaoProvider;
 import edu.elte.airlines.provider.ServiceProvider;
@@ -24,15 +24,15 @@ import edu.elte.airlines.response.CustomResponseFactory;
 import edu.elte.airlines.service.impl.AirlineServiceImpl;
 import edu.elte.airlines.service.impl.FlightServiceImpl;
 import edu.elte.airlines.service.impl.LocationServiceImpl;
-import edu.elte.airlines.service.impl.UserAuthServiceImpl;
-import edu.elte.airlines.service.impl.UserDetailServiceImpl;
+import edu.elte.airlines.service.impl.UserDetailsServiceImpl;
+import edu.elte.airlines.service.impl.UserPersonalDataServiceImpl;
 import edu.elte.airlines.service.impl.UserIdServiceImpl;
 import edu.elte.airlines.service.interfaces.AirlineService;
 import edu.elte.airlines.service.interfaces.FlightService;
 import edu.elte.airlines.service.interfaces.LocationService;
-import edu.elte.airlines.service.interfaces.UserAuthService;
-import edu.elte.airlines.service.interfaces.UserDetailService;
+import edu.elte.airlines.service.interfaces.UserPersonalDataService;
 import edu.elte.airlines.service.interfaces.UserIdService;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @Import(DaoConfig.class)
@@ -53,13 +53,13 @@ public class ServiceConfig {
 		return new LocationServiceImpl((LocationDao) daoProvider.getDao(Location.class));
 	}
 	@Bean
-	UserAuthService userAuthService() {
-		return new UserAuthServiceImpl((UserAuthDao) daoProvider.getDao(UserAuth.class));
+	UserDetailsService userAuthService() {
+		return new UserDetailsServiceImpl((UserAuthDao) daoProvider.getDao(UserAuth.class));
 	}
 
 	@Bean
-	UserDetailService userDetailService() {
-		return new UserDetailServiceImpl((UserDetailDao) daoProvider.getDao(UserDetail.class));
+	UserPersonalDataService userDetailService() {
+		return new UserPersonalDataServiceImpl((UserDetailDao) daoProvider.getDao(UserPersonalData.class));
 	}
 	@Bean
 	UserIdService userIdService() {
@@ -72,8 +72,8 @@ public class ServiceConfig {
 		provider.registerService(Airline.class, airlineService());
 		provider.registerService(Flight.class, flightService());
 		provider.registerService(Location.class, locationService());
-		provider.registerService(UserAuth.class, userAuthService());
-		provider.registerService(UserDetail.class, userDetailService());
+		//provider.registerService(UserAuth.class, userAuthService());
+		provider.registerService(UserPersonalData.class, userDetailService());
 		provider.registerService(UserId.class, userIdService());
 		return provider;
 	}

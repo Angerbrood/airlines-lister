@@ -14,7 +14,7 @@ public class FlightDto implements DtoInterface<Integer> {
 	private LocalDate startDate;
 	private LocalDate landingDate;
 	private Integer travelTime;
-	private Collection<UserDetailDto> passengers;
+	private Collection<UserPersonalDataDto> passengers;
 	
 	public FlightDto() {
 		passengers = new LinkedList<>();
@@ -76,11 +76,11 @@ public class FlightDto implements DtoInterface<Integer> {
 		this.travelTime = travelTime;
 	}
 
-	public Collection<UserDetailDto> getPassengers() {
+	public Collection<UserPersonalDataDto> getPassengers() {
 		return Collections.unmodifiableCollection(passengers);
 	}
 
-	public void setPassengers(Collection<UserDetailDto> passengers) {
+	public void setPassengers(Collection<UserPersonalDataDto> passengers) {
 		this.passengers = passengers;
 	}
 	

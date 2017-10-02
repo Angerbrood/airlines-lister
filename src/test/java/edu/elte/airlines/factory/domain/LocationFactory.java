@@ -1,9 +1,10 @@
-package edu.elte.airlines.factory;
+package edu.elte.airlines.factory.domain;
 
 
 import com.github.javafaker.Faker;
 import edu.elte.airlines.dao.interfaces.CrudDao;
 import edu.elte.airlines.domain.Location;
+import edu.elte.airlines.factory.AbstractFactory;
 
 public class LocationFactory extends AbstractFactory<Location> {
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import edu.elte.airlines.domain.Flight;
 import edu.elte.airlines.dto.FlightDto;
 import edu.elte.airlines.dto.LocationDto;
-import edu.elte.airlines.dto.UserDetailDto;
+import edu.elte.airlines.dto.UserPersonalDataDto;
 
 @Component
 public class FlightDtoConverter implements Converter<Flight, FlightDto> {
@@ -29,7 +29,7 @@ public class FlightDtoConverter implements Converter<Flight, FlightDto> {
 		result.setTravelTime(flight.getTravelTime());
 		result.setStart(conversionService.convert(flight.getStart(), LocationDto.class));
 		result.setDestination(conversionService.convert(flight.getDestination(), LocationDto.class));
-		result.setPassengers(flight.getPassengers().stream().map(item -> conversionService.convert(item, UserDetailDto.class)).collect(Collectors.toList()));
+		result.setPassengers(flight.getPassengers().stream().map(item -> conversionService.convert(item, UserPersonalDataDto.class)).collect(Collectors.toList()));
 		return result;
 	}
 

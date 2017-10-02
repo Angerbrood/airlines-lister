@@ -1,10 +1,11 @@
-package edu.elte.airlines.factory;
+package edu.elte.airlines.factory.domain;
 
 
 import com.github.javafaker.Faker;
 import edu.elte.airlines.dao.interfaces.CrudDao;
 import edu.elte.airlines.domain.Airline;
 import edu.elte.airlines.domain.Flight;
+import edu.elte.airlines.factory.AbstractFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -12,11 +13,11 @@ import java.util.List;
 
 public class AirlineFactory extends AbstractFactory<Airline> {
 
-    @Autowired
     private FlightFactory flightFactory;
 
-    public AirlineFactory(CrudDao<Airline, ?> dao) {
+    public AirlineFactory(CrudDao<Airline, ?> dao, FlightFactory flightFactory) {
         super(dao);
+        this.flightFactory = flightFactory;
     }
 
     @Override

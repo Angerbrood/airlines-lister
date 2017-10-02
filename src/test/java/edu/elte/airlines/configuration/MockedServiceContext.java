@@ -5,6 +5,7 @@ import edu.elte.airlines.domain.UserAuth;
 import edu.elte.airlines.service.interfaces.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import static org.mockito.Mockito.mock;
 
@@ -23,12 +24,12 @@ public class MockedServiceContext {
         return mock(LocationService.class);
     }
     @Bean
-    UserDetailService userDetailService() {
-        return mock(UserDetailService.class);
+    UserPersonalDataService userDetailService() {
+        return mock(UserPersonalDataService.class);
     }
     @Bean
-    UserAuthService userAuthService() {
-        return mock(UserAuthService.class);
+    UserDetailsService userAuthService() {
+        return mock(UserDetailsService.class);
     }
     @Bean
     UserIdService userIdService() {

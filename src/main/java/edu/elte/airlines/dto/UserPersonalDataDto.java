@@ -3,7 +3,7 @@ package edu.elte.airlines.dto;
 import java.time.LocalDate;
 
 
-public class UserDetailDto implements DtoInterface<Integer> {
+public class UserPersonalDataDto implements DtoInterface<Integer> {
 	private Integer id;
 	private String name;
 	private Integer age;
@@ -12,7 +12,7 @@ public class UserDetailDto implements DtoInterface<Integer> {
 	private String accountNumber;
 	private String balance;
 	
-	public UserDetailDto() {
+	public UserPersonalDataDto() {
 		
 	}
 	

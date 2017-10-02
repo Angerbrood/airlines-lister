@@ -8,6 +8,7 @@ import edu.elte.airlines.domain.ModelInterface;
 import edu.elte.airlines.dto.DtoInterface;
 import edu.elte.airlines.service.interfaces.CrudService;
 
+import javax.swing.text.html.parser.Entity;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;

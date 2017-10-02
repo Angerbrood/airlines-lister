@@ -29,7 +29,7 @@ public class FlightDtoConverter implements Converter<Flight, FlightDto> {
 		result.setTravelTime(flight.getTravelTime());
 		result.setStart(conversionService.convert(flight.getStart(), LocationDto.class));
 		result.setDestination(conversionService.convert(flight.getDestination(), LocationDto.class));
-		result.setPassengers(flight.getPassengerCollection().stream().map(item -> conversionService.convert(item, UserDetailDto.class)).collect(Collectors.toList()));	
+		result.setPassengers(flight.getPassengers().stream().map(item -> conversionService.convert(item, UserDetailDto.class)).collect(Collectors.toList()));
 		return result;
 	}
 

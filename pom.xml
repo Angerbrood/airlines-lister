@@ -118,6 +118,11 @@
           <artifactId>jaxb-api</artifactId>
           <version>2.2.11</version>
       </dependency>
+      <dependency>
+          <groupId>com.github.javafaker</groupId>
+          <artifactId>javafaker</artifactId>
+          <version>0.13</version>
+      </dependency>
 
       <!-- Database dependeices -->
          <dependency>

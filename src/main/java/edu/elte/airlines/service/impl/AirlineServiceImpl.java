@@ -11,5 +11,4 @@ public class AirlineServiceImpl extends AbstractCrudServiceImpl<Airline, Airline
 	public AirlineServiceImpl(AirlineDao dao) {
 		super(Airline.class, AirlineDto.class, dao);
 	}
-
 }

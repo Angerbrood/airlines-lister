@@ -1,5 +1,7 @@
 package edu.elte.airlines.domain;
 
+import com.github.javafaker.Faker;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +48,4 @@ public class Location implements ModelInterface<Integer> {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	
-	
-	
 }

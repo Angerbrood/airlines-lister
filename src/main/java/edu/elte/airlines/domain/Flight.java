@@ -110,14 +110,11 @@ public class Flight implements ModelInterface<Integer> {
 		this.travelTime = travelTime;
 	}
 
-	public Collection<UserPersonalData> getPassengerCollection() {
+	public Collection<UserPersonalData> getPassengers() {
 		return Collections.unmodifiableCollection(passengers);
 	}
 
-	public void setPassengerCollection(Collection<UserPersonalData> passengerCollection) {
-		this.passengers = passengerCollection;
+	public void setPassengers(Collection<UserPersonalData> passengers) {
+		this.passengers = passengers;
 	}
-	
-	
-	
 }

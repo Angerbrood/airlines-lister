@@ -1,6 +1,10 @@
 package edu.elte.airlines.domain;
 
+import com.github.javafaker.Faker;
+
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -113,6 +117,4 @@ public class UserPersonalData implements ModelInterface<Integer> {
 	public void setBalance(String balance) {
 		this.balance = balance;
 	}
-	
-	
 }

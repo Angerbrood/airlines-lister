@@ -68,6 +68,7 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
         resolver.setPrefix("/views/");
         resolver.setSuffix(".html");
         resolver.setTemplateMode(TemplateMode.HTML);
+        resolver.setCacheable(false);
         return resolver;
     }
     

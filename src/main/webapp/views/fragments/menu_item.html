@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div th:fragment="menu_item(href_path, img_path)">
     <div class="col-sm-4 portfolio-item">
-        <a class="portfolio-link" th:href="${href_path}" data-toggle="modal">
+        <a class="portfolio-link" th:href="'#' + ${href_path}" data-toggle="modal">
             <div class="caption">
                 <div class="caption-content">
                     <i class="fa fa-search-plus fa-3x"></i>

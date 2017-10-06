@@ -181,4 +181,37 @@
         </div>
     </div>
 </div>
+<div th:fragment="add_airline_modal(modal_id, img_path)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Add Airline</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="addAirlineForm">
+                                        <label for="airlineName">Name:</label>
+                                        <input id="airlineName" type="text" class="form-control" required>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </html>

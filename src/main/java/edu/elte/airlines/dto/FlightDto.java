@@ -9,6 +9,7 @@ import java.util.LinkedList;
 public class FlightDto implements DtoInterface<Integer> {
 	private Integer id;
 	private String flightNumber;
+	private Integer airlineId;
 	private LocationDto start;
 	private LocationDto destination;
 	private LocalDate startDate;
@@ -34,6 +35,14 @@ public class FlightDto implements DtoInterface<Integer> {
 
 	public void setFlightNumber(String flightNumber) {
 		this.flightNumber = flightNumber;
+	}
+
+	public Integer getAirlineId() {
+		return airlineId;
+	}
+
+	public void setAirlineId(Integer airlineId) {
+		this.airlineId = airlineId;
 	}
 
 	public LocationDto getStart() {

@@ -124,4 +124,61 @@
         </div>
     </div>
 </div>
+<div th:fragment="flight_infos_modal(modal_id, img_path)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Find Flight</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="flightInfosForm">
+                                        <label for="departure">Enter departure:</label>
+                                        <input id="departure" type="text" class="form-control" required>
+                                        <label for="destination">Enter destination:</label>
+                                        <input id="destination" type="text" class="form-control" required>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Flight Number</th>
+                                            <th>Departure Date</th>
+                                            <th>Details</th>
+                                            <th>Reservation</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1000</td>
+                                            <td>2017-10-10</td>
+                                            <td><button type="button" class="btn btn-info">Show</button></td>
+                                            <td><button type="button" class="btn btn-warning">Reserve</button></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </html>

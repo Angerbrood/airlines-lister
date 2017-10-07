@@ -31,19 +31,12 @@ public class RootController {
 		templateEngine.process(templateName, ctx, response.getWriter());
 	}
 
-	@RequestMapping("/authenticate")
+	@RequestMapping("/index")
 	public void auth( HttpServletRequest request, HttpServletResponse response, @RequestParam("username") String userName) throws IOException {
 		UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
 		if(userDetails != null) {
 			WebContext ctx = WebContextInitializer.createContext(request, response);
 			templateEngine.process("index", ctx, response.getWriter());
 		}
-	}
-
-
-	@RequestMapping("/admin/index")
-	public void getIndex(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		WebContext ctx = WebContextInitializer.createContext(request, response);
-		templateEngine.process("index", ctx, response.getWriter());
 	}
 }

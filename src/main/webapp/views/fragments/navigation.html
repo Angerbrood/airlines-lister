@@ -8,6 +8,13 @@
                 <i class="fa fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span th:text="${username}"></span>
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/logout}">Logout</a></li>
+                    </ul>
+                </div>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#portfolio">Menu</a>

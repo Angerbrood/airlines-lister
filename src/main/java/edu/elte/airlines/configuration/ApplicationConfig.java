@@ -1,5 +1,6 @@
 package edu.elte.airlines.configuration;
 
+import edu.elte.airlines.util.SessionWrapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,5 +23,9 @@ public class ApplicationConfig {
     @Bean
     ConverterRegister converterRegister() {
         return new ConverterRegister();
+    }
+    @Bean
+    SessionWrapper sessionWrapper() {
+        return new SessionWrapper();
     }
 }

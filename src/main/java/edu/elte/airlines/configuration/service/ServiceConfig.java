@@ -24,7 +24,7 @@ import edu.elte.airlines.response.CustomResponseFactory;
 import edu.elte.airlines.service.impl.AirlineServiceImpl;
 import edu.elte.airlines.service.impl.FlightServiceImpl;
 import edu.elte.airlines.service.impl.LocationServiceImpl;
-import edu.elte.airlines.service.impl.UserDetailsServiceImpl;
+import edu.elte.airlines.service.impl.UserAuthDetailsServiceImpl;
 import edu.elte.airlines.service.impl.UserPersonalDataServiceImpl;
 import edu.elte.airlines.service.impl.UserIdServiceImpl;
 import edu.elte.airlines.service.interfaces.AirlineService;
@@ -54,16 +54,17 @@ public class ServiceConfig {
 	}
 	@Bean
 	UserDetailsService userAuthService() {
-		return new UserDetailsServiceImpl((UserAuthDao) daoProvider.getDao(UserAuth.class));
+		return new UserAuthDetailsServiceImpl((UserAuthDao) daoProvider.getDao(UserAuth.class));
 	}
 
 	@Bean
-	UserPersonalDataService userDetailService() {
+	UserPersonalDataService userPersonalDataService() {
 		return new UserPersonalDataServiceImpl((UserDetailDao) daoProvider.getDao(UserPersonalData.class));
 	}
 	@Bean
 	UserIdService userIdService() {
-		return new UserIdServiceImpl((UserIdDao) daoProvider.getDao(UserId.class));
+		return new UserIdServiceImpl((UserIdDao) daoProvider.getDao(UserId.class),
+				userAuthService(), userPersonalDataService());
 	}
 	
 	@Bean
@@ -72,8 +73,7 @@ public class ServiceConfig {
 		provider.registerService(Airline.class, airlineService());
 		provider.registerService(Flight.class, flightService());
 		provider.registerService(Location.class, locationService());
-		//provider.registerService(UserAuth.class, userAuthService());
-		provider.registerService(UserPersonalData.class, userDetailService());
+		provider.registerService(UserPersonalData.class, userPersonalDataService());
 		provider.registerService(UserId.class, userIdService());
 		return provider;
 	}

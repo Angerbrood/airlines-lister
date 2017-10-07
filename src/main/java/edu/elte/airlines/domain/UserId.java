@@ -1,12 +1,6 @@
 package edu.elte.airlines.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user_id")
@@ -14,9 +8,9 @@ public class UserId implements ModelInterface<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@OneToOne()
+	@OneToOne
 	private UserAuth userAuth;
-	@OneToOne()
+	@OneToOne
 	private UserPersonalData userDetails;
 	
 	public UserId() {

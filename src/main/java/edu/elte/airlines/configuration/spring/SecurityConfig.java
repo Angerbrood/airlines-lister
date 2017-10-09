@@ -30,13 +30,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .maximumSessions(2);
 	}
-/*
-    @Bean
-    public UserDetailsService userDetailsService() {
-
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("user").password("user").roles("USER").build());
-        manager.createUser(User.withUsername("root").password("root").roles("USER","ADMIN").build());
-        return manager;
-    }*/
 }

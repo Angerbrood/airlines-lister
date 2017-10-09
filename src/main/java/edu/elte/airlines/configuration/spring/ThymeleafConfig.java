@@ -1,5 +1,8 @@
 package edu.elte.airlines.configuration.spring;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import edu.elte.airlines.util.CustomMessageResolver;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -7,10 +10,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.JstlView;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.messageresolver.IMessageResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -19,6 +27,8 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Configuration
 @EnableWebMvc
@@ -71,6 +81,4 @@ public class ThymeleafConfig extends WebMvcConfigurerAdapter implements Applicat
         resolver.setCacheable(false);
         return resolver;
     }
-    
-
 }

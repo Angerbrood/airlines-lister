@@ -1,8 +1,9 @@
 package edu.elte.airlines.dto;
 
+
 public class LocationDto implements DtoInterface<Integer> {
 	private Integer id;
-	private String name;
+	private String city;
 	private String country;
 
 	public LocationDto() {
@@ -17,12 +18,12 @@ public class LocationDto implements DtoInterface<Integer> {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getCity() {
+		return city;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getCountry() {

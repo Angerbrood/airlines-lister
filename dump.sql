@@ -151,7 +151,7 @@ DROP TABLE IF EXISTS `location`;
 CREATE TABLE `location` (
   `id` int(11) NOT NULL,
   `country` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

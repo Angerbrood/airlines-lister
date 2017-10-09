@@ -15,7 +15,7 @@ public class LocationDtoFactory extends AbstractFactory<LocationDto> {
         Faker faker = new Faker();
         LocationDto result = new LocationDto();
         result.setCountry(faker.address().country());
-        result.setName(faker.address().cityName());
+        result.setCity(faker.address().cityName());
         return result;
     }
 }

@@ -13,7 +13,7 @@ public class LocationDtoConverter implements Converter<Location, LocationDto> {
 	public LocationDto convert(Location location) {
 		LocationDto result = new LocationDto();
 		result.setId(location.getId());
-		result.setName(location.getName());
+		result.setCity(location.getName());
 		result.setCountry(location.getCountry());
 		return result;
 	}

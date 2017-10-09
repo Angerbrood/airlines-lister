@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-	<property name="DEV_HOME" value="c:/logs" />
+	<property city="DEV_HOME" value="c:/logs" />
 
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+	<appender city="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<Pattern>
 				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
@@ -11,7 +11,7 @@
 		</layout>
 	</appender>
 
-	<appender name="FILE-AUDIT"
+	<appender city="FILE-AUDIT"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${DEV_HOME}/debug.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -32,7 +32,7 @@
 
 	</appender>
 
-	<appender name="FILE-ERROR"
+	<appender city="FILE-ERROR"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${DEV_HOME}/error.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -54,7 +54,7 @@
 	</appender>
 
 	<!-- Send logs to both console and file audit -->
-	<logger name="edu.elte.airlines" level="debug"
+	<logger city="edu.elte.airlines" level="debug"
 		additivity="false">
 		<appender-ref ref="FILE-AUDIT" />
 		<appender-ref ref="STDOUT" />

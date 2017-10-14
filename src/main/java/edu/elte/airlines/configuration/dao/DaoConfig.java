@@ -12,13 +12,13 @@ import edu.elte.airlines.dao.impl.AirlineDaoImpl;
 import edu.elte.airlines.dao.impl.FlightDaoImpl;
 import edu.elte.airlines.dao.impl.LocationDaoImpl;
 import edu.elte.airlines.dao.impl.UserAuthDaoImpl;
-import edu.elte.airlines.dao.impl.UserDetailDaoImpl;
+import edu.elte.airlines.dao.impl.UserPersonalDataDaoImpl;
 import edu.elte.airlines.dao.impl.UserIdDaoImpl;
 import edu.elte.airlines.dao.interfaces.AirlineDao;
 import edu.elte.airlines.dao.interfaces.FlightDao;
 import edu.elte.airlines.dao.interfaces.LocationDao;
 import edu.elte.airlines.dao.interfaces.UserAuthDao;
-import edu.elte.airlines.dao.interfaces.UserDetailDao;
+import edu.elte.airlines.dao.interfaces.UserPersonalDataDao;
 import edu.elte.airlines.dao.interfaces.UserIdDao;
 import edu.elte.airlines.domain.Airline;
 import edu.elte.airlines.domain.Flight;
@@ -53,8 +53,8 @@ public class DaoConfig {
     	return new UserAuthDaoImpl(sessionFactory);
     }
     @Bean
-    UserDetailDao userDetailDao() {
-    	return new UserDetailDaoImpl(sessionFactory);
+    UserPersonalDataDao userDetailDao() {
+    	return new UserPersonalDataDaoImpl(sessionFactory);
     }
     @Bean
     UserIdDao userIdDao() {

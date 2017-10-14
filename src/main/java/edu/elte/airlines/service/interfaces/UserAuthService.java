@@ -7,6 +7,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import edu.elte.airlines.domain.UserAuth;
 import edu.elte.airlines.dto.UserAuthDto;
 
-public interface UserAuthDetailsService extends CrudService<UserAuth, UserAuthDto, Integer>, UserDetailsService {
+public interface UserAuthService extends CrudService<UserAuth, UserAuthDto, Integer>, UserDetailsService {
 	UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException;
 }

@@ -1,8 +1,6 @@
 package edu.elte.airlines.configuration;
 
 import edu.elte.airlines.dao.interfaces.*;
-import edu.elte.airlines.domain.Location;
-import edu.elte.airlines.domain.UserAuth;
 import edu.elte.airlines.response.CustomResponseFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,8 +23,8 @@ public class MockedDaoContext {
         return mock(LocationDao.class);
     }
     @Bean
-    UserDetailDao userDetailDao() {
-        return mock(UserDetailDao.class);
+    UserPersonalDataDao userDetailDao() {
+        return mock(UserPersonalDataDao.class);
     }
     @Bean
     UserAuthDao userAuthDao() {

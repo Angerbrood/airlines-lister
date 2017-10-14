@@ -17,16 +17,16 @@ import edu.elte.airlines.domain.RoleEnum;
 import edu.elte.airlines.domain.UserAuth;
 import edu.elte.airlines.domain.UserRole;
 import edu.elte.airlines.dto.UserAuthDto;
-import edu.elte.airlines.service.interfaces.UserAuthDetailsService;
+import edu.elte.airlines.service.interfaces.UserAuthService;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public class UserAuthDetailsServiceImpl extends AbstractCrudServiceImpl<UserAuth, UserAuthDto, Integer>
-	implements UserAuthDetailsService {
+public class UserAuthServiceImpl extends AbstractCrudServiceImpl<UserAuth, UserAuthDto, Integer>
+	implements UserAuthService {
 
 	private UserAuthDao dao;
 	
-	public UserAuthDetailsServiceImpl(UserAuthDao dao) {
+	public UserAuthServiceImpl(UserAuthDao dao) {
 		super(UserAuth.class, UserAuthDto.class, dao);
 		this.dao = dao;
 	}

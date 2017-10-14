@@ -1,13 +1,10 @@
 package edu.elte.airlines.service.impl;
 
-import edu.elte.airlines.dao.interfaces.CrudDao;
 import edu.elte.airlines.dao.interfaces.UserIdDao;
 import edu.elte.airlines.domain.UserId;
 import edu.elte.airlines.dto.UserIdDto;
-import edu.elte.airlines.service.interfaces.UserAuthDetailsService;
 import edu.elte.airlines.service.interfaces.UserIdService;
 import edu.elte.airlines.service.interfaces.UserPersonalDataService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 

@@ -12,8 +12,13 @@ import org.springframework.context.annotation.Import;
 @Import({ServiceConfig.class, MockedDaoContext.class})
 public class ServiceTestConfig {
     @Bean
-    UserPersonalDataFactory userPersonalDataFactory(UserDetailDao userDetailDao) {
-        return new UserPersonalDataFactory(userDetailDao);
+    UserIdFactory userIdFactory(UserIdDao userIdDao, UserAuthDao userAuthDao, UserPersonalDataDao userPersonalDataDao) {
+        return new UserIdFactory(userIdDao, userAuthFactory(userAuthDao), userPersonalDataFactory(userPersonalDataDao));
+    }
+
+    @Bean
+    UserPersonalDataFactory userPersonalDataFactory(UserPersonalDataDao userPersonalDataDao) {
+        return new UserPersonalDataFactory(userPersonalDataDao);
     }
     @Bean
     UserAuthFactory userAuthFactory(UserAuthDao userAuthDao) {

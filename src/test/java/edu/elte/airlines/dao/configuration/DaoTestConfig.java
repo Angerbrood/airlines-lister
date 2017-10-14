@@ -17,8 +17,8 @@ public class DaoTestConfig {
         return new DefaultConversionService();
     }
     @Bean
-    UserPersonalDataFactory userPersonalDataFactory(UserDetailDao userDetailDao) {
-        return new UserPersonalDataFactory(userDetailDao);
+    UserPersonalDataFactory userPersonalDataFactory(UserPersonalDataDao userPersonalDataDao) {
+        return new UserPersonalDataFactory(userPersonalDataDao);
     }
     @Bean
     UserAuthFactory userAuthFactory(UserAuthDao userAuthDao) {

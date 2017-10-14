@@ -4,14 +4,14 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.elte.airlines.dao.interfaces.UserDetailDao;
+import edu.elte.airlines.dao.interfaces.UserPersonalDataDao;
 import edu.elte.airlines.domain.UserPersonalData;
 
 @Repository
 @Transactional
-public class UserDetailDaoImpl extends CrudDaoImpl<UserPersonalData, Integer> implements UserDetailDao {
+public class UserPersonalDataDaoImpl extends CrudDaoImpl<UserPersonalData, Integer> implements UserPersonalDataDao {
 
-	public UserDetailDaoImpl(SessionFactory sessionFactory) {
+	public UserPersonalDataDaoImpl(SessionFactory sessionFactory) {
 		super(UserPersonalData.class, sessionFactory);
 	}
 

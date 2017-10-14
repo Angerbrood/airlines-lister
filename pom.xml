@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <city>airlines-lister</city>
+  <name>airlines-lister</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -183,6 +183,41 @@
                         <source>1.8</source>
                         <target>1.8</target>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>exec-npm-install</id>
+                            <phase>generate-sources</phase>
+                            <configuration>
+                                <workingDirectory>${project.basedir}/webapp</workingDirectory>
+                                <executable>npm</executable>
+                                <arguments>
+                                    <argument>install</argument>
+                                </arguments>
+                            </configuration>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>exec-npm-run-tsc</id>
+                            <phase>generate-sources</phase>
+                            <configuration>
+                                <workingDirectory>${project.basedir}/webapp</workingDirectory>
+                                <executable>npm</executable>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>tsc</argument>
+                                </arguments>
+                            </configuration>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

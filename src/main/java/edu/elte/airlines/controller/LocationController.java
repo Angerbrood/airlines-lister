@@ -8,6 +8,7 @@ import edu.elte.airlines.provider.ServiceProvider;
 import edu.elte.airlines.response.CustomResponse;
 import edu.elte.airlines.service.AdminService;
 import edu.elte.airlines.service.interfaces.LocationService;
+import edu.elte.airlines.util.Wrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +23,31 @@ public class LocationController {
     @Autowired
     private ServiceProvider serviceProvider;
 
-    @RequestMapping(value = "/addNewLocation", method = RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value = "/admin/addNewLocation", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public void addNewLocation(HttpServletRequest request, HttpServletResponse response, @RequestBody LocationDto locationDto) throws IOException {
-        CustomResponse customResponse = serviceProvider.getService(Location.class).create(locationDto);
-        System.out.println(customResponse);
+    public CustomResponse addNewLocation(HttpServletRequest request, HttpServletResponse response,
+                                         @RequestBody Wrapper<LocationDto> wrapper) throws IOException {
+        return serviceProvider.getService(Location.class).create(wrapper.getObject());
+    }
+
+    @RequestMapping(value = "/admin/deleteLocation", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public CustomResponse deleteLocation(HttpServletRequest request, HttpServletResponse response,
+                                         @RequestBody Wrapper<LocationDto> wrapper) throws IOException {
+        return serviceProvider.getService(Location.class).delete(wrapper.getObject());
+
+    }
+    @RequestMapping(value = "/admin/listLocations", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public CustomResponse listLocations(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return serviceProvider.getService(Location.class).list();
+
+    }
+    @RequestMapping(value = "/admin/updateLocation", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public CustomResponse updateLocation(HttpServletRequest request, HttpServletResponse response,
+                                         @RequestBody Wrapper<LocationDto> wrapper) throws IOException {
+        return serviceProvider.getService(Location.class).update(wrapper.getObject());
+
     }
 }

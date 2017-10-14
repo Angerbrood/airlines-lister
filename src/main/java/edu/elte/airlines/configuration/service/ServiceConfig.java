@@ -1,6 +1,7 @@
 package edu.elte.airlines.configuration.service;
 
 import edu.elte.airlines.configuration.ConverterRegister;
+import edu.elte.airlines.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,11 +29,6 @@ import edu.elte.airlines.service.impl.LocationServiceImpl;
 import edu.elte.airlines.service.impl.UserAuthServiceImpl;
 import edu.elte.airlines.service.impl.UserPersonalDataServiceImpl;
 import edu.elte.airlines.service.impl.UserIdServiceImpl;
-import edu.elte.airlines.service.interfaces.AirlineService;
-import edu.elte.airlines.service.interfaces.FlightService;
-import edu.elte.airlines.service.interfaces.LocationService;
-import edu.elte.airlines.service.interfaces.UserPersonalDataService;
-import edu.elte.airlines.service.interfaces.UserIdService;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -77,6 +73,7 @@ public class ServiceConfig {
 		provider.registerService(Flight.class, flightService());
 		provider.registerService(Location.class, locationService());
 		provider.registerService(UserPersonalData.class, userPersonalDataService());
+		provider.registerService(UserAuth.class, (CrudService)userAuthService());
 		provider.registerService(UserId.class, userIdService());
 		return provider;
 	}

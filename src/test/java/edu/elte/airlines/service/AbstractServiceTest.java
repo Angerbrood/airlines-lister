@@ -8,6 +8,9 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.springframework.core.convert.ConversionService;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
@@ -63,4 +66,32 @@ public abstract class AbstractServiceTest<EntityType, DtoType> {
         verify(getDao(), times(0)).createEntity(any());
         verify(getDao(), times(0)).updateEntity(any());
     }
+    @Test
+    public void testCreateNonNull() {
+        DtoType dtoType = createDto();
+        when(getConversionService().convert(dtoType, getEntityClass())).thenReturn(createEntity(false));
+        getService().create(dtoType);
+        verify(getDao(), times(1)).createEntity(any());
+        verify(getDao(), times(0)).updateEntity(any());
+
+    }
+    @Test
+    public void testUpdateNonNull() {
+        DtoType dtoType = createDto();
+        EntityType entityType = createEntity(false);
+        when(getConversionService().convert(dtoType, getEntityClass())).thenReturn(entityType);
+        getService().update(dtoType);
+        verify(getDao(), times(1)).updateEntity(any());
+        verify(getDao(), times(0)).createEntity(any());
+    }
+    @Test
+    public void testDeleteNonNull() {
+        DtoType dtoType = createDto();
+        EntityType entityType = createEntity(false);
+        when(getConversionService().convert(dtoType, getEntityClass())).thenReturn(entityType);
+        getService().delete(dtoType);
+        verify(getDao(), times(1)).deleteEntity(any());
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package edu.elte.airlines.configuration.service;
 
+import edu.elte.airlines.configuration.ConverterRegister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,8 @@ import edu.elte.airlines.service.interfaces.FlightService;
 import edu.elte.airlines.service.interfaces.LocationService;
 import edu.elte.airlines.service.interfaces.UserPersonalDataService;
 import edu.elte.airlines.service.interfaces.UserIdService;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration

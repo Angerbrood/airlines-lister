@@ -39,16 +39,21 @@ public class RootController {
 	}
 
 	@RequestMapping("/index")
-	public void auth(HttpServletRequest request, HttpServletResponse response, @RequestParam("username") String userName, HttpSession session) throws IOException {
-		UserDetails userDetails = userIdService.findUserByUsername(userName);
-		if(userDetails != null) {
-			sessionWrapper.setSession(session);
-			sessionWrapper.add("userId", userIdService.getUserIdByUserName(userName));
+	public void auth(HttpServletRequest request, HttpServletResponse response, HttpSession session,
+					 @RequestParam("username") String username, @RequestParam("password") String password) throws IOException {
+		try {
+			UserDetails userDetails = userIdService.authenticateUser(username, password);
+			if(userDetails != null) {
+				sessionWrapper.setSession(session);
+				sessionWrapper.add("userId", userIdService.getUserIdByUserName(username));
 
 
-			WebContext ctx = WebContextInitializer.createContext(request, response);
-			ctx.setVariable("username", userDetails.getUsername());
-			templateEngine.process("index", ctx, response.getWriter());
+				WebContext ctx = WebContextInitializer.createContext(request, response);
+				ctx.setVariable("username", userDetails.getUsername());
+				templateEngine.process("index", ctx, response.getWriter());
+			}
+		} catch (Exception ex) {
+			loadErrorPage(request, response, ex.getMessage());
 		}
 	}
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
@@ -58,5 +63,10 @@ public class RootController {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		getLogin(request, response);
+	}
+	private void loadErrorPage(HttpServletRequest request, HttpServletResponse response, final String errorMessage) throws IOException {
+		WebContext ctx = WebContextInitializer.createContext(request, response);
+		ctx.setVariable("errorMessage", errorMessage);
+		templateEngine.process("error", ctx, response.getWriter());
 	}
 }

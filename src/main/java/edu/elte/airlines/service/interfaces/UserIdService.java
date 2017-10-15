@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public interface UserIdService extends CrudService<UserId, UserIdDto, Integer> {
 
-    UserDetails findUserByUsername(String username);
+    UserDetails authenticateUser(String username, String password);
     UserId getUserIdByUserName(String username);
 
 }

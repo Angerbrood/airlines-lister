@@ -63,7 +63,7 @@ public class ServiceConfig {
 	@Bean
 	UserIdService userIdService() {
 		return new UserIdServiceImpl((UserIdDao) daoProvider.getDao(UserId.class),
-				userAuthService(), userPersonalDataService());
+				(UserAuthService) userAuthService(), userPersonalDataService());
 	}
 	
 	@Bean

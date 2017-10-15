@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,6 +20,7 @@ import edu.elte.airlines.domain.UserAuth;
 import edu.elte.airlines.domain.UserRole;
 import edu.elte.airlines.dto.UserAuthDto;
 import edu.elte.airlines.service.interfaces.UserAuthService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
@@ -25,15 +28,28 @@ public class UserAuthServiceImpl extends AbstractCrudServiceImpl<UserAuth, UserA
 	implements UserAuthService {
 
 	private UserAuthDao dao;
-	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	public UserAuthServiceImpl(UserAuthDao dao) {
 		super(UserAuth.class, UserAuthDto.class, dao);
 		this.dao = dao;
 	}
 
 	@Override
+	public UserDetails authenticateUser(String username, String password) throws IllegalArgumentException {
+		UserAuth user = dao.findByUserName(username);
+		if(user != null && password.equals(user.getPassword())) {
+			return loadUserByUsername(username);
+		} else {
+			throw new IllegalArgumentException("Username or password is invalid");
+		}
+	}
+
+	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserAuth user = dao.findByUserName(username);
+
 		List<GrantedAuthority> authorities = buildUserAuthority(user.getRoles());
 		return buildUserForAuthentication(user, authorities);
 	}
@@ -51,9 +67,7 @@ public class UserAuthServiceImpl extends AbstractCrudServiceImpl<UserAuth, UserA
 			setAuths.add(new SimpleGrantedAuthority(RoleEnum.getStringValue(userRole.getRole())));
 		}
 
-		List<GrantedAuthority> Result = new ArrayList<>(setAuths);
-
-		return Result;
+		return new ArrayList<>(setAuths);
 	}
 
 }

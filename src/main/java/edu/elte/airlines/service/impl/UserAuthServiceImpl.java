@@ -28,8 +28,6 @@ public class UserAuthServiceImpl extends AbstractCrudServiceImpl<UserAuth, UserA
 	implements UserAuthService {
 
 	private UserAuthDao dao;
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 
 	public UserAuthServiceImpl(UserAuthDao dao) {
 		super(UserAuth.class, UserAuthDto.class, dao);

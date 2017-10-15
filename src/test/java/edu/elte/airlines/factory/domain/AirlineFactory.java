@@ -27,7 +27,10 @@ public class AirlineFactory extends AbstractFactory<Airline> {
         result.setName(faker.name().fullName());
         List<Flight> flights = new ArrayList<>();
         for(int i = 0; i < 10; ++i) {
-            flights.add(flightFactory.createOne());
+            Flight flight = flightFactory.createOne();
+            flight.setAirline(result);
+            flights.add(flight);
+
         }
         result.setFlights(flights);
         return result;

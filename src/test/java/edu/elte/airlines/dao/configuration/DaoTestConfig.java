@@ -36,5 +36,9 @@ public class DaoTestConfig {
     AirlineFactory airlineFactory(AirlineDao airlineDao, FlightFactory flightFactory) {
         return new AirlineFactory(airlineDao, flightFactory);
     }
+    @Bean
+    UserIdFactory userIdFactory(UserIdDao userIdDao, UserAuthDao userAuthDao, UserPersonalDataDao userPersonalDataDao) {
+        return new UserIdFactory(userIdDao, userAuthFactory(userAuthDao), userPersonalDataFactory(userPersonalDataDao));
+    }
 
 }

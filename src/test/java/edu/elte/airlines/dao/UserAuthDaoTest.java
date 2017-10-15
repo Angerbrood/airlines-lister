@@ -1,9 +1,10 @@
 package edu.elte.airlines.dao;
 
+
 import edu.elte.airlines.dao.configuration.DaoTestConfig;
-import edu.elte.airlines.dao.interfaces.AirlineDao;
-import edu.elte.airlines.domain.Airline;
-import edu.elte.airlines.factory.domain.AirlineFactory;
+import edu.elte.airlines.dao.interfaces.UserAuthDao;
+import edu.elte.airlines.domain.UserAuth;
+import edu.elte.airlines.factory.domain.UserAuthFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,57 +16,55 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { DaoTestConfig.class })
 @Transactional
-public class AirlineDaoTest {
+public class UserAuthDaoTest {
     @Autowired
-    private AirlineDao airlineDao;
+    private UserAuthDao userAuthDao;
     @Autowired
-    private AirlineFactory airlineFactory;
+    private UserAuthFactory userAuthFactory;
 
-    private Airline airlineToModifyOrDelete;
+    private UserAuth airlineToModifyOrDelete;
 
     @Before
     public void before() {
-        assertNotNull("DAO under test should not be null", airlineDao);
-        airlineToModifyOrDelete = airlineFactory.createOne();
-        airlineDao.createEntity(airlineToModifyOrDelete);
+        assertNotNull("DAO under test should not be null", userAuthDao);
+        airlineToModifyOrDelete = userAuthFactory.createOne();
+        userAuthDao.createEntity(airlineToModifyOrDelete);
         assertNotNull("Id should not be null after save", airlineToModifyOrDelete.getId());
     }
 
     @Test
     public void testSave() {
-        Airline airline = airlineFactory.createOne();
-        assertNull("Id should be null before save", airline.getId());
-        airlineDao.createEntity(airline);
-        assertNotNull("Id should not be null after save", airline.getId());
+        UserAuth userAuth = userAuthFactory.createOne();
+        assertNull("Id should be null before save", userAuth.getId());
+        userAuthDao.createEntity(userAuth);
+        assertNotNull("Id should not be null after save", userAuth.getId());
     }
     @Test
     public void testFindById() {
         int id = airlineToModifyOrDelete.getId();
-        Airline airline = airlineDao.findById(id);
-        assertNotNull("Airline should not be null", airline);
+        UserAuth userAuth = userAuthDao.findById(id);
+        assertNotNull("Airline should not be null", userAuth);
     }
     @Test
     public void testUpdate() {
-        airlineToModifyOrDelete.setName(airlineToModifyOrDelete.getName() + "_updated");
+        airlineToModifyOrDelete.setUsername("updated");
         assertNotNull("Id should not be null before update", airlineToModifyOrDelete.getId());
-        airlineDao.updateEntity(airlineToModifyOrDelete);
+        userAuthDao.updateEntity(airlineToModifyOrDelete);
 
     }
     @Test
     public void testDelete() {
         assertNotNull("Id should not be null before update", airlineToModifyOrDelete.getId());
-        airlineDao.deleteEntity(airlineToModifyOrDelete);
+        userAuthDao.deleteEntity(airlineToModifyOrDelete);
     }
     @Test
     public void testList() {
-        List<Airline> result = airlineDao.list();
+        List<UserAuth> result = userAuthDao.list();
         assertNotNull("List should not be null", result);
     }
 }

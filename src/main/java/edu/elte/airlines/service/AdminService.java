@@ -2,6 +2,8 @@ package edu.elte.airlines.service;
 
 
 
+import edu.elte.airlines.dto.UserIdDto;
+import edu.elte.airlines.service.interfaces.UserIdService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -82,6 +84,17 @@ public class AdminService {
         try {
             Boolean result = crudService.exists(id);
             response = customResponseFactory.successfullResponse(result);
+        } catch (Exception ex) {
+            response = customResponseFactory.errorResponse(ex);
+        }
+        return response;
+    }
+    public CustomResponse createNewUser(DtoInterface dtoInterface) {
+        CustomResponse response;
+        try {
+            UserIdService userIdService = (UserIdService) crudService;
+            userIdService.createNewUser((UserIdDto) dtoInterface);
+            response = customResponseFactory.successfullResponse();
         } catch (Exception ex) {
             response = customResponseFactory.errorResponse(ex);
         }

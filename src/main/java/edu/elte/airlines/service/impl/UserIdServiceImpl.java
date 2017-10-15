@@ -1,8 +1,12 @@
 package edu.elte.airlines.service.impl;
 
 import edu.elte.airlines.dao.interfaces.UserIdDao;
+import edu.elte.airlines.domain.UserAuth;
 import edu.elte.airlines.domain.UserId;
+import edu.elte.airlines.domain.UserPersonalData;
+import edu.elte.airlines.dto.UserAuthDto;
 import edu.elte.airlines.dto.UserIdDto;
+import edu.elte.airlines.dto.UserPersonalDataDto;
 import edu.elte.airlines.service.interfaces.UserAuthService;
 import edu.elte.airlines.service.interfaces.UserIdService;
 import edu.elte.airlines.service.interfaces.UserPersonalDataService;
@@ -21,6 +25,15 @@ public class UserIdServiceImpl extends AbstractCrudServiceImpl<UserId, UserIdDto
 		this.userIdDao = dao;
 		this.userAuthService = userAuthService;
 		this.userPersonalDataService = userPersonalDataService;
+	}
+
+	@Override
+	public void createNewUser(UserIdDto userIdDto) {
+		UserPersonalDataDto personalDataDto = userIdDto.getUserPersonalDataDto();
+		UserAuthDto userAuthDto = userIdDto.getUserAuthDto();
+		userPersonalDataService.create(personalDataDto);
+		userAuthService.create(userAuthDto);
+		create(userIdDto);
 	}
 
 	@Override

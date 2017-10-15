@@ -1,8 +1,10 @@
 package edu.elte.airlines.controller;
 
 import edu.elte.airlines.domain.UserAuth;
+import edu.elte.airlines.domain.UserId;
 import edu.elte.airlines.domain.UserPersonalData;
 import edu.elte.airlines.dto.UserAuthDto;
+import edu.elte.airlines.dto.UserIdDto;
 import edu.elte.airlines.dto.UserPersonalDataDto;
 import edu.elte.airlines.provider.ServiceProvider;
 import edu.elte.airlines.response.CustomResponse;
@@ -37,6 +39,13 @@ public class UserController {
         return serviceProvider.getService(UserPersonalData.class).update(wrapper.getObject());
     }
 
+    @RequestMapping(value = "/registerNewUser", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    public CustomResponse registerNewUser(HttpServletRequest request, HttpServletResponse response,
+                                @RequestBody Wrapper<UserIdDto> wrapper) {
+        return serviceProvider.getService(UserId.class).createNewUser(wrapper.getObject());
+
+    }
 
 
 }

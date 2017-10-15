@@ -8,7 +8,7 @@
     <meta city="description" content="">
     <meta city="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>Airlines Lister - Login</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,18 +25,56 @@
 
 <body id="page-top">
 
-<h1>Login page</h1>
-<p th:if="${loginError}" class="error">Wrong user or password</p>
-<form th:action="@{/index}" method="post">
-    <label for="username">Username</label>:
-    <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
-    <label for="password">Password</label>:
-    <input type="password" id="password" name="password" /> <br />
-    <input type="submit" value="Log in" />
-    <input type="hidden"  city="${_csrf.parameterName}"   value="${_csrf.token}"/>
-</form>
 
 
+<!--Pulling Awesome Font -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-login">
+                <h4>Welcome back. Please log in</h4>
+                <form th:action="@{/index}" method="post">
+                    <label for="username">Username</label>:
+                    <input type="text" class="form-control input-sm chat-input" id="username" name="username" placeholder="username" /> <br />
+                    <label for="password">Password</label>:
+                    <input type="password" class="form-control input-sm chat-input" id="password" name="password" placeholder="password" /> <br />
+                    <input type="submit" class="btn btn-primary btn-md" value="Login" />
+                    <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                </form>
+                <h4>Or Create a new account</h4>
+                <form th:action="@{/register}">
+                    <input type="submit" class="btn btn-primary btn-md" value="Register">
+                </form>
+                <div class="wrapper">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <div class="form-login">
+                <h1>Login page</h1>
+                <form th:action="@{/index}" method="post">
+                    <label for="username">Username</label>:
+                    <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
+                    <label for="password">Password</label>:
+                    <input type="password" id="password" name="password" /> <br />
+                    <input type="submit" value="Log in" />
+                    <input type="hidden"  city="${_csrf.parameterName}"   value="${_csrf.token}"/>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+!-->
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/popper/popper.min.js"></script>

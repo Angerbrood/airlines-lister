@@ -56,6 +56,11 @@ public class RootController {
 			loadErrorPage(request, response, ex.getMessage());
 		}
 	}
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		WebContext ctx = WebContextInitializer.createContext(request, response);
+		templateEngine.process("register", ctx, response.getWriter());
+	}
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public void logoutPage (HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

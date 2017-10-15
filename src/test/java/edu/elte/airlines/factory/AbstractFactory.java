@@ -21,20 +21,6 @@ public abstract class AbstractFactory<EntityType> {
         return entities;
     }
 
-    public List<EntityType> createAndSave(int howMany, Object... arguments) {
-        List<EntityType> entitiesCreated = create(howMany, arguments);
-        for (EntityType entity : entitiesCreated) {
-            dao.createEntity(entity);
-        }
-        return entitiesCreated;
-    }
-
-    public EntityType createOneAndSave(Object... arguments) {
-        EntityType createdEntity = createOne(arguments);
-        dao.createEntity(createdEntity);
-        return createdEntity;
-    }
-
     public abstract EntityType createOne(Object... arguments);
 
     public CrudDao<EntityType, ?> getDao() {

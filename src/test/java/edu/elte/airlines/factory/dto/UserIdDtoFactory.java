@@ -1,19 +1,21 @@
 package edu.elte.airlines.factory.dto;
 
-import edu.elte.airlines.dao.interfaces.CrudDao;
+import edu.elte.airlines.domain.UserId;
 import edu.elte.airlines.dto.UserIdDto;
-import edu.elte.airlines.factory.AbstractFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import edu.elte.airlines.factory.AbstractDtoFactory;
+import edu.elte.airlines.service.interfaces.CrudService;
 
-public class UserIdDtoFactory extends AbstractFactory<UserIdDto> {
-    public UserIdDtoFactory(CrudDao<UserIdDto, ?> dao) {
-        super(dao);
+public class UserIdDtoFactory extends AbstractDtoFactory<UserId, UserIdDto, Integer> {
+
+
+    private final UserAuthDtoFactory userAuthDtoFactory;
+    private final UserPersonalDataDtoFactory userPersonalDataDtoFactory;
+
+    public UserIdDtoFactory(CrudService<UserId, UserIdDto, Integer> crudService, UserAuthDtoFactory userAuthDtoFactory, UserPersonalDataDtoFactory userPersonalDataDtoFactory) {
+        super(crudService);
+        this.userAuthDtoFactory = userAuthDtoFactory;
+        this.userPersonalDataDtoFactory = userPersonalDataDtoFactory;
     }
-
-    @Autowired
-    private UserAuthDtoFactory userAuthDtoFactory;
-    @Autowired
-    private UserPersonalDataDtoFactory userPersonalDataDtoFactory;
 
     @Override
     public UserIdDto createOne(Object... arguments) {

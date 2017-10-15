@@ -2,14 +2,19 @@ package edu.elte.airlines.factory.dto;
 
 import com.github.javafaker.Faker;
 import edu.elte.airlines.dao.interfaces.CrudDao;
+import edu.elte.airlines.domain.UserPersonalData;
 import edu.elte.airlines.dto.UserPersonalDataDto;
+import edu.elte.airlines.factory.AbstractDtoFactory;
 import edu.elte.airlines.factory.AbstractFactory;
+import edu.elte.airlines.service.interfaces.CrudService;
 
 import java.time.LocalDate;
 
-public class UserPersonalDataDtoFactory extends AbstractFactory<UserPersonalDataDto> {
-    public UserPersonalDataDtoFactory(CrudDao<UserPersonalDataDto, ?> dao) {
-        super(dao);
+public class UserPersonalDataDtoFactory extends AbstractDtoFactory<UserPersonalData, UserPersonalDataDto, Integer> {
+
+
+    public UserPersonalDataDtoFactory(CrudService<UserPersonalData, UserPersonalDataDto, Integer> crudService) {
+        super(crudService);
     }
 
     @Override
@@ -21,7 +26,7 @@ public class UserPersonalDataDtoFactory extends AbstractFactory<UserPersonalData
         result.setAddress(faker.address().fullAddress());
         result.setBalance(faker.number().digits(6));
         result.setAccountNumber(faker.number().digits(10));
-        result.setDateOfBirth(LocalDate.of(faker.number().randomDigit(), faker.number().randomDigit(), faker.number().randomDigit()));
+        result.setDateOfBirth(LocalDate.of(1995, 1,1));
         return result;
     }
 }

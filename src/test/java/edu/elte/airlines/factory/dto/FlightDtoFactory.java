@@ -1,25 +1,27 @@
 package edu.elte.airlines.factory.dto;
 
 import com.github.javafaker.Faker;
-import edu.elte.airlines.dao.interfaces.CrudDao;
+import edu.elte.airlines.domain.Flight;
 import edu.elte.airlines.dto.FlightDto;
 import edu.elte.airlines.dto.UserPersonalDataDto;
-import edu.elte.airlines.factory.AbstractFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import edu.elte.airlines.factory.AbstractDtoFactory;
+import edu.elte.airlines.service.interfaces.CrudService;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
-public class FlightDtoFactory extends AbstractFactory<FlightDto> {
-    public FlightDtoFactory(CrudDao<FlightDto, ?> dao) {
-        super(dao);
-    }
+public class FlightDtoFactory extends AbstractDtoFactory<Flight, FlightDto, Integer> {
 
-    @Autowired
-    private LocationDtoFactory locationDtoFactory;
-    @Autowired
-    private UserPersonalDataDtoFactory userPersonalDataDtoFactory;
+
+    private final LocationDtoFactory locationDtoFactory;
+    private final UserPersonalDataDtoFactory userPersonalDataDtoFactory;
+
+    public FlightDtoFactory(CrudService<Flight, FlightDto, Integer> crudService, LocationDtoFactory locationDtoFactory, UserPersonalDataDtoFactory userPersonalDataDtoFactory) {
+        super(crudService);
+        this.locationDtoFactory = locationDtoFactory;
+        this.userPersonalDataDtoFactory = userPersonalDataDtoFactory;
+    }
 
     @Override
     public FlightDto createOne(Object... arguments) {
@@ -27,8 +29,8 @@ public class FlightDtoFactory extends AbstractFactory<FlightDto> {
         FlightDto result = new FlightDto();
         result.setDestination(locationDtoFactory.createOne());
         result.setStart(locationDtoFactory.createOne());
-        LocalDate startDate = LocalDate.of(faker.number().randomDigit(),faker.number().randomDigit(), faker.number().randomDigit());
-        LocalDate endDate = LocalDate.of(faker.number().randomDigit(),faker.number().randomDigit(), faker.number().randomDigit());
+        LocalDate startDate = LocalDate.of(1995,1,1);
+        LocalDate endDate = LocalDate.of(1995,1,1);
         result.setStartDate(startDate);
         result.setLandingDate(endDate);
         result.setTravelTime(faker.number().randomDigit());

@@ -53,7 +53,7 @@ public class DaoConfig {
     	return new UserAuthDaoImpl(sessionFactory);
     }
     @Bean
-    UserPersonalDataDao userDetailDao() {
+    UserPersonalDataDao userPersonalDataDao() {
     	return new UserPersonalDataDaoImpl(sessionFactory);
     }
     @Bean
@@ -67,7 +67,7 @@ public class DaoConfig {
     	provider.registerDao(Flight.class, flightDao());
     	provider.registerDao(Location.class, locationDao());
     	provider.registerDao(UserAuth.class, userAuthDao());
-    	provider.registerDao(UserPersonalData.class, userDetailDao());
+    	provider.registerDao(UserPersonalData.class, userPersonalDataDao());
     	provider.registerDao(UserId.class, userIdDao());
     	return provider;
     }

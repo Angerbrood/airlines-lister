@@ -1,5 +1,8 @@
 package edu.elte.airlines.domain;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
@@ -22,16 +25,17 @@ public class Flight implements ModelInterface<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "AIRLINE_ID")
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Airline airline;
 	@Column(nullable = false)
 	private String flightNumber;
-	@OneToOne()
-	@PrimaryKeyJoinColumn
+	@OneToOne(fetch = FetchType.LAZY)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Location start;
-	@OneToOne()
-	@PrimaryKeyJoinColumn
+	@OneToOne(fetch = FetchType.LAZY)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Location destination;
 	@Column(nullable = false)
 	private LocalDate startDate;
@@ -40,6 +44,7 @@ public class Flight implements ModelInterface<Integer> {
 	@Column(nullable = false)
 	private Integer travelTime;
 	@OneToMany(fetch = FetchType.LAZY)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Collection<UserPersonalData> passengers;
 	
 	public Flight() {

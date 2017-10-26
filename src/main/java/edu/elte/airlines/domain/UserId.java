@@ -1,6 +1,15 @@
 package edu.elte.airlines.domain;
 
-import javax.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_id")
@@ -8,10 +17,12 @@ public class UserId implements ModelInterface<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private UserAuth userAuth;
-	@OneToOne
-	private UserPersonalData userDetails;
+	@OneToOne(fetch = FetchType.LAZY)
+	@Cascade(CascadeType.SAVE_UPDATE)
+	private UserPersonalData userPersonalData;
 	
 	public UserId() {
 		
@@ -33,12 +44,12 @@ public class UserId implements ModelInterface<Integer> {
 		this.userAuth = userAuth;
 	}
 
-	public UserPersonalData getUserDetails() {
-		return userDetails;
+	public UserPersonalData getUserPersonalData() {
+		return userPersonalData;
 	}
 
-	public void setUserDetails(UserPersonalData userDetails) {
-		this.userDetails = userDetails;
+	public void setUserPersonalData(UserPersonalData userPersonalData) {
+		this.userPersonalData = userPersonalData;
 	}
 	
 	

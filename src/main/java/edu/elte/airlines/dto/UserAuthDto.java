@@ -9,6 +9,7 @@ public class UserAuthDto implements DtoInterface<Integer> {
 	private Integer id;
 	private String username;
 	private String password;
+	private boolean enabled;
 	private Collection<UserRole> roles;
 
 	public UserAuthDto() {
@@ -45,5 +46,13 @@ public class UserAuthDto implements DtoInterface<Integer> {
 
 	public void setRoles(Collection<UserRole> roles) {
 		this.roles = roles;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 }

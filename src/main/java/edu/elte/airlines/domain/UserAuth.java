@@ -1,5 +1,8 @@
 package edu.elte.airlines.domain;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import java.util.Collection;
 import java.util.Collections;
 
@@ -25,6 +28,7 @@ public class UserAuth implements ModelInterface<Integer> {
 	@Column(nullable = false)
 	private boolean enabled;
 	@OneToMany(fetch = FetchType.LAZY)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Collection<UserRole> roles;
 	
 	

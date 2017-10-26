@@ -1,5 +1,8 @@
 package edu.elte.airlines.domain;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import java.util.Collection;
 import java.util.Collections;
 
@@ -22,6 +25,7 @@ public class Airline implements ModelInterface<Integer> {
 	@Column(name = "ALIRLINE_NAME", nullable = false)
 	private String name;
 	@OneToMany(fetch = FetchType.LAZY)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Collection<Flight> flights;
 	
 	public Airline() {

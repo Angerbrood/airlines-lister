@@ -34,7 +34,7 @@ public class FlightDtoFactory extends AbstractDtoFactory<Flight, FlightDto, Inte
         result.setStartDate(startDate);
         result.setLandingDate(endDate);
         result.setTravelTime(faker.number().randomDigit());
-        result.setFlightNumber(faker.number().digits(4));
+        result.setFlightNumber("11111122222");
         List<UserPersonalDataDto> passengers = new LinkedList<>();
         for(int i = 0; i < 10; ++i) {
             passengers.add(userPersonalDataDtoFactory.createOne());

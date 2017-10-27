@@ -13,24 +13,23 @@
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
                             <div class="modal-body">
-                                <h2>Personal Data</h2>
+                                <h2>View Personal Data</h2>
                                 <hr class="star-primary">
                                 <div class="form-group">
-                                    <form id="personalDataForm">
-                                        <label for="city">Name:</label>
-                                        <input id="city" type="text" class="form-control" required>
-                                        <label for="age">Age:</label>
-                                        <input id="age" type="number" class="form-control" required>
-                                        <label for="address">Address:</label>
-                                        <input id="address" type="text" class="form-control" required>
-                                        <label for="dateOfBirth">Date of Birth:</label>
-                                        <input id="dateOfBirth" type="datetime-local" class="form-control" required>
-                                        <label for="accountNumber">Account Number:</label>
-                                        <input id="accountNumber" type="text" class="form-control" required>
-                                        <label for="balance">Balance:</label>
-                                        <input id="balance" type="text" class="form-control" required>
+                                    <form id="viewPersonalDataForm">
+                                        <label for="viewCity">Name:</label>
+                                        <input id="viewCity" type="text" class="form-control" disabled readonly>
+                                        <label for="viewAge">Age:</label>
+                                        <input id="viewAge" type="number" class="form-control" disabled readonly>
+                                        <label for="ViewAddress">Address:</label>
+                                        <input id="ViewAddress" type="text" class="form-control" disabled readonly>
+                                        <label for="viewDateOfBirth">Date of Birth:</label>
+                                        <input id="viewDateOfBirth" type="datetime-local" class="form-control" disabled readonly>
+                                        <label for="ViewAccountNumber">Account Number:</label>
+                                        <input id="ViewAccountNumber" type="text" class="form-control" disabled readonly>
+                                        <label for="viewBalance">Balance:</label>
+                                        <input id="viewBalance" type="text" class="form-control" disabled readonly>
                                         <br>
-                                        <input type="submit" value="Submit" class="btn btn-info">
                                     </form>
                                 </div>
                                 <button class="btn btn-success" type="button" data-dismiss="modal">
@@ -56,16 +55,15 @@
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
                             <div class="modal-body">
-                                <h2>Authentication Data</h2>
+                                <h2>View Authentication Data</h2>
                                 <hr class="star-primary">
                                 <div class="form-group">
-                                    <form id="authDataForm">
-                                        <label for="username">Username:</label>
-                                        <input id="username" type="text" class="form-control" required>
-                                        <label for="password">Balance:</label>
-                                        <input id="password" type="password" class="form-control" required>
+                                    <form id="viewAuthDataForm">
+                                        <label for="viewUsername">Username:</label>
+                                        <input id="viewUsername" type="text" class="form-control" disabled readonly>
+                                        <label for="ViewPassword">Balance:</label>
+                                        <input id="ViewPassword" type="password" class="form-control" disabled readonly>
                                         <br>
-                                        <input type="submit" value="Submit" class="btn btn-info">
                                     </form>
                                 </div>
                                 <button class="btn btn-success" type="button" data-dismiss="modal">

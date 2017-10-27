@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="add_airline(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Add Airline</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="addAirlineForm">
+                                        <label for="airlineName">Name:</label>
+                                        <input id="airlineName" type="text" class="form-control" required>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="delete_airline(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Add Airline</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="deleteAirlineForm">
+                                        <select class="form-control">
+                                            <option>Airline 1</option>
+                                            <option>Airline 1</option>
+                                        </select>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="modify_airline(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Add Airline</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="modifyAirlineForm">
+                                        <select class="form-control">
+                                            <option>Airline 1</option>
+                                            <option>Airline 2</option>
+                                        </select>
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="add_flight(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Add flight</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="addFlightForm">
+                                        <select class="form-control">
+                                            <option>Airline 1</option>
+                                            <option>Airline 2</option>
+                                        </select>
+                                        <label for="flightNumber">Number:</label>
+                                        <input id="flightNumber" type="text" class="form-control" required>
+                                        <br>
+                                        <h2>Departure</h2>
+                                        <label for="departureLocationSelect">Departure location:</label>
+                                        <select id="departureLocationSelect" class="form-control">
+                                            <option>Location 1</option>
+                                            <option>Location 2</option>
+                                        </select>
+                                        <label for="departureDate">Departure date:</label>
+                                        <input id="departureDate" type="datetime-local" class="form-control" required>
+                                        <h2>Arrival</h2>
+                                        <label for="arrivalLocationSelect">Arrival location:</label>
+                                        <select id="arrivalLocationSelect" class="form-control">
+                                            <option>Location 1</option>
+                                            <option>Location 2</option>
+                                        </select>
+                                        <label for="arrivalDate">Arrival Date</label>
+                                        <input id="arrivalDate" type="datetime-local" class="form-control" required>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="delete_flight(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Add flight</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="deleteFlightForm">
+                                        <select class="form-control">
+                                            <option>Flight 1</option>
+                                            <option>Flight 2</option>
+                                        </select>
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="modify_flight(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Add flight</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="modifyFlightForm">
+                                        <select class="form-control">
+                                            <option>Flight 1</option>
+                                            <option>Flight 2</option>
+                                        </select>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="add_location(modal_id)">
+    <script src="/js/LocationService.js"></script>
+    <script src="/js/CommunicationService.js"></script>
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Add Location</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <label for="locationCityName">City:</label>
+                                    <input id="locationCityName" type="text" class="form-control" required>
+                                    <label for="locationCountryName">Country:</label>
+                                    <input id="locationCountryName" type="text" class="form-control" required>
+                                    <br>
+                                    <button type="button" value="Submit" class="btn btn-info">Submit</button>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="delete_location(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Add Location</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <h2>Locations:</h2>
+                                    <select class="form-control">
+                                        <option>Location 1</option>
+                                        <option>Location 2</option>
+                                    </select>
+                                    <br>
+                                    <button type="button" value="Submit" class="btn btn-info" >Submit</button>
+
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="modify_location(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Add Location</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <h2>Locations:</h2>
+                                    <select class="form-control">
+                                        <option>Location 1</option>
+                                        <option>Location 2</option>
+                                    </select>
+                                    <br>
+                                    <button type="button" value="Submit" class="btn btn-info" >Submit</button>
+
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="add_user_personal_data(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Personal Data</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="addPersonalDataForm">
+                                        <label for="city">Name:</label>
+                                        <input id="city" type="text" class="form-control" required>
+                                        <label for="age">Age:</label>
+                                        <input id="age" type="number" class="form-control" required>
+                                        <label for="address">Address:</label>
+                                        <input id="address" type="text" class="form-control" required>
+                                        <label for="dateOfBirth">Date of Birth:</label>
+                                        <input id="dateOfBirth" type="datetime-local" class="form-control" required>
+                                        <label for="accountNumber">Account Number:</label>
+                                        <input id="accountNumber" type="text" class="form-control" required>
+                                        <label for="balance">Balance:</label>
+                                        <input id="balance" type="text" class="form-control" required>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="modify_user_personal_data(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Personal Data</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="modifyPersonalDataForm">
+                                        <select class="form-control">
+                                            <option>Person 1</option>
+                                            <option>Person 2</option>
+                                        </select>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:fragment="add_user_auth_data(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Authentication Data</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="addAuthDataForm">
+                                        <label for="username">Username:</label>
+                                        <input id="username" type="text" class="form-control" required>
+                                        <label for="password">Balance:</label>
+                                        <input id="password" type="password" class="form-control" required>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="modify_user_auth_data(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Authentication Data</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="modifyAuthDataForm">
+                                        <select class="form-control">
+                                            <option>Auth data 1</option>
+                                            <option>Auth data 2</option>
+                                        </select>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="add_user_id_data(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Authentication Data</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="addUserIdForm">
+                                        <select class="form-control">
+                                            <option>User Auth 1</option>
+                                        </select>
+                                        <select class="form-control">
+                                            <option>User Data 1</option>
+                                        </select>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="delete_user_id_data(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Authentication Data</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="deleteUserIdForm">
+                                        <select class="form-control">
+                                            <option>User Id 1</option>
+                                        </select>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

@@ -106,12 +106,27 @@
     </div>
 
     <!-- Portfolio Modals -->
-    <div th:replace="fragments/menu_modal :: user_personal_data_modal('personal_data_modal', '../img/portfolio/cabin.png')"></div>
-    <div th:replace="fragments/menu_modal :: user_auth_data_modal('auth_data_modal', '../img/portfolio/cake.png')"></div>
-    <div th:replace="fragments/menu_modal :: flight_infos_modal('flight_infos_modal', '../img/portfolio/cake.png')"></div>
-    <div th:replace="fragments/menu_modal :: add_airline_modal('add_airline_modal', '../img/portfolio/cake.png')"></div>
-    <div th:replace="fragments/menu_modal :: add_flight_modal('add_flight_modal', '../img/portfolio/cake.png')"></div>
-    <div th:replace="fragments/menu_modal :: add_location_modal('add_location_modal', '../img/portfolio/cake.png')"></div>
+
+    <div th:replace="fragments/admin_menu_modal :: add_airline('addAirline')"></div>
+    <div th:replace="fragments/admin_menu_modal :: delete_airline('deleteAirline')"></div>
+    <div th:replace="fragments/admin_menu_modal :: modify_airline('modifyAirline')"></div>
+
+    <div th:replace="fragments/admin_menu_modal :: add_flight('addFlight')"></div>
+    <div th:replace="fragments/admin_menu_modal :: delete_flight('deleteFlight')"></div>
+    <div th:replace="fragments/admin_menu_modal :: modify_flight('modifyFlight')"></div>
+
+    <div th:replace="fragments/admin_menu_modal :: add_location('addLocation')"></div>
+    <div th:replace="fragments/admin_menu_modal :: delete_location('deleteLocation')"></div>
+    <div th:replace="fragments/admin_menu_modal :: modify_location('modifyLocation')"></div>
+
+    <div th:replace="fragments/admin_menu_modal :: add_user_personal_data('addUserPersonalData')"></div>
+    <div th:replace="fragments/admin_menu_modal :: modify_user_personal_data('modifyUserPersonalData')"></div>
+
+    <div th:replace="fragments/admin_menu_modal :: add_user_auth_data('addUserAuthData')"></div>
+    <div th:replace="fragments/admin_menu_modal :: modify_user_auth_data('modifyUserAuthData')"></div>
+
+    <div th:replace="fragments/admin_menu_modal :: add_user_id_data('addUserId')"></div>
+    <div th:replace="fragments/admin_menu_modal :: delete_user_id_data('deleteUserId')"></div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="/vendor/jquery/jquery.min.js"></script>

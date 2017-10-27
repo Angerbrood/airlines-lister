@@ -1,52 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:fragment="menu_modal(modal_id, img_path)">
-    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal">
-                    <div class="lr">
-                        <div class="rl"></div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto">
-                            <div class="modal-body">
-                                <h2>Project Title</h2>
-                                <hr class="star-primary">
-                                <img class="img-fluid img-centered" th:src="${img_path}" alt="">
-                                <p>Use this area of the page to describe your project. The icon above is part of a free icon set by
-                                    <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                                <ul class="list-inline item-details">
-                                    <li>Client:
-                                        <strong>
-                                            <a href="http://startbootstrap.com">Start Bootstrap</a>
-                                        </strong>
-                                    </li>
-                                    <li>Date:
-                                        <strong>
-                                            <a href="http://startbootstrap.com">April 2014</a>
-                                        </strong>
-                                    </li>
-                                    <li>Service:
-                                        <strong>
-                                            <a href="http://startbootstrap.com">Web Development</a>
-                                        </strong>
-                                    </li>
-                                </ul>
-                                <button class="btn btn-success" type="button" data-dismiss="modal">
-                                    <i class="fa fa-times"></i>
-                                    Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div th:fragment="user_personal_data_modal(modal_id, img_path)">
+<div th:fragment="view_personal_data(modal_id)">
     <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -89,7 +43,7 @@
         </div>
     </div>
 </div>
-<div th:fragment="user_auth_data_modal(modal_id, img_path)">
+<div th:fragment="view_auth_data(modal_id)">
     <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -124,7 +78,87 @@
         </div>
     </div>
 </div>
-<div th:fragment="flight_infos_modal(modal_id, img_path)">
+
+<div th:fragment="modify_personal_data(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Personal Data</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="personalDataForm">
+                                        <label for="city">Name:</label>
+                                        <input id="city" type="text" class="form-control" required>
+                                        <label for="age">Age:</label>
+                                        <input id="age" type="number" class="form-control" required>
+                                        <label for="address">Address:</label>
+                                        <input id="address" type="text" class="form-control" required>
+                                        <label for="dateOfBirth">Date of Birth:</label>
+                                        <input id="dateOfBirth" type="datetime-local" class="form-control" required>
+                                        <label for="accountNumber">Account Number:</label>
+                                        <input id="accountNumber" type="text" class="form-control" required>
+                                        <label for="balance">Balance:</label>
+                                        <input id="balance" type="text" class="form-control" required>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="modify_auth_data(modal_id)">
+    <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="modal-body">
+                                <h2>Authentication Data</h2>
+                                <hr class="star-primary">
+                                <div class="form-group">
+                                    <form id="authDataForm">
+                                        <label for="username">Username:</label>
+                                        <input id="username" type="text" class="form-control" required>
+                                        <label for="password">Balance:</label>
+                                        <input id="password" type="password" class="form-control" required>
+                                        <br>
+                                        <input type="submit" value="Submit" class="btn btn-info">
+                                    </form>
+                                </div>
+                                <button class="btn btn-success" type="button" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="book_flight(modal_id)">
     <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

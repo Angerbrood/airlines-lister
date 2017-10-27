@@ -1,10 +1,13 @@
 package edu.elte.airlines.controller;
 
+import edu.elte.airlines.domain.UserId;
 import edu.elte.airlines.service.interfaces.UserIdService;
 import edu.elte.airlines.util.SessionWrapper;
+import edu.elte.airlines.util.UserAuthUtils;
 import edu.elte.airlines.util.webcontext.WebContextInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -19,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Collection;
 
 @Controller
 public class RootController {
@@ -45,11 +49,13 @@ public class RootController {
 			UserDetails userDetails = userIdService.authenticateUser(username, password);
 			if(userDetails != null) {
 				sessionWrapper.setSession(session);
-				sessionWrapper.add("userId", userIdService.getUserIdByUserName(username));
+				UserId userId = userIdService.getUserIdByUserName(username);
+				sessionWrapper.add("userId", userId);
 
 
 				WebContext ctx = WebContextInitializer.createContext(request, response);
 				ctx.setVariable("username", userDetails.getUsername());
+				ctx.setVariable("userLoginType", UserAuthUtils.getDefinitveRole(userDetails.getAuthorities()));
 				templateEngine.process("index", ctx, response.getWriter());
 			}
 		} catch (Exception ex) {

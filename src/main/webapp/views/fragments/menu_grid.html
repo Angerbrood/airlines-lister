@@ -4,29 +4,40 @@
     <div class="container">
         <h2 class="text-center">Menu</h2>
         <hr class="star-primary">
-        <div class="row">
-            <div th:replace="fragments/menu_item :: menu_item('addAirline', '/img/portfolio/cabin.png')"></div>
-            <div th:replace="fragments/menu_item :: menu_item('deleteAirline', '/img/portfolio/cabin.png')"></div>
-            <div th:replace="fragments/menu_item :: menu_item('modifyAirline', '/img/portfolio/cabin.png')"></div>
+        <span th:if="${userLoginType} == 'ADMIN'">
+                    <div class="row">
+                        <div th:replace="fragments/menu_item :: menu_item('addAirline', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('deleteAirline', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('modifyAirline', '/img/portfolio/cabin.png')"></div>
 
-            <div th:replace="fragments/menu_item :: menu_item('addFlight', '/img/portfolio/cabin.png')"></div>
-            <div th:replace="fragments/menu_item :: menu_item('deleteFlight', '/img/portfolio/cabin.png')"></div>
-            <div th:replace="fragments/menu_item :: menu_item('modifyFlight', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('addFlight', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('deleteFlight', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('modifyFlight', '/img/portfolio/cabin.png')"></div>
 
-            <div th:replace="fragments/menu_item :: menu_item('addLocation', '/img/portfolio/cabin.png')"></div>
-            <div th:replace="fragments/menu_item :: menu_item('deleteLocation', '/img/portfolio/cabin.png')"></div>
-            <div th:replace="fragments/menu_item :: menu_item('modifyLocation', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('addLocation', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('deleteLocation', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('modifyLocation', '/img/portfolio/cabin.png')"></div>
 
-            <div th:replace="fragments/menu_item :: menu_item('addUserPersonalData', '/img/portfolio/cabin.png')"></div>
-            <div th:replace="fragments/menu_item :: menu_item('modifyUserPersonalData', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('addUserPersonalData', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('modifyUserPersonalData', '/img/portfolio/cabin.png')"></div>
 
-            <div th:replace="fragments/menu_item :: menu_item('addUserAuthData', '/img/portfolio/cabin.png')"></div>
-            <div th:replace="fragments/menu_item :: menu_item('modifyUserAuthData', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('addUserAuthData', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('modifyUserAuthData', '/img/portfolio/cabin.png')"></div>
 
-            <div th:replace="fragments/menu_item :: menu_item('addUserId', '/img/portfolio/cabin.png')"></div>
-            <div th:replace="fragments/menu_item :: menu_item('deleteUserId', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('addUserId', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('deleteUserId', '/img/portfolio/cabin.png')"></div>
+                    </div>
+                </span>
+                <span th:if="${userLoginType} == 'USER'">
+                    <div class="row">
+                        <div th:replace="fragments/menu_item :: menu_item('viewPersonalData', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('viewAuthData', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('modifyPersonalData', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('modifyAuthData', '/img/portfolio/cabin.png')"></div>
+                        <div th:replace="fragments/menu_item :: menu_item('bookFlight', '/img/portfolio/cabin.png')"></div>
+                    </div>
+                </span>
 
-           </div>
         </div>
     </div>
 </section>

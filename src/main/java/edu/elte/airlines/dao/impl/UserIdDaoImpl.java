@@ -35,6 +35,8 @@ public class UserIdDaoImpl extends CrudDaoImpl<UserId, Integer> implements UserI
 				break;
 			}
 		}
+		result.getUserAuth();
+		result.getUserPersonalData();
 		return result;
 	}
 }

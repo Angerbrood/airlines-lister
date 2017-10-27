@@ -89,7 +89,4 @@ public class UserAuth implements ModelInterface<Integer> {
 	public void setRoles(Collection<UserRole> roles) {
 		this.roles = roles;
 	}
-	
-	
-	
 }

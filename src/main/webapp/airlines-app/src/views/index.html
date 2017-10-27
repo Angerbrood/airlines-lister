@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta city="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta city="description" content="">
+    <meta city="author" content="">
+
+    <title>Airlines Lister - Index</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/freelancer.min.css" rel="stylesheet">
+
+  </head>
+
+
+  <body id="page-top" >
+    <!-- Navigation -->
+    <div th:replace="fragments/navigation"></div>
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container">
+        <img class="img-fluid" src="/img/profile.png" alt="">
+        <div class="intro-text">
+          <span class="city">Airlines lister</span>
+          <hr class="star-light">
+          <span class="skills">Find your perfect flight</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Portfolio Grid Section -->
+    <div th:replace="fragments/menu_grid"></div>
+
+    <!-- About Section -->
+    <div th:replace="fragments/about :: about"></div>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="text-center">Contact Me</h2>
+        <hr class="star-primary">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+            <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+            <form city="sentMessage" id="contactForm" novalidate>
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Name</label>
+                  <input class="form-control" id="city" type="text" placeholder="Name" required data-validation-required-message="Please enter your city.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Email Address</label>
+                  <input class="form-control" id="email" type="email" placeholder="Email Address" required data-validation-required-message="Please enter your email address.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Phone Number</label>
+                  <input class="form-control" id="phone" type="tel" placeholder="Phone Number" required data-validation-required-message="Please enter your phone number.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Message</label>
+                  <textarea class="form-control" id="message" rows="5" placeholder="Message" required data-validation-required-message="Please enter a message."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <br>
+              <div id="success"></div>
+              <div class="form-group">
+                <!--<button type="submit" class="btn btn-success btn-lg" id="sendMessageButton">Send</button>-->
+                <a routerLink="/airline" routerLinkActive="active">Send</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div th:replace="fragments/footer :: footer"></div>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top d-lg-none">
+      <a class="btn btn-primary js-scroll-trigger" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+      </a>
+    </div>
+
+    <!-- Portfolio Modals -->
+    <div th:replace="fragments/menu_modal :: user_personal_data_modal('personal_data_modal', '../img/portfolio/cabin.png')"></div>
+    <div th:replace="fragments/menu_modal :: user_auth_data_modal('auth_data_modal', '../img/portfolio/cake.png')"></div>
+    <div th:replace="fragments/menu_modal :: flight_infos_modal('flight_infos_modal', '../img/portfolio/cake.png')"></div>
+    <div th:replace="fragments/menu_modal :: add_airline_modal('add_airline_modal', '../img/portfolio/cake.png')"></div>
+    <div th:replace="fragments/menu_modal :: add_flight_modal('add_flight_modal', '../img/portfolio/cake.png')"></div>
+    <div th:replace="fragments/menu_modal :: add_location_modal('add_location_modal', '../img/portfolio/cake.png')"></div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/popper/popper.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="/js/jqBootstrapValidation.js"></script>
+    <script src="/js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="/js/freelancer.min.js"></script>
+
+  </body>
+
+</html>

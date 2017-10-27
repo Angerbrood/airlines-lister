@@ -1,2 +1,7 @@
 /.idea/
 /target/
+/.ideaDataSources/
+*.ipr
+*.iml
+*.iws
+/node_modules/

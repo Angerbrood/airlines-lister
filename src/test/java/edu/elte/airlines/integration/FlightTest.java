@@ -34,7 +34,8 @@ public class FlightTest extends AbstractIntegrationTest<Flight, FlightDto, Integ
     @Transactional
     public void before() {
         logger.info("Preparing DB for integration testing...");
-        flightDto = flightDtoFactory.createOneAndSave();
+        flightDto = flightDtoFactory.createOne();
+        flightDto.setId(getService().create(flightDto));
         logger.info("Database prepared!");
     }
 

@@ -33,7 +33,8 @@ public class UserPersonalDataTest extends AbstractIntegrationTest<UserPersonalDa
     @Transactional
     public void before() {
         logger.info("Preparing DB for integration testing...");
-        userPersonalDataDto = userPersonalDataDtoFactory.createOneAndSave();
+        userPersonalDataDto = userPersonalDataDtoFactory.createOne();
+        userPersonalDataDto.setId(getService().create(userPersonalDataDto));
         logger.info("Database prepared!");
     }
 

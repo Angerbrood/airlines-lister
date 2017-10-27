@@ -17,10 +17,10 @@ public class UserId implements ModelInterface<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private UserAuth userAuth;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private UserPersonalData userPersonalData;
 	

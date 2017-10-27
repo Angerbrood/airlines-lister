@@ -30,7 +30,8 @@ public class AirlineDtoFactory extends AbstractDtoFactory<Airline, AirlineDto, I
         result.setName(faker.name().fullName());
         List<FlightDto> flights = new ArrayList<>();
         for(int i = 0; i < 10; ++i) {
-            flights.add(flightDtoFactory.createOne());
+            FlightDto flightDto = flightDtoFactory.createOne();
+            flights.add(flightDto);
         }
         result.setFlights(flights);
         return result;

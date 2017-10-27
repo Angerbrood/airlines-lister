@@ -25,4 +25,10 @@ public class LocationDtoFactory extends AbstractDtoFactory<Location, LocationDto
         result.setCity(faker.address().cityName());
         return result;
     }
+
+    public LocationDto createAndSave(Object... arg) {
+        LocationDto result = createOne();
+        result.setId(getService().create(result));
+        return result;
+    }
 }

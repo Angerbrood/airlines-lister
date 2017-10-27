@@ -23,7 +23,7 @@ public class MockedDaoContext {
         return mock(LocationDao.class);
     }
     @Bean
-    UserPersonalDataDao userDetailDao() {
+    UserPersonalDataDao userPersonalDataDao() {
         return mock(UserPersonalDataDao.class);
     }
     @Bean

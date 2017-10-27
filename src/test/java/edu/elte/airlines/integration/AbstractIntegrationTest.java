@@ -4,6 +4,7 @@ import edu.elte.airlines.domain.ModelInterface;
 import edu.elte.airlines.dto.DtoInterface;
 import edu.elte.airlines.factory.AbstractDtoFactory;
 import edu.elte.airlines.service.interfaces.CrudService;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,12 +28,14 @@ public abstract class AbstractIntegrationTest<EntityType extends ModelInterface<
     }
     @Test
     public void testDtoDelete() {
-        getService().delete(getDto());
+        DtoType dtoType = getDto();
+        getService().delete(dtoType);
         assertFalse("DTO should have been deleted", getService().exists(getDto().getId()));
     }
     @Test
     public void testDtoUpdate() {
-        getService().update(getDto());
+        DtoType dtoType = getDto();
+        getService().update(dtoType);
     }
     @Test
     public void testDtoList() {

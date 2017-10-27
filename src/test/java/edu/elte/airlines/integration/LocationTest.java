@@ -34,7 +34,8 @@ public class LocationTest extends AbstractIntegrationTest<Location, LocationDto,
     @Transactional
     public void before() {
         logger.info("Preparing DB for integration testing...");
-        locationDto = locationDtoFactory.createOneAndSave();
+        locationDto = locationDtoFactory.createOne();
+        locationDto.setId(getService().create(locationDto));
         logger.info("Database prepared!");
     }
 

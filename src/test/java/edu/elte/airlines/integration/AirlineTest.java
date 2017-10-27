@@ -2,6 +2,7 @@ package edu.elte.airlines.integration;
 
 import edu.elte.airlines.domain.Airline;
 import edu.elte.airlines.dto.AirlineDto;
+import edu.elte.airlines.dto.FlightDto;
 import edu.elte.airlines.factory.AbstractDtoFactory;
 import edu.elte.airlines.factory.dto.AirlineDtoFactory;
 import edu.elte.airlines.integration.configuration.IntegrationTestConfig;
@@ -39,7 +40,8 @@ public class AirlineTest extends AbstractIntegrationTest<Airline, AirlineDto, In
     @Transactional
     public void before() {
         logger.info("Preparing DB for integration testing...");
-        airlineDto = airlineDtoFactory.createOneAndSave();
+        airlineDto = airlineDtoFactory.createOne();
+        airlineDto.setId(getService().create(airlineDto));
         logger.info("Database prepared!");
     }
 

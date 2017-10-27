@@ -28,7 +28,6 @@ public class AirlineFactory extends AbstractFactory<Airline> {
         List<Flight> flights = new ArrayList<>();
         for(int i = 0; i < 10; ++i) {
             Flight flight = flightFactory.createOne();
-            flight.setAirline(result);
             flights.add(flight);
 
         }

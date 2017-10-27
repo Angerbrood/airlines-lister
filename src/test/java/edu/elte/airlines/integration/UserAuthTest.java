@@ -34,7 +34,8 @@ public class UserAuthTest extends AbstractIntegrationTest<UserAuth, UserAuthDto,
     @Transactional
     public void before() {
         logger.info("Preparing DB for integration testing...");
-        userAuthDto = userAuthDtoFactory.createOneAndSave();
+        userAuthDto = userAuthDtoFactory.createOne();
+        userAuthDto.setId(getService().create(userAuthDto));
         logger.info("Database prepared!");
     }
 

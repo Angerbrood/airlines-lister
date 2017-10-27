@@ -27,8 +27,8 @@ public class FlightDtoFactory extends AbstractDtoFactory<Flight, FlightDto, Inte
     public FlightDto createOne(Object... arguments) {
         Faker faker = new Faker();
         FlightDto result = new FlightDto();
-        result.setDestination(locationDtoFactory.createOne());
-        result.setStart(locationDtoFactory.createOne());
+        result.setDestination(locationDtoFactory.createAndSave());
+        result.setStart(locationDtoFactory.createAndSave());
         LocalDate startDate = LocalDate.of(1995,1,1);
         LocalDate endDate = LocalDate.of(1995,1,1);
         result.setStartDate(startDate);

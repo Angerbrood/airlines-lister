@@ -25,23 +25,19 @@ public class Flight implements ModelInterface<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "AIRLINE_ID")
-	@Cascade(CascadeType.SAVE_UPDATE)
-	private Airline airline;
-	@Column(nullable = false)
+	@Column(length = 1024)
 	private String flightNumber;
 	@OneToOne(fetch = FetchType.LAZY)
-	@Cascade(CascadeType.SAVE_UPDATE)
+	@Cascade({CascadeType.SAVE_UPDATE})
 	private Location start;
 	@OneToOne(fetch = FetchType.LAZY)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Location destination;
-	@Column(nullable = false)
+	@Column()
 	private LocalDate startDate;
-	@Column(nullable = false)
+	@Column()
 	private LocalDate landingDate;
-	@Column(nullable = false)
+	@Column()
 	private Integer travelTime;
 	@OneToMany(fetch = FetchType.LAZY)
 	@Cascade(CascadeType.SAVE_UPDATE)
@@ -57,14 +53,6 @@ public class Flight implements ModelInterface<Integer> {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Airline getAirline() {
-		return airline;
-	}
-
-	public void setAirline(Airline airline) {
-		this.airline = airline;
 	}
 
 	public String getFlightNumber() {

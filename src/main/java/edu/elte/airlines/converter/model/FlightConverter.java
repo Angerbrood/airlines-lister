@@ -17,9 +17,6 @@ public class FlightConverter implements Converter<FlightDto, Flight> {
 
     @Autowired
     private ConversionService conversionService;
-    @Autowired
-    private AirlineDao airlineDao;
-
     @Override
     public Flight convert(FlightDto flightDto) {
         Flight flight = new Flight();
@@ -29,7 +26,6 @@ public class FlightConverter implements Converter<FlightDto, Flight> {
         flight.setLandingDate(flightDto.getLandingDate());
         flight.setStartDate(flightDto.getStartDate());
         flight.setDestination(conversionService.convert(flightDto.getDestination(), Location.class));
-        flight.setAirline(airlineDao.findById(flightDto.getAirlineId()));
         flight.setStart(conversionService.convert(flightDto.getStart(), Location.class));
         flight.setPassengers(flightDto.getPassengers().stream().map(item -> conversionService.convert(item, UserPersonalData.class)).collect(Collectors.toList()));
         return flight;

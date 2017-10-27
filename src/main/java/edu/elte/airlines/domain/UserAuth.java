@@ -21,11 +21,11 @@ public class UserAuth implements ModelInterface<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@Column(nullable = false)
+	@Column()
 	private String username;
-	@Column(nullable = false)
+	@Column()
 	private String password;
-	@Column(nullable = false)
+	@Column()
 	private boolean enabled;
 	@OneToMany(fetch = FetchType.LAZY)
 	@Cascade(CascadeType.SAVE_UPDATE)

@@ -29,4 +29,9 @@ public class UserPersonalDataDtoFactory extends AbstractDtoFactory<UserPersonalD
         result.setDateOfBirth(LocalDate.of(1995, 1,1));
         return result;
     }
+    public UserPersonalDataDto createAndSave(Object... arguments) {
+        UserPersonalDataDto result = createOne();
+        result.setId(getService().create(result));
+        return result;
+    }
 }

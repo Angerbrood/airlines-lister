@@ -16,9 +16,9 @@ public class Location implements ModelInterface<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@Column(nullable = false)
+	@Column()
 	private String name;
-	@Column(nullable = false)
+	@Column()
 	private String country;
 	
 	public Location() {

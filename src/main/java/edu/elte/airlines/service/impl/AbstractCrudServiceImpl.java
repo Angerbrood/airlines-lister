@@ -7,6 +7,7 @@ import edu.elte.airlines.dao.interfaces.CrudDao;
 import edu.elte.airlines.domain.ModelInterface;
 import edu.elte.airlines.dto.DtoInterface;
 import edu.elte.airlines.service.interfaces.CrudService;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.parser.Entity;
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Transactional
 public abstract class AbstractCrudServiceImpl<EntityType extends ModelInterface<IdType>, DtoType extends DtoInterface<IdType>, IdType extends Serializable>
         implements CrudService<EntityType, DtoType, IdType>{
 
@@ -63,6 +65,7 @@ public abstract class AbstractCrudServiceImpl<EntityType extends ModelInterface<
 
     @Override
     public boolean exists(IdType id) {
+        Objects.requireNonNull(id, "The id to be found must not be null");
         return dao.exists(id);
     }
 

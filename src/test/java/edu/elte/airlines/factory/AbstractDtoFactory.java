@@ -8,6 +8,9 @@ import java.util.List;
 public abstract class AbstractDtoFactory<EntityType, DtoType, IdType> {
     private final CrudService<EntityType, DtoType, IdType> crudService;
 
+    protected CrudService<EntityType, DtoType, IdType> getService() {
+        return crudService;
+    }
     public AbstractDtoFactory(CrudService<EntityType, DtoType, IdType> crudService) {
         this.crudService = crudService;
     }

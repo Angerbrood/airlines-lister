@@ -34,7 +34,8 @@ public class UserIdTest extends AbstractIntegrationTest<UserId, UserIdDto, Integ
     @Transactional
     public void before() {
         logger.info("Preparing DB for integration testing...");
-        userIdDto = userIdDtoFactory.createOneAndSave();
+        userIdDto = userIdDtoFactory.createOne();
+        userIdDto.setId(getService().create(userIdDto));
         logger.info("Database prepared!");
     }
 

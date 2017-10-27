@@ -33,4 +33,10 @@ public class UserAuthDtoFactory extends AbstractDtoFactory<UserAuth, UserAuthDto
         result.setRoles(roles);
         return result;
     }
+
+    public UserAuthDto createAndSave(Object... arguments) {
+        UserAuthDto result = createOne();
+        result.setId(getService().create(result));
+        return result;
+    }
 }

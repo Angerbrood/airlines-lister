@@ -20,8 +20,8 @@ public class UserIdDtoFactory extends AbstractDtoFactory<UserId, UserIdDto, Inte
     @Override
     public UserIdDto createOne(Object... arguments) {
         UserIdDto result = new UserIdDto();
-        result.setUserAuthDto(userAuthDtoFactory.createOne());
-        result.setUserPersonalDataDto(userPersonalDataDtoFactory.createOne());
+        result.setUserAuthDto(userAuthDtoFactory.createAndSave());
+        result.setUserPersonalDataDto(userPersonalDataDtoFactory.createAndSave());
         return result;
     }
 }

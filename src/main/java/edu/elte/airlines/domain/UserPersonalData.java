@@ -19,19 +19,19 @@ public class UserPersonalData implements ModelInterface<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@Column(nullable = false)
+	@Column()
 	private String firstName;
-	@Column(nullable = false)
+	@Column()
 	private String lastName;
-	@Column(nullable = false)
+	@Column()
 	private Integer age;
-	@Column(nullable = false)
+	@Column()
 	private String address;
-	@Column(nullable = false)
+	@Column()
 	private LocalDate dateOfBirth;
-	@Column(nullable = false)
+	@Column()
 	private String accountNumber;
-	@Column(nullable = false)
+	@Column()
 	private String balance;
 	
 	

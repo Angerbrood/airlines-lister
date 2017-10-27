@@ -2,6 +2,7 @@ package edu.elte.airlines.converter.dto;
 
 import java.util.stream.Collectors;
 
+import edu.elte.airlines.dto.AirlineDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;

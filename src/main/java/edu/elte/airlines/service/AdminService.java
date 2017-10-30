@@ -56,11 +56,11 @@ public class AdminService {
         }
         return response;
     }
-    public CustomResponse delete(DtoInterface dtoObject) {
+    public CustomResponse delete(Integer id) {
         CustomResponse response;
         try {
-            DtoInterface temp = (DtoInterface) crudService.findById(dtoObject.getId());
-            crudService.delete(temp);
+            DtoInterface dtoInterface = (DtoInterface) crudService.findById(id);
+            crudService.delete(dtoInterface);
             response = customResponseFactory.successfullResponse();
         } catch (Exception ex) {
 

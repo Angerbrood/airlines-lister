@@ -4,9 +4,7 @@ import edu.elte.airlines.domain.ModelInterface;
 import edu.elte.airlines.dto.DtoInterface;
 import edu.elte.airlines.factory.AbstractDtoFactory;
 import edu.elte.airlines.service.interfaces.CrudService;
-import org.junit.Before;
 import org.junit.Test;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

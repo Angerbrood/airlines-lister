@@ -7,6 +7,9 @@ var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var filter = require('gulp-filter');
 var pkg = require('./package.json');
+var ts = require('gulp-typescript');
+const typescript = require('gulp-typescript');
+const tscConfig = require('./config/tsconfig.json');
 
 // Set the banner content
 var banner = ['/*!\n',
@@ -90,10 +93,16 @@ gulp.task('copy', function() {
       '!node_modules/font-awesome/*.json'
     ])
     .pipe(gulp.dest('vendor/font-awesome'))
-})
+});
 
+gulp.task('buildTypescript', function () {
+    return gulp
+        .src('angular/*.ts')
+        .pipe(typescript(tscConfig.compilerOptions))
+        .pipe(gulp.dest('dist/'));
+});
 // Default task
-gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy']);
+gulp.task('default', ['sass', 'minify-css', 'minify-js', 'copy', 'buildTypescript']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {

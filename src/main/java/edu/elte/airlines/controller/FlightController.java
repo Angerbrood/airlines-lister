@@ -42,7 +42,7 @@ public class FlightController {
     @RequestMapping(value = "/admin/deleteFlight", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse deleteFlight(HttpServletRequest request, HttpServletResponse response,
-                                        @RequestBody Wrapper<FlightDto> wrapper) {
-        return serviceProvider.getService(Flight.class).delete(wrapper.getObject());
+                                        @RequestBody Integer id) {
+        return serviceProvider.getService(Flight.class).delete(id);
     }
 }

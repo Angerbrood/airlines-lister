@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
+
+
 <div th:fragment="add_airline(modal_id)">
     <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -227,6 +230,13 @@
 <div th:fragment="add_location(modal_id)">
     <script src="/js/LocationService.js"></script>
     <script src="/js/CommunicationService.js"></script>
+    <script>
+        function addNewLocation() {
+            var newLocation = getLocationData();
+            var wrappedLocation = CommunicationService.wrapData(newLocation);
+            CommunicationService.postData("/admin/addNewLocation", wrappedLocation);
+        }
+    </script>
     <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -247,7 +257,7 @@
                                     <label for="locationCountryName">Country:</label>
                                     <input id="locationCountryName" type="text" class="form-control" required>
                                     <br>
-                                    <button type="button" value="Submit" class="btn btn-info">Submit</button>
+                                    <button type="button" value="Submit" onclick="addNewLocation()" class="btn btn-info">Submit</button>
                                 </div>
                                 <button class="btn btn-success" type="button" data-dismiss="modal">
                                     <i class="fa fa-times"></i>Close</button>
@@ -260,6 +270,8 @@
     </div>
 </div>
 <div th:fragment="delete_location(modal_id)">
+    <script src="/js/LocationService.js"></script>
+    <script src="/js/CommunicationService.js"></script>
     <div class="portfolio-modal modal fade" th:id="${modal_id}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -268,20 +280,25 @@
                         <div class="rl"></div>
                     </div>
                 </div>
+                <script>
+                    function deleteLocation() {
+                        var locationId = getLocationId("locationDeleteSelect");
+                        CommunicationService.postData("/admin/deleteLocation", CommunicationService.wrapData(locationId))
+                    }
+                </script>
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
                             <div class="modal-body">
-                                <h2>Add Location</h2>
+                                <h2>Delete Location</h2>
                                 <hr class="star-primary">
                                 <div class="form-group">
                                     <h2>Locations:</h2>
-                                    <select class="form-control">
-                                        <option>Location 1</option>
-                                        <option>Location 2</option>
+                                    <select class="form-control" id="locationDeleteSelect">
+                                        <option th:each="type : ${locationList}" th:value="${type.id}" th:text="${type.city}">Wireframe</option>
                                     </select>
                                     <br>
-                                    <button type="button" value="Submit" class="btn btn-info" >Submit</button>
+                                    <button type="button" value="Submit" class="btn btn-info" onclick="deleteLocation()" >Submit</button>
 
                                 </div>
                                 <button class="btn btn-success" type="button" data-dismiss="modal">
@@ -303,20 +320,39 @@
                         <div class="rl"></div>
                     </div>
                 </div>
+                <script>
+                    function findLocation() {
+                        var locationId = getLocationId("locationModifySelect");
+                        var location = CommunicationService.postData("/admin/findLocationById", CommunicationService.wrapData(locationId));
+                        console.log(location.responseJSON);
+                        fillLocationInput(location.responseJSON.data);
+                    }
+                    function updateLocation() {
+                        var updatedLocation = getUpdatedLocationData();
+                        CommunicationService.postData("/admin/updateLocation", CommunicationService.wrapData(updatedLocation));
+                    }
+                </script>
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
                             <div class="modal-body">
-                                <h2>Add Location</h2>
+                                <h2>Modify Location</h2>
                                 <hr class="star-primary">
                                 <div class="form-group">
                                     <h2>Locations:</h2>
-                                    <select class="form-control">
-                                        <option>Location 1</option>
-                                        <option>Location 2</option>
+                                    <select class="form-control" id="locationModifySelect" onchange="findLocation()">
+                                        <option selected="selected">Select one</option>
+                                        <option th:each="type : ${locationList}" th:value="${type.id}" th:text="${type.city}">Wireframe</option>
                                     </select>
                                     <br>
-                                    <button type="button" value="Submit" class="btn btn-info" >Submit</button>
+                                    <div class="form-group">
+                                        <label for="locationUpdateCityName">City:</label>
+                                        <input id="locationUpdateCityName" type="text" class="form-control" required>
+                                        <label for="locationUpdateCountryName">Country:</label>
+                                        <input id="locationUpdateCountryName" type="text" class="form-control" required>
+                                        <br>
+                                        <button type="button" value="Submit" onclick="updateLocation()" class="btn btn-info">Submit</button>
+                                    </div>
 
                                 </div>
                                 <button class="btn btn-success" type="button" data-dismiss="modal">

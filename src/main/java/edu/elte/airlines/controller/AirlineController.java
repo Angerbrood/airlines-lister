@@ -42,7 +42,7 @@ public class AirlineController {
     @RequestMapping(value = "/admin/deleteAirline", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse deleteAirline(HttpServletRequest request, HttpServletResponse response,
-                                        @RequestBody Wrapper<AirlineDto> wrapper) {
-        return serviceProvider.getService(Airline.class).delete(wrapper.getObject());
+                                        @RequestBody Integer id) {
+        return serviceProvider.getService(Airline.class).delete(id);
     }
 }

@@ -1,6 +1,5 @@
 package edu.elte.airlines.service.interfaces;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

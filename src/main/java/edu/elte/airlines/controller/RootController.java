@@ -1,9 +1,14 @@
 package edu.elte.airlines.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.elte.airlines.domain.Location;
 import edu.elte.airlines.domain.UserId;
+import edu.elte.airlines.provider.ServiceProvider;
 import edu.elte.airlines.service.interfaces.UserIdService;
 import edu.elte.airlines.util.SessionWrapper;
 import edu.elte.airlines.util.UserAuthUtils;
+import edu.elte.airlines.util.Wrapper;
 import edu.elte.airlines.util.webcontext.WebContextInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -34,6 +39,10 @@ public class RootController {
 	@Autowired
 	private SessionWrapper sessionWrapper;
 
+	@Autowired
+	private ServiceProvider serviceProvider;
+
+
 	private final String templateName = "login";
 
 	@RequestMapping(value = {"/", "/login"})
@@ -56,6 +65,7 @@ public class RootController {
 				WebContext ctx = WebContextInitializer.createContext(request, response);
 				ctx.setVariable("username", userDetails.getUsername());
 				ctx.setVariable("userLoginType", UserAuthUtils.getDefinitveRole(userDetails.getAuthorities()));
+				ctx.setVariable("locationList", serviceProvider.getService(Location.class).list().getData());
 				templateEngine.process("index", ctx, response.getWriter());
 			}
 		} catch (Exception ex) {
@@ -79,5 +89,17 @@ public class RootController {
 		WebContext ctx = WebContextInitializer.createContext(request, response);
 		ctx.setVariable("errorMessage", errorMessage);
 		templateEngine.process("error", ctx, response.getWriter());
+	}
+
+
+	@RequestMapping(value = "/testEndpoint")
+	public void testEndpoint(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
+		Wrapper<Location> wrapper = new Wrapper<>();
+		Location location = new Location();
+		location.setCountry("Hungary");
+		location.setName("Budapest");
+		wrapper.setObject(location);
+		ObjectMapper mapper = new ObjectMapper();
+		System.out.println(mapper.writeValueAsString(wrapper));
 	}
 }

@@ -8,6 +8,7 @@ import edu.elte.airlines.integration.configuration.IntegrationTestConfig;
 import edu.elte.airlines.service.interfaces.CrudService;
 import edu.elte.airlines.service.interfaces.UserIdService;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,5 +53,11 @@ public class UserIdTest extends AbstractIntegrationTest<UserId, UserIdDto, Integ
     @Override
     protected UserIdDto getDto() {
         return userIdDto;
+    }
+
+    @Test
+    public void registerUserTest() {
+        UserIdDto newUser = userIdDtoFactory.createOneNotRegistered();
+        userIdService.createNewUser(newUser);
     }
 }

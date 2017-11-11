@@ -13,6 +13,8 @@ import edu.elte.airlines.service.interfaces.UserPersonalDataService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.Objects;
+
 public class UserIdServiceImpl extends AbstractCrudServiceImpl<UserId, UserIdDto, Integer> 
 	implements UserIdService{
 
@@ -29,10 +31,7 @@ public class UserIdServiceImpl extends AbstractCrudServiceImpl<UserId, UserIdDto
 
 	@Override
 	public void createNewUser(UserIdDto userIdDto) {
-		UserPersonalDataDto personalDataDto = userIdDto.getUserPersonalDataDto();
-		UserAuthDto userAuthDto = userIdDto.getUserAuthDto();
-		userPersonalDataService.create(personalDataDto);
-		userAuthService.create(userAuthDto);
+		Objects.requireNonNull(userIdDto);
 		create(userIdDto);
 	}
 

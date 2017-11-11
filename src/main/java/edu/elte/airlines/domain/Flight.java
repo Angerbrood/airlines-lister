@@ -110,4 +110,12 @@ public class Flight implements ModelInterface<Integer> {
 	public void setPassengers(Collection<UserPersonalData> passengers) {
 		this.passengers = passengers;
 	}
+
+	public void addPassenger(UserPersonalData userPersonalData) {
+		if(!passengers.contains(userPersonalData)) {
+			passengers.add(userPersonalData);
+		} else {
+			throw new RuntimeException("Passenger already on board");
+		}
+	}
 }

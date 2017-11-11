@@ -3,6 +3,7 @@ package edu.elte.airlines.service;
 
 
 import edu.elte.airlines.dto.UserIdDto;
+import edu.elte.airlines.service.interfaces.FlightService;
 import edu.elte.airlines.service.interfaces.UserIdService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,6 +95,17 @@ public class AdminService {
         try {
             UserIdService userIdService = (UserIdService) crudService;
             userIdService.createNewUser((UserIdDto) dtoInterface);
+            response = customResponseFactory.successfullResponse();
+        } catch (Exception ex) {
+            response = customResponseFactory.errorResponse(ex);
+        }
+        return response;
+    }
+    public CustomResponse bookFlight(Integer userId, Integer flightId) {
+        CustomResponse response;
+        try {
+            FlightService flightService = (FlightService) crudService;
+            flightService.bookFlight(userId, flightId);
             response = customResponseFactory.successfullResponse();
         } catch (Exception ex) {
             response = customResponseFactory.errorResponse(ex);

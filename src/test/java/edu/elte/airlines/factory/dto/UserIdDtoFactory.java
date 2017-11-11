@@ -24,4 +24,10 @@ public class UserIdDtoFactory extends AbstractDtoFactory<UserId, UserIdDto, Inte
         result.setUserPersonalDataDto(userPersonalDataDtoFactory.createAndSave());
         return result;
     }
+    public UserIdDto createOneNotRegistered() {
+        UserIdDto result = new UserIdDto();
+        result.setUserAuthDto(userAuthDtoFactory.createOne());
+        result.setUserPersonalDataDto(userPersonalDataDtoFactory.createOne());
+        return result;
+    }
 }

@@ -117,4 +117,36 @@ public class UserPersonalData implements ModelInterface<Integer> {
 	public void setBalance(String balance) {
 		this.balance = balance;
 	}
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		UserPersonalData that = (UserPersonalData) o;
+
+		if (id != null ? !id.equals(that.id) : that.id != null) return false;
+		if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+		if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+		if (age != null ? !age.equals(that.age) : that.age != null) return false;
+		if (address != null ? !address.equals(that.address) : that.address != null) return false;
+		if (dateOfBirth != null ? !dateOfBirth.equals(that.dateOfBirth) : that.dateOfBirth != null) return false;
+		if (accountNumber != null ? !accountNumber.equals(that.accountNumber) : that.accountNumber != null)
+			return false;
+		return balance != null ? balance.equals(that.balance) : that.balance == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id != null ? id.hashCode() : 0;
+		result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+		result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+		result = 31 * result + (age != null ? age.hashCode() : 0);
+		result = 31 * result + (address != null ? address.hashCode() : 0);
+		result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
+		result = 31 * result + (accountNumber != null ? accountNumber.hashCode() : 0);
+		result = 31 * result + (balance != null ? balance.hashCode() : 0);
+		return result;
+	}
 }

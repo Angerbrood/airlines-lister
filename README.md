@@ -98,8 +98,23 @@ A program egy reptéri jegykezelő rendszer egyszerűsített változatát valós
   ### 3.5 Megvalósítása
   ## 4. Implementáció
   ### 4.1 Adatbázis terv
-  ### 4.2 Fejlesztői környezet
-  ### 4.3 Könyvtárstruktúra
+  ![picture alt](https://github.com/Angerbrood/airlines-lister/blob/develop/img/db-diagram.jpg "Title is optional")
+  ### 4.2 Osztály diagramm
+  ![picture alt](https://github.com/Angerbrood/airlines-lister/blob/develop/img/uml.png "Title is optional")
+  ### 4.3 Fejlesztői környezet
+  * Github
+  * IntelliJ Idea
+  * Angular 2
+  * MySQL
+  * Heidi SQL
+  ### 4.4 Könyvtárstruktúra
+  * configuration: Az alkalmazás konfigurációi. (Spring, Hibernate stb)
+  * controllers: Kontrollerek
+  * dao: Data Access Object-ek az adatbázis kezeléshez
+  * model: Modellek
+  * security: Az alkamazáshoz szükséges biztonsági beállítások
+  * service: Service réteg.
+  * util: Egyéb máshova nem illeszkedő osztályok
   ## 5. Tesztelés
   ## 6. Felhasználói dokumentáció
   

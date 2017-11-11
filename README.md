@@ -46,8 +46,10 @@ A program egy reptéri jegykezelő rendszer egyszerűsített változatát valós
 * Kikeressük a kívánt uticélt
 * A kilistázott járatok közül a megfelelőnél a "Foglalás" gombra rányomunk
 * Ha sikerül akkor az alkalmazás kiírja, hogy sikeres foglalás
-kép
-kép
+
+ ![picture alt](https://github.com/Angerbrood/airlines-lister/blob/develop/img/Abstract_Flow.jpg "Title is optional")
+ 
+ ![picture alt](https://github.com/Angerbrood/airlines-lister/blob/develop/img/Create_Reservation.jpg "Title is optional")
 ## Tervezés
 ### 3.1 Oldaltérkép
 #### Publikus
@@ -90,14 +92,10 @@ kép
   * /createNewReservation/:flightId Foglalás létrehozása
   * /deleteReservation/:flightId: Foglalás törlése
   ### 3.3 Felhasználó modell
-  kép
+ ![picture alt](https://github.com/Angerbrood/airlines-lister/blob/develop/img/User.jpg "Title is optional")
   ### 3.4 Admin modell
-  kép
-  ### 3.5 Mockup
-  kép
-  kép
-  kép
-  ### 3.6 Megvalósítása
+ ![picture alt](https://github.com/Angerbrood/airlines-lister/blob/develop/img/Admin.jpg "Title is optional")
+  ### 3.5 Megvalósítása
   ## 4. Implementáció
   ### 4.1 Adatbázis terv
   ### 4.2 Fejlesztői környezet

@@ -89,3 +89,19 @@ kép
   * /modifyUser/:userId: Felhasználó módosítása
   * /createNewReservation/:flightId Foglalás létrehozása
   * /deleteReservation/:flightId: Foglalás törlése
+  ### 3.3 Felhasználó modell
+  kép
+  ### 3.4 Admin modell
+  kép
+  ### 3.5 Mockup
+  kép
+  kép
+  kép
+  ### 3.6 Megvalósítása
+  ## 4. Implementáció
+  ### 4.1 Adatbázis terv
+  ### 4.2 Fejlesztői környezet
+  ### 4.3 Könyvtárstruktúra
+  ## 5. Tesztelés
+  ## 6. Felhasználói dokumentáció
+  

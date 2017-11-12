@@ -2,8 +2,7 @@ package edu.elte.airlines.service;
 
 import edu.elte.airlines.dao.interfaces.CrudDao;
 import edu.elte.airlines.dao.interfaces.FlightDao;
-import edu.elte.airlines.domain.Flight;
-import edu.elte.airlines.dto.FlightDto;
+import edu.elte.airlines.model.Flight;
 import edu.elte.airlines.factory.domain.FlightFactory;
 import edu.elte.airlines.service.configuration.ServiceTestConfig;
 import edu.elte.airlines.service.interfaces.CrudService;
@@ -14,13 +13,15 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ServiceTestConfig.class})
 @Transactional
 @Rollback(false)
-public class FlightServiceTest extends AbstractServiceTest<Flight, FlightDto> {
+@WebAppConfiguration
+public class FlightServiceTest extends AbstractServiceTest<Flight> {
 
     @Autowired
     private FlightService flightService;
@@ -33,12 +34,12 @@ public class FlightServiceTest extends AbstractServiceTest<Flight, FlightDto> {
 
 
     @Override
-    protected CrudService<Flight, FlightDto, Integer> getService() {
+    protected CrudService<Integer, Flight> getService() {
         return flightService;
     }
 
     @Override
-    protected CrudDao<Flight, Integer> getDao() {
+    protected CrudDao<Integer, Flight> getDao() {
         return flightDao;
     }
 
@@ -61,8 +62,4 @@ public class FlightServiceTest extends AbstractServiceTest<Flight, FlightDto> {
         return flight;
     }
 
-    @Override
-    protected FlightDto createDto() {
-        return new FlightDto();
-    }
 }

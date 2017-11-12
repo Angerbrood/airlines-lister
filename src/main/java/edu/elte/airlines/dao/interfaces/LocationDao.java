@@ -1,7 +1,6 @@
 package edu.elte.airlines.dao.interfaces;
 
-import edu.elte.airlines.domain.Location;
+import edu.elte.airlines.model.Location;
 
-public interface LocationDao extends CrudDao<Location, Integer> {
-
+public interface LocationDao extends CrudDao<Integer, Location> {
 }

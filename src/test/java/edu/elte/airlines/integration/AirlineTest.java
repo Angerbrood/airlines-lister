@@ -1,15 +1,12 @@
 package edu.elte.airlines.integration;
 
-import edu.elte.airlines.domain.Airline;
-import edu.elte.airlines.dto.AirlineDto;
-import edu.elte.airlines.dto.FlightDto;
-import edu.elte.airlines.factory.AbstractDtoFactory;
-import edu.elte.airlines.factory.dto.AirlineDtoFactory;
+import edu.elte.airlines.factory.AbstractFactory;
+import edu.elte.airlines.factory.domain.AirlineFactory;
 import edu.elte.airlines.integration.configuration.IntegrationTestConfig;
+import edu.elte.airlines.model.Airline;
 import edu.elte.airlines.service.interfaces.AirlineService;
 import edu.elte.airlines.service.interfaces.CrudService;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,44 +16,38 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.assertTrue;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { IntegrationTestConfig.class })
 @WebAppConfiguration
-public class AirlineTest extends AbstractIntegrationTest<Airline, AirlineDto, Integer> {
-
+public class AirlineTest extends AbstractIntegrationTest<Airline, Integer> {
     private static Logger logger = LoggerFactory.getLogger(AirlineTest.class);
-
-
     @Autowired
     private AirlineService airlineService;
     @Autowired
-    private AirlineDtoFactory airlineDtoFactory;
-
-    private AirlineDto airlineDto;
-
+    private AirlineFactory airlineFactory;
+    private Airline airline;
     @Before
     @Transactional
     public void before() {
         logger.info("Preparing DB for integration testing...");
-        airlineDto = airlineDtoFactory.createOne();
-        airlineDto.setId(getService().create(airlineDto));
+        airline = airlineFactory.createOne();
+        airline.setId(getService().create(airline));
         logger.info("Database prepared!");
     }
 
     @Override
-    protected CrudService<Airline, AirlineDto, Integer> getService() {
+    protected CrudService<Integer, Airline> getService() {
         return airlineService;
     }
 
     @Override
-    protected AbstractDtoFactory<Airline, AirlineDto, Integer> getFactory() {
-        return airlineDtoFactory;
+    protected AbstractFactory<Airline> getFactory() {
+        return airlineFactory;
     }
 
     @Override
-    protected AirlineDto getDto() {
-        return airlineDto;
+    protected Airline getEntity() {
+        return airline;
     }
+
 }

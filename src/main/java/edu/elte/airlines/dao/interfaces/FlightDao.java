@@ -1,7 +1,8 @@
 package edu.elte.airlines.dao.interfaces;
 
-import edu.elte.airlines.domain.Flight;
+import edu.elte.airlines.model.Flight;
 
-public interface FlightDao extends CrudDao<Flight, Integer> {
+import java.util.List;
 
+public interface FlightDao extends CrudDao<Integer, Flight> {
 }

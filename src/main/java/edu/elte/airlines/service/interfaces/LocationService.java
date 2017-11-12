@@ -1,8 +1,6 @@
 package edu.elte.airlines.service.interfaces;
 
-import edu.elte.airlines.domain.Location;
-import edu.elte.airlines.dto.LocationDto;
+import edu.elte.airlines.model.Location;
 
-public interface LocationService extends CrudService<Location, LocationDto, Integer>{
-
+public interface LocationService extends CrudService<Integer, Location> {
 }

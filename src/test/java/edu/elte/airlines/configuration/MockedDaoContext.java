@@ -1,9 +1,11 @@
 package edu.elte.airlines.configuration;
 
 import edu.elte.airlines.dao.interfaces.*;
+import edu.elte.airlines.model.UserProfile;
 import edu.elte.airlines.response.CustomResponseFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.convert.ConversionService;
 
 import static org.mockito.Mockito.mock;
@@ -23,16 +25,16 @@ public class MockedDaoContext {
         return mock(LocationDao.class);
     }
     @Bean
-    UserPersonalDataDao userPersonalDataDao() {
-        return mock(UserPersonalDataDao.class);
+    PassengerDao passengerDao() {
+        return mock(PassengerDao.class);
     }
     @Bean
-    UserAuthDao userAuthDao() {
-        return mock(UserAuthDao.class);
+    UserDao userDao() {
+        return mock(UserDao.class);
     }
     @Bean
-    UserIdDao userIdDao() {
-        return mock(UserIdDao.class);
+    UserProfileDao userProfileDao() {
+        return mock(UserProfileDao.class);
     }
     @Bean
     public ConversionService conversionService() {

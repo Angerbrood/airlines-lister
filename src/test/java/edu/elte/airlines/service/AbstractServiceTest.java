@@ -16,19 +16,17 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertNotNull;
 
-public abstract class AbstractServiceTest<EntityType, DtoType> {
+public abstract class AbstractServiceTest<EntityType> {
 
-    protected abstract CrudService<EntityType, DtoType, Integer> getService();
+    protected abstract CrudService<Integer, EntityType> getService();
 
-    protected abstract CrudDao<EntityType, Integer> getDao();
+    protected abstract CrudDao<Integer, EntityType> getDao();
 
     protected abstract ConversionService getConversionService();
 
     protected abstract Class<EntityType> getEntityClass();
 
     protected abstract EntityType createEntity(boolean withId);
-
-    protected abstract DtoType createDto();
 
     @SuppressWarnings("unchecked")
     @Before
@@ -42,55 +40,50 @@ public abstract class AbstractServiceTest<EntityType, DtoType> {
     @Test
     public void testCreateNull() throws Exception {
         expectedEx.expect(RuntimeException.class);
-        expectedEx.expectMessage("The DTO to be created must not be null");
+        expectedEx.expectMessage("The entity to be created must not be null");
 
         getService().create(null);
-        verify(getDao(), times(0)).createEntity(any());
-        verify(getDao(), times(0)).updateEntity(any());
+        verify(getDao(), times(0)).persist(any());
+        verify(getDao(), times(0)).update(any());
     }
     @Test
     public void testUpdateNull() throws Exception {
         expectedEx.expect(RuntimeException.class);
-        expectedEx.expectMessage("The DTO to be updated must not be null");
+        expectedEx.expectMessage("The entity to be updated must not be null");
 
         getService().update(null);
-        verify(getDao(), times(0)).createEntity(any());
-        verify(getDao(), times(0)).updateEntity(any());
+        verify(getDao(), times(0)).persist(any());
+        verify(getDao(), times(0)).update(any());
     }
     @Test
     public void testDeleteNull() throws Exception {
         expectedEx.expect(RuntimeException.class);
-        expectedEx.expectMessage("The DTO to be deleted must not be null");
+        expectedEx.expectMessage("The entity to be deleted must not be null");
         getService().delete(null);
 
-        verify(getDao(), times(0)).createEntity(any());
-        verify(getDao(), times(0)).updateEntity(any());
+        verify(getDao(), times(0)).persist(any());
+        verify(getDao(), times(0)).update(any());
     }
     @Test
     public void testCreateNonNull() {
-        DtoType dtoType = createDto();
-        when(getConversionService().convert(dtoType, getEntityClass())).thenReturn(createEntity(false));
-        getService().create(dtoType);
-        verify(getDao(), times(1)).createEntity(any());
-        verify(getDao(), times(0)).updateEntity(any());
+        EntityType entityType = createEntity(false);
+        getService().create(entityType);
+        verify(getDao(), times(1)).persist(any());
+        verify(getDao(), times(0)).update(any());
 
     }
     @Test
     public void testUpdateNonNull() {
-        DtoType dtoType = createDto();
         EntityType entityType = createEntity(false);
-        when(getConversionService().convert(dtoType, getEntityClass())).thenReturn(entityType);
-        getService().update(dtoType);
-        verify(getDao(), times(1)).updateEntity(any());
-        verify(getDao(), times(0)).createEntity(any());
+        getService().update(entityType);
+        verify(getDao(), times(1)).update(any());
+        verify(getDao(), times(0)).persist(any());
     }
     @Test
     public void testDeleteNonNull() {
-        DtoType dtoType = createDto();
         EntityType entityType = createEntity(false);
-        when(getConversionService().convert(dtoType, getEntityClass())).thenReturn(entityType);
-        getService().delete(dtoType);
-        verify(getDao(), times(1)).deleteEntity(any());
+        getService().delete(entityType);
+        verify(getDao(), times(1)).delete(any());
     }
 
 

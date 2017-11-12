@@ -1,13 +1,27 @@
 package edu.elte.airlines.util;
 
+public class Wrapper {
+    private String requestType;
+    private Object data;
 
-public class Wrapper<DtoType> {
-    private DtoType object;
 
-    public DtoType getObject() {
-        return object;
+    public Wrapper() {
+
     }
-    public void setObject(DtoType object) {
-        this.object = object;
+
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
     }
 }

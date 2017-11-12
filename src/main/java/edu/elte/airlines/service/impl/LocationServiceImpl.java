@@ -1,15 +1,14 @@
 package edu.elte.airlines.service.impl;
 
+import edu.elte.airlines.dao.impl.AbstractDao;
 import edu.elte.airlines.dao.interfaces.LocationDao;
-import edu.elte.airlines.domain.Location;
-import edu.elte.airlines.dto.LocationDto;
+import edu.elte.airlines.model.Location;
 import edu.elte.airlines.service.interfaces.LocationService;
+import org.springframework.stereotype.Service;
 
-public class LocationServiceImpl extends AbstractCrudServiceImpl<Location, LocationDto, Integer> 
-	implements LocationService{
 
-	public LocationServiceImpl(LocationDao dao) {
-		super(Location.class, LocationDto.class, dao);
-	}
-
+public class LocationServiceImpl extends CrudServiceImpl<Integer, Location> implements LocationService {
+    public LocationServiceImpl(LocationDao dao) {
+        super(dao);
+    }
 }

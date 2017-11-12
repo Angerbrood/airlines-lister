@@ -1,9 +1,10 @@
 package edu.elte.airlines.controller;
 
-import edu.elte.airlines.domain.Airline;
-import edu.elte.airlines.dto.AirlineDto;
-import edu.elte.airlines.provider.ServiceProvider;
+import edu.elte.airlines.model.Airline;
+
 import edu.elte.airlines.response.CustomResponse;
+
+import edu.elte.airlines.util.ServiceProvider;
 import edu.elte.airlines.util.Wrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,28 +22,28 @@ public class AirlineController {
     private ServiceProvider serviceProvider;
 
 
-    @RequestMapping(value = "/admin/listAirlines", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/listAirlines", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse listAirlines(HttpServletRequest request, HttpServletResponse response) {
         return serviceProvider.getService(Airline.class).list();
     }
 
-    @RequestMapping(value = "/admin/addAirline", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/createNewAirline", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse addAirline(HttpServletRequest request, HttpServletResponse response,
-                                     @RequestBody Wrapper<AirlineDto> wrapper) {
-        return serviceProvider.getService(Airline.class).create(wrapper.getObject());
+                                     @RequestBody Wrapper wrapper) {
+        return serviceProvider.getService(Airline.class).create(wrapper.getData());
     }
-    @RequestMapping(value = "/admin/updateAirline", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/updateAirline", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse updateAirline(HttpServletRequest request, HttpServletResponse response,
-                                        @RequestBody Wrapper<AirlineDto> wrapper) {
-        return serviceProvider.getService(Airline.class).update(wrapper.getObject());
+                                        @RequestBody Wrapper wrapper) {
+        return serviceProvider.getService(Airline.class).update(wrapper.getData());
     }
-    @RequestMapping(value = "/admin/deleteAirline", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/deleteAirline", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse deleteAirline(HttpServletRequest request, HttpServletResponse response,
-                                        @RequestBody Integer id) {
-        return serviceProvider.getService(Airline.class).delete(id);
+                                        @RequestBody Wrapper wrapper) {
+        return serviceProvider.getService(Airline.class).delete(wrapper.getData());
     }
 }

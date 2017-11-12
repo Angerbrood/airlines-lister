@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractFactory<EntityType> {
-    private CrudDao<EntityType, ?> dao;
+    private CrudDao<?, EntityType> dao;
 
-    public AbstractFactory(CrudDao<EntityType, ?> dao) {
+    public AbstractFactory(CrudDao<?, EntityType> dao) {
         this.dao = dao;
     }
 
@@ -23,7 +23,7 @@ public abstract class AbstractFactory<EntityType> {
 
     public abstract EntityType createOne(Object... arguments);
 
-    public CrudDao<EntityType, ?> getDao() {
+    public CrudDao<?, EntityType> getDao() {
         return dao;
     }
 }

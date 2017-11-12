@@ -2,8 +2,7 @@ package edu.elte.airlines.service;
 
 import edu.elte.airlines.dao.interfaces.CrudDao;
 import edu.elte.airlines.dao.interfaces.LocationDao;
-import edu.elte.airlines.domain.Location;
-import edu.elte.airlines.dto.LocationDto;
+import edu.elte.airlines.model.Location;
 import edu.elte.airlines.factory.domain.LocationFactory;
 import edu.elte.airlines.service.configuration.ServiceTestConfig;
 import edu.elte.airlines.service.interfaces.CrudService;
@@ -14,13 +13,15 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ServiceTestConfig.class})
 @Transactional
 @Rollback(false)
-public class LocationServiceTest extends AbstractServiceTest<Location, LocationDto> {
+@WebAppConfiguration
+public class LocationServiceTest extends AbstractServiceTest<Location> {
 
     @Autowired
     private LocationService locationService;
@@ -32,12 +33,12 @@ public class LocationServiceTest extends AbstractServiceTest<Location, LocationD
     private LocationFactory locationFactory;
 
     @Override
-    protected CrudService<Location, LocationDto, Integer> getService() {
+    protected CrudService<Integer, Location> getService() {
         return locationService;
     }
 
     @Override
-    protected CrudDao<Location, Integer> getDao() {
+    protected CrudDao<Integer, Location> getDao() {
         return locationDao;
     }
 
@@ -58,10 +59,5 @@ public class LocationServiceTest extends AbstractServiceTest<Location, LocationD
             location.setId(1);
         }
         return location;
-    }
-
-    @Override
-    protected LocationDto createDto() {
-        return new LocationDto();
     }
 }

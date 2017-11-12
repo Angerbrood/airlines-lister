@@ -2,13 +2,13 @@ package edu.elte.airlines.service.interfaces;
 
 import java.util.List;
 
-public interface CrudService<EntityType, DtoType, IdType> {
-    IdType create(DtoType dto);
-    void delete(DtoType dto);
-    void update(DtoType dto);
-    DtoType findById(IdType id);
+public interface CrudService<IdType, EntityType> {
+    IdType create(EntityType entityType);
+    void delete(EntityType entityType);
+    void update(EntityType entityType);
+    EntityType findById(IdType id);
 
     boolean exists(IdType id);
 
-    List<DtoType> list();
+    List<EntityType> list();
 }

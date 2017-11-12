@@ -2,13 +2,13 @@ package edu.elte.airlines.factory.domain;
 
 
 import com.github.javafaker.Faker;
-import edu.elte.airlines.dao.interfaces.CrudDao;
-import edu.elte.airlines.domain.Location;
+import edu.elte.airlines.dao.interfaces.LocationDao;
+import edu.elte.airlines.model.Location;
 import edu.elte.airlines.factory.AbstractFactory;
 
 public class LocationFactory extends AbstractFactory<Location> {
 
-    public LocationFactory(CrudDao<Location, ?> dao) {
+    public LocationFactory(LocationDao dao) {
         super(dao);
     }
 

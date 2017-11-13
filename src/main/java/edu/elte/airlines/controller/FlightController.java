@@ -23,39 +23,39 @@ public class FlightController {
     @Autowired
     private ServiceProvider serviceProvider;
 
-    @RequestMapping(value = "/listFlights", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/user/listFlights", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse listFlights(HttpServletRequest request, HttpServletResponse response) {
         return serviceProvider.getService(Flight.class).list();
     }
 
-    @RequestMapping(value = "/addFlight", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/admin/addFlight", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse addFlight(HttpServletRequest request, HttpServletResponse response,
                                     @RequestBody Wrapper wrapper) {
         return serviceProvider.getService(Flight.class).create(wrapper.getData());
     }
-    @RequestMapping(value = "/updateFlight", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/admin/updateFlight", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse updateFlight(HttpServletRequest request, HttpServletResponse response,
                                        @RequestBody Wrapper wrapper) {
         return serviceProvider.getService(Flight.class).update(wrapper.getData());
     }
-    @RequestMapping(value = "/deleteFlight", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/admin/deleteFlight", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse deleteFlight(HttpServletRequest request, HttpServletResponse response,
                                        @RequestBody Wrapper wrapper) {
         return serviceProvider.getService(Flight.class).delete(wrapper.getData());
     }
-    @RequestMapping(value = "/deleteReservation", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/user/deleteReservation", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public CustomResponse reserveFlight(HttpServletRequest request, HttpServletResponse response,
+    public CustomResponse deleteReservation(HttpServletRequest request, HttpServletResponse response,
                                        @RequestBody Wrapper wrapper) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails currentUser = (UserDetails) authentication.getDetails();
         return serviceProvider.getService(Flight.class).removeReservation(wrapper.getData(), currentUser.getUsername());
     }
-    @RequestMapping(value = "/bookFlight", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/user/bookFlight", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse bookFlight(HttpServletRequest request, HttpServletResponse response,
                                        @RequestBody Wrapper wrapper) {

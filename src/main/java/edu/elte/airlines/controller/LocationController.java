@@ -24,34 +24,34 @@ public class LocationController {
     @Autowired
     private ServiceProvider serviceProvider;
 
-    @RequestMapping(value = "/addNewLocation", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/admin/addNewLocation", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse addNewLocation(HttpServletRequest request, HttpServletResponse response,
                                          @RequestBody Wrapper wrapper) throws IOException {
         return serviceProvider.getService(Location.class).create(wrapper.getData());
     }
 
-    @RequestMapping(value = "/deleteLocation", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/admin/deleteLocation", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse deleteLocation(HttpServletRequest request, HttpServletResponse response,
                                          @RequestBody Wrapper wrapper) throws IOException {
         return serviceProvider.getService(Location.class).delete(wrapper.getData());
 
     }
-    @RequestMapping(value = "/listLocations", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/user/listLocations", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse listLocations(HttpServletRequest request, HttpServletResponse response) throws IOException {
         return serviceProvider.getService(Location.class).list();
 
     }
-    @RequestMapping(value = "/updateLocation", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/admin//updateLocation", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse updateLocation(HttpServletRequest request, HttpServletResponse response,
                                          @RequestBody Wrapper wrapper) throws IOException {
         return serviceProvider.getService(Location.class).update(wrapper.getData());
 
     }
-    @RequestMapping(value = "/findLocationById", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/admin/findLocationById", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
     public CustomResponse findLocation(HttpServletRequest request, HttpServletResponse response,
                                        @RequestBody Wrapper wrapper) throws IOException {

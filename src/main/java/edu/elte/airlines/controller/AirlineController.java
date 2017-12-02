@@ -25,7 +25,7 @@ public class AirlineController {
     private ServiceProvider serviceProvider;
 
 
-    @RequestMapping(value = "/user/listAirlines", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+    @RequestMapping(value = "/user/listAirlines", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public CustomResponse listAirlines(HttpServletRequest request, HttpServletResponse response) {
         return serviceProvider.getService(Airline.class).list();

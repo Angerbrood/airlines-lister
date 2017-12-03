@@ -4,11 +4,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name="PASSENGER")
-public class Passenger implements EntityInterface<Integer> {
+public class Passenger implements EntityInterface<Integer>, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

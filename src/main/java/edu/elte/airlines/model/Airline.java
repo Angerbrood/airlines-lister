@@ -57,6 +57,10 @@ public class Airline implements EntityInterface<Integer> {
 		this.flights = flights;
 	}
 
+	public void addFlight(Flight flight) {
+		flights.add(flight);
+	}
+
 	@Override
 	public String toString() {
 		return "Airline{" +

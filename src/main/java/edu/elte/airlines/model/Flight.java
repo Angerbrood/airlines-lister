@@ -6,6 +6,7 @@ import org.hibernate.annotations.CascadeType;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,10 +28,10 @@ public class Flight implements EntityInterface<Integer> {
 	private Integer id;
 	@Column(length = 1024)
 	private String flightNumber;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@Cascade({CascadeType.SAVE_UPDATE})
 	private Location start;
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Location destination;
 	@Column()
@@ -39,7 +40,7 @@ public class Flight implements EntityInterface<Integer> {
 	private LocalDate landingDate;
 	@Column()
 	private Integer travelTime;
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.EAGER)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Collection<Passenger> passengers;
 	
@@ -119,10 +120,20 @@ public class Flight implements EntityInterface<Integer> {
 		}
 	}
 	public void removePassenger(Passenger passenger) {
-		if(!passengers.contains(passenger)) {
-			passengers.remove(passenger);
-		} else
+		int index = -1;
+		List<Passenger> tempPassengers = (List<Passenger>) passengers;
+		for(int i = 0; i < tempPassengers.size(); ++i) {
+			Passenger currentPassenger = tempPassengers.get(i);
+			if(currentPassenger.equals(passenger)) {
+				index = i;
+				break;
+			}
+		}
+		if(index == -1) {
 			throw new RuntimeException("Passenger is not on board");
+		} else {
+			tempPassengers.remove(index);
+		}
 	}
 	@Override
 	public String toString() {

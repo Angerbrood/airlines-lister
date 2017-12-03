@@ -1,6 +1,9 @@
 package edu.elte.airlines.service;
 
+import edu.elte.airlines.converter.ReservationDto;
 import edu.elte.airlines.model.EntityInterface;
+import edu.elte.airlines.model.Flight;
+import edu.elte.airlines.model.Passenger;
 import edu.elte.airlines.model.User;
 import edu.elte.airlines.response.CustomResponse;
 import edu.elte.airlines.response.CustomResponseFactory;
@@ -10,6 +13,9 @@ import edu.elte.airlines.service.interfaces.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @SuppressWarnings("unchecked")
 @Transactional
@@ -99,10 +105,9 @@ public class AdminService {
         CustomResponse response;
         try {
             FlightService flightService = (FlightService) crudService;
-            Integer flightId = (Integer) objectDto;
-            UserService userService = (UserService) crudService;
-            User currentUser = userService.findBySSO(ssoId);
-            flightService.bookFlight(currentUser.getId(), flightId);
+            String tempId = (String) objectDto;
+            Integer flightId = Integer.parseInt(tempId);
+            flightService.bookFlight(ssoId, flightId);
             response = customResponseFactory.successfullResponse();
         } catch (Exception ex) {
             response = customResponseFactory.errorResponse(ex);
@@ -113,11 +118,71 @@ public class AdminService {
         CustomResponse response;
         try {
             FlightService flightService = (FlightService) crudService;
-            Integer flightId = (Integer) objectDto;
-            UserService userService = (UserService) crudService;
-            User currentUser = userService.findBySSO(ssoId);
-            flightService.removeReservation(currentUser.getId(), flightId);
+            String tempId = (String) objectDto;
+            Integer flightId = Integer.parseInt(tempId);
+            flightService.removeReservation(ssoId, flightId);
             response = customResponseFactory.successfullResponse();
+        } catch (Exception ex) {
+            response = customResponseFactory.errorResponse(ex);
+        }
+        return response;
+    }
+    public CustomResponse fetchUsers() {
+        CustomResponse response;
+        try {
+            UserService userService = (UserService) crudService;
+            List<User> users = userService.findAllUsers();
+            response = customResponseFactory.successfullResponse(users);
+        } catch (Exception ex) {
+            response = customResponseFactory.errorResponse(ex);
+        }
+        return response;
+    }
+    public CustomResponse getPersonalData(Object dtoObject) {
+        CustomResponse response;
+        try {
+            UserService userService = (UserService) crudService;
+            String username = (String) dtoObject;
+            User currentUser = userService.findBySSO(username);
+            response = customResponseFactory.successfullResponse(currentUser);
+        } catch (Exception ex) {
+            response = customResponseFactory.errorResponse(ex);
+        }
+        return response;
+    }
+    public CustomResponse modifyPersonalData(Object dtoObject) {
+        CustomResponse response;
+        try {
+            UserService userService = (UserService) crudService;
+            User currentUser = (User) dtoObject;
+            userService.updateUser(currentUser);
+            response = customResponseFactory.successfullResponse(currentUser);
+        } catch (Exception ex) {
+            response = customResponseFactory.errorResponse(ex);
+        }
+        return response;
+    }
+    public CustomResponse createFlight(Object flightdto, String airlineId) {
+        CustomResponse response;
+        try {
+            FlightService flightService = (FlightService) crudService;
+            Flight flight = (Flight) flightdto;
+            flightService.createFlight(flight, airlineId);
+            response = customResponseFactory.successfullResponse();
+
+        } catch (Exception ex) {
+            response = customResponseFactory.errorResponse(ex);
+        }
+        return response;
+    }
+
+    public CustomResponse listReservations(Object data) {
+        CustomResponse response;
+        try {
+            String ssoId = (String)data;
+            FlightService flightService = (FlightService) crudService;
+            List<Flight> reservations = flightService.getReservedFlightsByUser(ssoId);
+            response = customResponseFactory.successfullResponse(reservations);
         } catch (Exception ex) {
             response = customResponseFactory.errorResponse(ex);
         }

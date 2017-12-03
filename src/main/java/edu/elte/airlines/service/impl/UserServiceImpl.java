@@ -1,5 +1,6 @@
 package edu.elte.airlines.service.impl;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import edu.elte.airlines.model.User;
 import edu.elte.airlines.model.UserProfile;
 import edu.elte.airlines.service.interfaces.UserService;
 import edu.elte.airlines.util.AuthCredentials;
+import org.hibernate.Hibernate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,15 +46,8 @@ public class UserServiceImpl extends CrudServiceImpl<Integer, User> implements U
 	}
 
 	public void updateUser(User user) {
-		User entity = dao.findById(user.getId());
-		if(entity!=null){
-			entity.setSsoId(user.getSsoId());
-			if(!user.getPassword().equals(entity.getPassword())){
-				entity.setPassword(passwordEncoder.encode(user.getPassword()));
-			}
-			entity.setUserPassengerData(user.getUserPassengerData());
-			entity.setUserProfiles(user.getUserProfiles());
-		}
+		passengerDao.update(user.getUserPassengerData());
+		dao.update(user);
 	}
 
 	
@@ -61,7 +56,14 @@ public class UserServiceImpl extends CrudServiceImpl<Integer, User> implements U
 	}
 
 	public List<User> findAllUsers() {
-		return super.list();
+		List<User> temp =  super.list();
+		List<User> result = new LinkedList<>();
+		for(User currentUser : temp) {
+			Hibernate.initialize(currentUser.getUserPassengerData());
+			Hibernate.initialize(currentUser.getUserProfiles());
+			result.add(currentUser);
+		}
+		return result;
 	}
 
 	public boolean isUserSSOUnique(Integer id, String sso) {

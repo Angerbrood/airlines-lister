@@ -6,6 +6,7 @@ import org.hibernate.annotations.CascadeType;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +31,6 @@ public class Airline implements EntityInterface<Integer> {
 	private Collection<Flight> flights;
 	
 	public Airline() {
-		
 	}
 
 	public Integer getId() {

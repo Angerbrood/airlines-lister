@@ -61,7 +61,8 @@ public class AdminService {
     public CustomResponse delete(Object dtoObject) {
         CustomResponse response;
         try {
-            Integer id = (Integer) dtoObject;
+            String stringId = dtoObject.toString().split(" ")[1];
+            Integer id = Integer.valueOf(stringId);
             EntityInterface entity =(EntityInterface) crudService.findById(id);
             crudService.delete(entity);
             response = customResponseFactory.successfullResponse();

@@ -1,10 +1,13 @@
 package edu.elte.airlines.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import edu.elte.airlines.dao.interfaces.PassengerDao;
 import edu.elte.airlines.model.User;
+import edu.elte.airlines.model.UserProfile;
 import edu.elte.airlines.service.interfaces.UserService;
+import edu.elte.airlines.util.AuthCredentials;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
@@ -65,5 +68,26 @@ public class UserServiceImpl extends CrudServiceImpl<Integer, User> implements U
 		User user = findBySSO(sso);
 		return ( user == null || ((id != null) && (user.getId() == id)));
 	}
-	
+
+	@Override
+	public boolean authenticateUser(AuthCredentials credentials) {
+		User user = findBySSO(credentials.getUsername());
+		if(user!= null) {
+			return user.getPassword().equals(credentials.getPassword()) || passwordEncoder.matches(user.getPassword(), credentials.getPassword());
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isAdmin(User user) {
+		Set<UserProfile> profiles = user.getUserProfiles();
+		for(UserProfile currentProfile : profiles) {
+			if(currentProfile.getType().equals("ADMIN")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

@@ -3,6 +3,7 @@ package edu.elte.airlines.service.interfaces;
 import java.util.List;
 
 import edu.elte.airlines.model.User;
+import edu.elte.airlines.util.AuthCredentials;
 
 
 public interface UserService extends CrudService<Integer, User>{
@@ -20,5 +21,9 @@ public interface UserService extends CrudService<Integer, User>{
 	List<User> findAllUsers(); 
 	
 	boolean isUserSSOUnique(Integer id, String sso);
+
+	boolean authenticateUser(AuthCredentials credentials);
+
+	boolean isAdmin(User user);
 
 }

@@ -1,7 +1,7 @@
 package edu.elte.airlines.response;
 
 public class CustomResponseFactory {
-    private static final String DEFAULT_SUCCESS_MESSAGE = "A művelet végrehajtása sikeres.";
+    private static final String DEFAULT_SUCCESS_MESSAGE = "The operation was successful.";
 
     public CustomResponseFactory() {
 

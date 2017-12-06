@@ -59,4 +59,10 @@ public class AirlineController {
                                         @RequestBody Wrapper wrapper) {
         return serviceProvider.getService(Airline.class).delete(wrapper.getData());
     }
+    @RequestMapping(value = "/admin/findAirlineById", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @CrossOrigin
+    @ResponseBody
+    public CustomResponse findById(HttpServletRequest request, HttpServletResponse response, @RequestBody Wrapper wrapper) {
+        return serviceProvider.getService(Airline.class).findById(wrapper.getData());
+    }
 }

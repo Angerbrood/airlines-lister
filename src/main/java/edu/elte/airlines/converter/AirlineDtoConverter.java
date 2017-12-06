@@ -19,7 +19,7 @@ public class AirlineDtoConverter implements Converter<AirlineDto, Airline> {
     public Airline convert(AirlineDto airlineDto) {
         Airline result = new Airline();
         result.setName(airlineDto.getName());
-        String id = airlineDto.getId().split(" ")[1];
+        String id = airlineDto.getId();
         result.setId(Integer.parseInt(id));
         result.setFlights(airlineDao.findById(result.getId()).getFlights());
         return result;

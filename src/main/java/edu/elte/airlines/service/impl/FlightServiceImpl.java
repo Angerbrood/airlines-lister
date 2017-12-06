@@ -2,11 +2,9 @@ package edu.elte.airlines.service.impl;
 
 import edu.elte.airlines.dao.interfaces.AirlineDao;
 import edu.elte.airlines.dao.interfaces.FlightDao;
+import edu.elte.airlines.dao.interfaces.LocationDao;
 import edu.elte.airlines.dao.interfaces.UserDao;
-import edu.elte.airlines.model.Airline;
-import edu.elte.airlines.model.Flight;
-import edu.elte.airlines.model.Passenger;
-import edu.elte.airlines.model.User;
+import edu.elte.airlines.model.*;
 import edu.elte.airlines.service.interfaces.FlightService;
 
 import java.util.Collection;
@@ -29,7 +27,7 @@ public class FlightServiceImpl extends CrudServiceImpl<Integer, Flight> implemen
     public void bookFlight(String ssoId, Integer flightId) {
         User user = userDao.findBySSO(ssoId);
         Flight flight = flightDao.findById(flightId);
-        flight.addPassenger(user.getUserPassengerData());
+        flight.addPassenger(Passenger.copyPassenger(user.getUserPassengerData()));
         flightDao.update(flight);
     }
 
@@ -58,10 +56,35 @@ public class FlightServiceImpl extends CrudServiceImpl<Integer, Flight> implemen
 
     @Override
     public void createFlight(Flight flight, String airlineId) {
+        if(flight.getPassengers() == null) {
+            flight.setPassengers(new LinkedList<>());
+        }
+        Location startLocation = flight.getStart();
+        Location endLocation = flight.getDestination();
+        if(startLocation.equals(endLocation)) {
+            throw new RuntimeException("Start and destination cannot be the same place");
+        }
+
         flightDao.persist(flight);
-        String temp = airlineId.split(" ")[1];
-        Airline airline = airlineDao.findById(Integer.parseInt(temp));
+        Airline airline = airlineDao.findById(Integer.parseInt(airlineId));
         airline.addFlight(flight);
         airlineDao.update(airline);
+    }
+
+    @Override
+    public void deleteFlight(Integer id) {
+        List<Airline> airlines = airlineDao.list();
+        Flight flight = flightDao.findById(id);
+        for(Airline currentAirline : airlines) {
+            List<Flight> currentAirlineFlights = (List<Flight>) currentAirline.getFlights();
+            for(int i = 0; i < currentAirlineFlights.size(); ++i) {
+                if(id.equals(currentAirlineFlights.get(i).getId())) {
+                    currentAirline.removeAirline(i);
+                    airlineDao.update(currentAirline);
+                    break;
+                }
+            }
+        }
+        flightDao.delete(flight);
     }
 }

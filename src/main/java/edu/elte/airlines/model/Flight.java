@@ -8,18 +8,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 @Entity
 @Table(name = "FLIGHT")
 public class Flight implements EntityInterface<Integer> {
@@ -40,7 +30,7 @@ public class Flight implements EntityInterface<Integer> {
 	private LocalDate landingDate;
 	@Column()
 	private Integer travelTime;
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Collection<Passenger> passengers;
 	

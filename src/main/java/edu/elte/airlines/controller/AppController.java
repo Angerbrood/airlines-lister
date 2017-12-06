@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import edu.elte.airlines.dto.UserDto;
 import edu.elte.airlines.model.User;
 import edu.elte.airlines.response.CustomResponse;
 import edu.elte.airlines.response.ResponseEnum;
@@ -16,6 +17,7 @@ import edu.elte.airlines.util.AuthCredentials;
 import edu.elte.airlines.util.ServiceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,6 +41,10 @@ import sun.security.krb5.Credentials;
 public class AppController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private Converter<UserDto, User> userDtoConverter;
+	@Autowired
+	private ServiceProvider serviceProvider;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST,  consumes = "application/json", produces = "application/json")
 	@CrossOrigin
@@ -54,7 +60,14 @@ public class AppController {
 				return new CustomResponse(ResponseEnum.SUCCESS, "Type:USER", null);
 			}
 		} else {
-			return new CustomResponse(ResponseEnum.FAILED, "Type:NONE", null);
+			return new CustomResponse(ResponseEnum.FAILED, "Type:NONE", "Invalid credentials");
 		}
+	}
+	@RequestMapping(value = "/registerNewUser", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	@CrossOrigin
+	@ResponseBody
+	public CustomResponse registerNewUser(HttpServletRequest request, HttpServletResponse response, @RequestBody UserDto userDto) {
+		User user = userDtoConverter.convert(userDto);
+		return serviceProvider.getService(User.class).registerUser(user);
 	}
 }

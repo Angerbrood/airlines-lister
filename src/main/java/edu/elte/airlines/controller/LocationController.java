@@ -53,6 +53,7 @@ public class LocationController {
 
     }
     @RequestMapping(value = "/admin/findLocationById", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @CrossOrigin
     @ResponseBody
     public CustomResponse findLocation(HttpServletRequest request, HttpServletResponse response,
                                        @RequestBody Wrapper wrapper) throws IOException {

@@ -24,9 +24,8 @@ public class FlightDtoConverter implements Converter<FlightDto, Flight> {
     @Override
     public Flight convert(FlightDto flightDto) {
         Flight result = new Flight();
-        String temp = flightDto.getId();
-        if(temp != null) {
-            String id = temp.split(" ")[1];
+        String id = flightDto.getId();
+        if(id != null) {
             Flight flight = flightDao.findById(Integer.parseInt(id));
             result.setPassengers(flight.getPassengers());
             result.setId(flight.getId());
@@ -35,11 +34,9 @@ public class FlightDtoConverter implements Converter<FlightDto, Flight> {
         result.setStartDate(LocalDate.parse(flightDto.getStartDate()));
         result.setLandingDate(LocalDate.parse(flightDto.getEndDate()));
         String startLocationId = flightDto.getStartLocationId();
-        temp = startLocationId.split(" ")[1];
-        result.setStart(locationDao.findById(Integer.parseInt(temp)));
+        result.setStart(locationDao.findById(Integer.parseInt(startLocationId)));
         String endLocationId = flightDto.getEndLocationId();
-        temp = endLocationId.split(" ")[1];
-        result.setDestination(locationDao.findById(Integer.parseInt(temp)));
+        result.setDestination(locationDao.findById(Integer.parseInt(endLocationId)));
         result.setTravelTime(Integer.parseInt(flightDto.getTravelingTime()));
         return result;
     }

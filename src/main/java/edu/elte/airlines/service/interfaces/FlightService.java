@@ -10,4 +10,6 @@ public interface FlightService extends CrudService<Integer, Flight> {
     List<Flight> getReservedFlightsByUser(String ssoId);
 
     void createFlight(Flight flight, String airlineId);
+
+    void deleteFlight(Integer id);
 }

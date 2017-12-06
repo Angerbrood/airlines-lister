@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 @Component
 @Transactional
@@ -28,28 +30,25 @@ public class UserDtoConverter implements Converter<UserDto, User> {
     @Override
     public User convert(UserDto userDto) {
         User result = new User();
-        String userId;
-        if(userDto.getId().split(" ").length == 2) {
-            userId = userDto.getId().split(" ")[1];
-        } else {
-            userId = userDto.getId();
-        }
-        if(userDao.findById(Integer.parseInt(userId)) != null) {
+        String userId = userDto.getId();
+        Passenger passenger = new Passenger();
+        if(userId != null) {
             User tempUser = userDao.findById(Integer.parseInt(userId));
             result.setId(tempUser.getId());
             result.setUserProfiles(tempUser.getUserProfiles());
-
+            passenger.setId(tempUser.getUserPassengerData().getId());
         }
         result.setSsoId(userDto.getSsoId());
         result.setPassword(userDto.getPassword());
         if(userDto.getRole() != null) {
-            String role = userDto.getRole().split(" ")[1];
+            String role = userDto.getRole();
             UserProfile userProfile = userProfileDao.findByType(role);
-            result.setUserProfiles(new HashSet<>(Arrays.asList(userProfile)));
-        }
-        Passenger passenger = new Passenger();
-        if(userDao.findById(Integer.parseInt(userId)) != null) {
-            passenger.setId(userDao.findById(result.getId()).getUserPassengerData().getId());
+            Set<UserProfile> profiles = new HashSet<>();
+            profiles.add(userProfile);
+            if(userProfile.getType().equals("ADMIN")) {
+                profiles.add(userProfileDao.findByType("USER"));
+            }
+            result.setUserProfiles(profiles);
         }
         passenger.setEmail(userDto.getEmail());
         passenger.setAddress(userDto.getAddress());

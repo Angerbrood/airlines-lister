@@ -114,6 +114,19 @@ public class Passenger implements EntityInterface<Integer>, Serializable {
         this.email = email;
     }
 
+    public static Passenger copyPassenger(Passenger other) {
+        Passenger result = new Passenger();
+        result.setId(other.getId());
+        result.setLastName(other.getLastName());
+        result.setFirstName(other.getFirstName());
+        result.setDateOfBirth(other.getDateOfBirth());
+        result.setBalance(other.getBalance());
+        result.setEmail(other.getEmail());
+        result.setAccountNumber(other.getAccountNumber());
+        result.setAge(other.getAge());
+        result.setAddress(other.getAddress());
+        return result;
+    }
 
     @Override
     public boolean equals(Object o) {

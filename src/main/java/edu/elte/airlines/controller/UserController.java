@@ -6,13 +6,16 @@ import edu.elte.airlines.dto.UserDto;
 import edu.elte.airlines.model.User;
 import edu.elte.airlines.model.UserProfile;
 import edu.elte.airlines.response.CustomResponse;
+import edu.elte.airlines.response.ResponseEnum;
 import edu.elte.airlines.util.ServiceProvider;
 import edu.elte.airlines.util.Wrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -72,5 +75,25 @@ public class UserController {
     public CustomResponse modifyPersonalData(@RequestBody UserDto userDto) {
         User user = userDtoConverter.convert(userDto);
         return serviceProvider.getService(User.class).modifyPersonalData(user);
+    }
+    @RequestMapping(value = "/admin/findUserById", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @CrossOrigin
+    @ResponseBody
+    public CustomResponse findById(@RequestBody Wrapper wrapper) {
+        return serviceProvider.getService(User.class).findById(wrapper.getData());
+    }
+    @RequestMapping(value = "/user/logout", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @CrossOrigin
+    @ResponseBody
+    public CustomResponse logout(HttpServletRequest request, HttpServletResponse response) {
+        response.addCookie(new Cookie("username", null));
+        response.addCookie(new Cookie("password", null));
+        return new CustomResponse(ResponseEnum.SUCCESS, null, "Logout success");
+    }
+    @RequestMapping(value = "/user/getUserPermission", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @CrossOrigin
+    @ResponseBody
+    public CustomResponse getUserPermision(HttpServletRequest request, HttpServletResponse response, @RequestBody Wrapper wrapper) {
+        return serviceProvider.getService(User.class).getUserPermission(wrapper.getData());
     }
 }

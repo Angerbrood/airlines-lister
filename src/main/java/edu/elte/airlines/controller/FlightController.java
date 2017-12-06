@@ -60,7 +60,7 @@ public class FlightController {
     @ResponseBody
     public CustomResponse deleteFlight(HttpServletRequest request, HttpServletResponse response,
                                        @RequestBody Wrapper wrapper) {
-        return serviceProvider.getService(Flight.class).delete(wrapper.getData());
+        return serviceProvider.getService(Flight.class).deleteFlight(wrapper.getData());
     }
     @RequestMapping(value = "/user/deleteReservation", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @CrossOrigin
@@ -76,5 +76,11 @@ public class FlightController {
 
         return serviceProvider.getService(Flight.class).bookFlight(reservationDto.getFlightId(), reservationDto.getSsoId());
     }
+    @RequestMapping(value = "/admin/findFlightById", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @CrossOrigin
+    @ResponseBody
+    public CustomResponse findById(HttpServletRequest request, HttpServletResponse response, @RequestBody Wrapper wrapper) {
 
+        return serviceProvider.getService(Flight.class).findById(wrapper.getData());
+    }
 }

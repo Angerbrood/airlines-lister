@@ -26,4 +26,5 @@ public interface UserService extends CrudService<Integer, User>{
 
 	boolean isAdmin(User user);
 
+    void registerNewUser(User user);
 }

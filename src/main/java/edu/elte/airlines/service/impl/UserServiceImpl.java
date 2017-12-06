@@ -75,7 +75,7 @@ public class UserServiceImpl extends CrudServiceImpl<Integer, User> implements U
 	public boolean authenticateUser(AuthCredentials credentials) {
 		User user = findBySSO(credentials.getUsername());
 		if(user!= null) {
-			return user.getPassword().equals(credentials.getPassword()) || passwordEncoder.matches(user.getPassword(), credentials.getPassword());
+			return user.getPassword().equals(credentials.getPassword()) || passwordEncoder.matches(credentials.getPassword(), user.getPassword());
 		} else {
 			return false;
 		}
@@ -90,6 +90,16 @@ public class UserServiceImpl extends CrudServiceImpl<Integer, User> implements U
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void registerNewUser(User user) {
+		if(dao.findBySSO(user.getSsoId()) != null) {
+			throw new RuntimeException("Username already taken");
+		}
+		String finalPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(finalPassword);
+		dao.persist(user);
 	}
 
 }

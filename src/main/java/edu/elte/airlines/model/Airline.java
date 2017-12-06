@@ -7,15 +7,9 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "AIRLINE")
@@ -26,7 +20,7 @@ public class Airline implements EntityInterface<Integer> {
 	private Integer id;
 	@Column(name = "ALIRLINE_NAME", nullable = false)
 	private String name;
-	@OneToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Collection<Flight> flights;
 	
@@ -50,7 +44,7 @@ public class Airline implements EntityInterface<Integer> {
 	}
 
 	public Collection<Flight> getFlights() {
-		return Collections.unmodifiableCollection(flights);
+		return flights;
 	}
 
 	public void setFlights(Collection<Flight> flights) {
@@ -60,7 +54,14 @@ public class Airline implements EntityInterface<Integer> {
 	public void addFlight(Flight flight) {
 		flights.add(flight);
 	}
-
+	public void removeAirline(int index) {
+		if(index >= flights.size()) {
+			throw new RuntimeException("Invalid index");
+		} else {
+			List<Flight> tempFights = (List<Flight>) flights;
+			tempFights.remove(index);
+		}
+	}
 	@Override
 	public String toString() {
 		return "Airline{" +

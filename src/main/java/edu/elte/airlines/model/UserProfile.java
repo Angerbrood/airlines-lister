@@ -18,7 +18,11 @@ public class UserProfile implements Serializable, EntityInterface<Integer> {
 
 	@Column(name="TYPE", length=15, unique=true, nullable=false)
 	private String type = UserProfileType.USER.getUserProfileType();
-	
+
+	public UserProfile() {
+
+	}
+
 	public Integer getId() {
 		return id;
 	}

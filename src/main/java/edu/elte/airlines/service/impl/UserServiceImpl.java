@@ -1,10 +1,15 @@
 package edu.elte.airlines.service.impl;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import edu.elte.airlines.dao.interfaces.PassengerDao;
 import edu.elte.airlines.model.User;
+import edu.elte.airlines.model.UserProfile;
 import edu.elte.airlines.service.interfaces.UserService;
+import edu.elte.airlines.util.AuthCredentials;
+import org.hibernate.Hibernate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,15 +46,8 @@ public class UserServiceImpl extends CrudServiceImpl<Integer, User> implements U
 	}
 
 	public void updateUser(User user) {
-		User entity = dao.findById(user.getId());
-		if(entity!=null){
-			entity.setSsoId(user.getSsoId());
-			if(!user.getPassword().equals(entity.getPassword())){
-				entity.setPassword(passwordEncoder.encode(user.getPassword()));
-			}
-			entity.setUserPassengerData(user.getUserPassengerData());
-			entity.setUserProfiles(user.getUserProfiles());
-		}
+		passengerDao.update(user.getUserPassengerData());
+		dao.update(user);
 	}
 
 	
@@ -58,12 +56,50 @@ public class UserServiceImpl extends CrudServiceImpl<Integer, User> implements U
 	}
 
 	public List<User> findAllUsers() {
-		return super.list();
+		List<User> temp =  super.list();
+		List<User> result = new LinkedList<>();
+		for(User currentUser : temp) {
+			Hibernate.initialize(currentUser.getUserPassengerData());
+			Hibernate.initialize(currentUser.getUserProfiles());
+			result.add(currentUser);
+		}
+		return result;
 	}
 
 	public boolean isUserSSOUnique(Integer id, String sso) {
 		User user = findBySSO(sso);
 		return ( user == null || ((id != null) && (user.getId() == id)));
 	}
-	
+
+	@Override
+	public boolean authenticateUser(AuthCredentials credentials) {
+		User user = findBySSO(credentials.getUsername());
+		if(user!= null) {
+			return user.getPassword().equals(credentials.getPassword()) || passwordEncoder.matches(credentials.getPassword(), user.getPassword());
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isAdmin(User user) {
+		Set<UserProfile> profiles = user.getUserProfiles();
+		for(UserProfile currentProfile : profiles) {
+			if(currentProfile.getType().equals("ADMIN")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public void registerNewUser(User user) {
+		if(dao.findBySSO(user.getSsoId()) != null) {
+			throw new RuntimeException("Username already taken");
+		}
+		String finalPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(finalPassword);
+		dao.persist(user);
+	}
+
 }

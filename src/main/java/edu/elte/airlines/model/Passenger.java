@@ -4,11 +4,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name="PASSENGER")
-public class Passenger implements EntityInterface<Integer> {
+public class Passenger implements EntityInterface<Integer>, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -113,6 +114,19 @@ public class Passenger implements EntityInterface<Integer> {
         this.email = email;
     }
 
+    public static Passenger copyPassenger(Passenger other) {
+        Passenger result = new Passenger();
+        result.setId(other.getId());
+        result.setLastName(other.getLastName());
+        result.setFirstName(other.getFirstName());
+        result.setDateOfBirth(other.getDateOfBirth());
+        result.setBalance(other.getBalance());
+        result.setEmail(other.getEmail());
+        result.setAccountNumber(other.getAccountNumber());
+        result.setAge(other.getAge());
+        result.setAddress(other.getAddress());
+        return result;
+    }
 
     @Override
     public boolean equals(Object o) {

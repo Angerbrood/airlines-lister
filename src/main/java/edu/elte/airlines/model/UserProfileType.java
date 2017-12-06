@@ -16,4 +16,14 @@ public enum UserProfileType implements Serializable{
 	public String getUserProfileType(){
 		return userProfileType;
 	}
+	public static UserProfileType getType(String type) {
+		switch (type) {
+			case "USER":
+				return USER;
+			case "ADMIN":
+				return ADMIN;
+			default:
+				throw new RuntimeException("Invalid user type");
+		}
+	}
 }

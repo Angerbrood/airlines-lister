@@ -35,7 +35,7 @@ public class ServiceConfig {
     }
     @Bean
     FlightService flightService() {
-        return new FlightServiceImpl(flightDao, userDao);
+        return new FlightServiceImpl(flightDao, userDao, airlineDao);
     }
     @Bean
     LocationService locationService() {

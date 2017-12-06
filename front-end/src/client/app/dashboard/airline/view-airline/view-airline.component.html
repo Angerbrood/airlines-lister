@@ -1,0 +1,20 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">View Airline</span>
+      </div>
+
+      <label for="modify-airline-selector">Select Airline: </label>
+      <select id="modify-airline-selector" class="form-control" #l (change)="updateAirlineSelect(l.value)" [(ngModel)]="airlineToView">
+        <option *ngFor="let airline of airlines" [ngValue]="airline.id">{{airline.name}}</option>
+      </select>
+
+      <div class="form-group">
+        <label class="form-control-label" for="view-airline-input">Name:</label>
+        <input type="text" id="view-airline-input" class="form-control" [(ngModel)]="newName" disabled readonly>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">Delete Airline</span>
+      </div>
+      <div *ngIf="errors" class="alert alert-danger">
+        {{ errors }}
+      </div>
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+      <label for="delete-airline-selector">Select Airline: </label>
+      <select id="delete-airline-selector" class="form-control" #l (change)="updateAirlineSelect(l.value)" [(ngModel)]="airlineToDelete">
+        <option *ngFor="let airline of airlines" [ngValue]="airline.id">{{airline.name}}</option>
+      </select>
+      <button  type="button" class="btn btn-lg btn-primary" (click)="deleteAirline()" >Delete</button>
+
+    </div>
+  </div>
+</div>

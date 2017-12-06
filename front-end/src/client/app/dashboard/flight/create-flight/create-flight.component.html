@@ -1,0 +1,54 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">Create Flight</span>
+      </div>
+        <div *ngIf="errors" class="alert alert-danger">
+          {{ errors }}
+        </div>
+        <div *ngIf="message" class="alert alert-success">
+          {{ message }}
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="flight-number">Number:</label>
+          <input type="text" id="flight-number" class="form-control" [(ngModel)]="flightNumber">
+          <div *ngIf="!flightNumber" style="color: red">Required</div>
+
+          <label class="form-control-label" for="start-location-selector">Start location:</label>
+          <select class="form-control" id="start-location-selector" #startLocation (change)="updateStartLocationSelect(startLocation.value)" [(ngModel)]="startLocationId">
+            <option *ngFor="let location of startLocations" [ngValue]="location.id">{{location.name + " - " + location.country}}</option>
+          </select>
+          <div *ngIf="!startLocationId" style="color: red">Required</div>
+
+          <label class="form-control-label" for="end-location-selector">End location:</label>
+          <select class="form-control" id="end-location-selector" #endLocation (change)="updateEndLocationSelect(endLocation.value)" [(ngModel)]="endLocationId">
+            <option *ngFor="let location of endLocations" [ngValue]="location.id">{{location.name + " - " + location.country}}</option>
+          </select>
+          <div *ngIf="!endLocationId" style="color: red">Required</div>
+
+          <label for="create-flight-selector">Select Airline: </label>
+          <select id="create-flight-selector" class="form-control" #airline (change)="updateFlightAirlineSelect(airline.value)" [(ngModel)]="airlineId">
+            <option *ngFor="let airline of airlines" [ngValue]="airline.id" >{{airline.name}}</option>
+          </select>
+          <div *ngIf="!airlineId" style="color: red">Required</div>
+
+          <label class="form-control-label" for="start-date-input">Start Date:</label>
+          <input type="date" class="form-control" id="start-date-input" [(ngModel)]="startDate">
+          <div *ngIf="!startDate" style="color: red">Required</div>
+
+          <label class="form-control-label" for="land-date-input">Land Date:</label>
+          <input type="date" class="form-control" id="land-date-input" [(ngModel)]="endDate">
+          <div *ngIf="!endDate" style="color: red">Required</div>
+
+          <label class="form-control-label" for="traveling-time-input">Traveling time:</label>
+          <input type="number" class="form-control" id="traveling-time-input" [(ngModel)]="travellingTime">
+          <div *ngIf="!travellingTime" style="color: red">Required</div>
+          <br>
+          <button  type="button" class="btn btn-lg btn-primary" (click)="createFlight()">Create</button>
+        </div>
+
+    </div>
+
+  </div>
+</div>

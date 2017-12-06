@@ -1,0 +1,29 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">Modify Airline</span>
+      </div>
+      <div *ngIf="errors" class="alert alert-danger">
+        {{ errors }}
+      </div>
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+      <label for="modify-airline-selector">Select Airline: </label>
+      <select id="modify-airline-selector" class="form-control" #l (change)="updateAirlineSelect(l.value)" [(ngModel)]="airlineToModify">
+        <option *ngFor="let airline of airlines" [ngValue]="airline.id">{{airline.name}}</option>
+      </select>
+
+      <div class="form-group">
+        <label class="form-control-label" for="modify-airline-input">Name:</label>
+        <input type="text" id="modify-airline-input" class="form-control" [(ngModel)]="newName">
+        <div *ngIf="!newName" style="color: red">Required</div>
+        <br>
+        <button  type="button" class="btn btn-lg btn-primary" (click)="updateAirline()">Modify</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>

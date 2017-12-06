@@ -1,0 +1,27 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">View Location</span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label" for="modify-location-selector">Select location:</label>
+        <select class="form-control" id="modify-location-selector" #l (change)="updateLocation(l.value)" [(ngModel)]="locations">
+          <option *ngFor="let location of locations" [ngValue]="location.id">{{location.name + " - " + location.country}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <input type="number"  [(ngModel)]="id" [value]="id" hidden>
+        <label for="locationCityName">City:</label>
+        <input id="locationCityName" type="text" class="form-control" required [(ngModel)]="city" [value]="city" disabled readonly>
+        <label for="locationCountryName">Country:</label>
+        <input id="locationCountryName" type="text" class="form-control" required [(ngModel)]="country" disabled readonly>
+        <br>
+      </div>
+
+    </div>
+
+  </div>
+</div>

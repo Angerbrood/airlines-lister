@@ -1,5 +1,6 @@
 package edu.elte.airlines.service;
 
+import edu.elte.airlines.dto.SearchLocationDto;
 import edu.elte.airlines.model.EntityInterface;
 import edu.elte.airlines.model.Flight;
 import edu.elte.airlines.model.User;
@@ -231,6 +232,17 @@ public class AdminService {
             UserService userService = (UserService) crudService;
             userService.updateUser(user);
             response = customResponseFactory.successfullResponse();
+        } catch (Exception ex) {
+            response = customResponseFactory.errorResponse(ex);
+        }
+        return  response;
+    }
+
+    public CustomResponse findBySearchLocation(SearchLocationDto searchLocationDto) {
+        CustomResponse response;
+        try {
+            FlightService flightService = (FlightService) crudService;
+            response = customResponseFactory.successfullResponse(flightService.findBySearchLocation(searchLocationDto));
         } catch (Exception ex) {
             response = customResponseFactory.errorResponse(ex);
         }

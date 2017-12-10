@@ -3,6 +3,7 @@ package edu.elte.airlines.controller;
 import edu.elte.airlines.converter.FlightDtoConverter;
 import edu.elte.airlines.converter.ReservationDto;
 import edu.elte.airlines.dto.FlightDto;
+import edu.elte.airlines.dto.SearchLocationDto;
 import edu.elte.airlines.model.Flight;
 import edu.elte.airlines.response.CustomResponse;
 import edu.elte.airlines.util.ServiceProvider;
@@ -82,5 +83,12 @@ public class FlightController {
     public CustomResponse findById(HttpServletRequest request, HttpServletResponse response, @RequestBody Wrapper wrapper) {
 
         return serviceProvider.getService(Flight.class).findById(wrapper.getData());
+    }
+    @RequestMapping(value = "/user/findFlightByLocations", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+    @CrossOrigin
+    @ResponseBody
+    public CustomResponse findFlightByLocations(HttpServletRequest request, HttpServletResponse response, @RequestBody SearchLocationDto searchLocationDto) {
+
+        return serviceProvider.getService(Flight.class).findBySearchLocation(searchLocationDto);
     }
 }

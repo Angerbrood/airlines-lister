@@ -1,6 +1,7 @@
 package edu.elte.airlines.service.impl;
 
 import edu.elte.airlines.dao.interfaces.*;
+import edu.elte.airlines.dto.SearchLocationDto;
 import edu.elte.airlines.model.*;
 import edu.elte.airlines.service.interfaces.FlightService;
 
@@ -94,5 +95,20 @@ public class FlightServiceImpl extends CrudServiceImpl<Integer, Flight> implemen
             }
         }
         flightDao.delete(flight);
+    }
+
+    @Override
+    public List<Flight> findBySearchLocation(SearchLocationDto searchLocationDto) {
+        Objects.requireNonNull(searchLocationDto);
+        Set<Flight> flights = new HashSet<>(flightDao.list());
+        List<Flight> result = new LinkedList<>();
+        for(Flight currentFlight : flights) {
+            String fromCityName = currentFlight.getStart().getName();
+            String toCityName = currentFlight.getDestination().getName();
+            if(fromCityName.equals(searchLocationDto.getFromCity()) && toCityName.equals(searchLocationDto.getToCity())) {
+                result.add(currentFlight);
+            }
+        }
+        return result;
     }
 }

@@ -1,5 +1,6 @@
 package edu.elte.airlines.service.interfaces;
 
+import edu.elte.airlines.dto.SearchLocationDto;
 import edu.elte.airlines.model.Flight;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface FlightService extends CrudService<Integer, Flight> {
     void createFlight(Flight flight, String airlineId);
 
     void deleteFlight(Integer id);
+
+    List<Flight> findBySearchLocation(SearchLocationDto searchLocationDto);
 }

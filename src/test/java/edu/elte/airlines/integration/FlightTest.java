@@ -1,10 +1,13 @@
 package edu.elte.airlines.integration;
 
+import edu.elte.airlines.dto.SearchLocationDto;
 import edu.elte.airlines.factory.AbstractFactory;
 import edu.elte.airlines.factory.domain.FlightFactory;
+import edu.elte.airlines.factory.domain.LocationFactory;
 import edu.elte.airlines.factory.domain.UserFactory;
 import edu.elte.airlines.integration.configuration.IntegrationTestConfig;
 import edu.elte.airlines.model.Flight;
+import edu.elte.airlines.model.Location;
 import edu.elte.airlines.model.Passenger;
 import edu.elte.airlines.model.User;
 import edu.elte.airlines.service.interfaces.CrudService;
@@ -41,6 +44,8 @@ public class FlightTest extends AbstractIntegrationTest<Flight, Integer> {
     private UserFactory userFactory;
     @Autowired
     private UserService userService;
+    @Autowired
+    private LocationFactory locationFactory;
 
     private Flight flight;
     private User loggedInUser;
@@ -112,5 +117,39 @@ public class FlightTest extends AbstractIntegrationTest<Flight, Integer> {
         List<Flight> result = flightService.getReservedFlightsByUser(loggedInUser.getSsoId());
         assertNotNull("Reserved flights should not be null", result);
 
+    }
+    @Test
+    public void findFlightsByLocationsSuccess() {
+        //GIVEN
+        FlightService flightService = (FlightService) getService();
+        Location startLocation = locationFactory.createOne();
+        Location endLocation = locationFactory.createOne();
+        SearchLocationDto searchLocationDto =  new SearchLocationDto();
+        searchLocationDto.setFromCity(startLocation.getName());
+        searchLocationDto.setToCity(endLocation.getName());
+        Flight flight = flightFactory.createOne();
+        flight.setStart(startLocation);
+        flight.setDestination(endLocation);
+        flightService.create(flight);
+        //WHEN
+        List<Flight> result = flightService.findBySearchLocation(searchLocationDto);
+        //THEN
+        assertNotNull("Flight list should not be null", result);
+        assertFalse("Flight list should not be empty", result.isEmpty());
+    }
+    @Test(expected = RuntimeException.class)
+    public void findFLightsByLocationNullInputFails() {
+        FlightService flightService = (FlightService) getService();
+        flightService.findBySearchLocation(null);
+    }
+    @Test
+    public void findFLightsByLocationInvalidInputFails() {
+        FlightService flightService = (FlightService) getService();
+        SearchLocationDto searchLocationDto =  new SearchLocationDto();
+        searchLocationDto.setToCity("asd");
+        searchLocationDto.setFromCity("fgf");
+        List<Flight> result = flightService.findBySearchLocation(searchLocationDto);
+        assertNotNull("Flight list should not be null", result);
+        assertTrue("Flight list should be empty", result.isEmpty());
     }
 }

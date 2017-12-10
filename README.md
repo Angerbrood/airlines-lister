@@ -116,5 +116,24 @@ A program egy reptéri jegykezelő rendszer egyszerűsített változatát valós
   * service: Service réteg.
   * util: Egyéb máshova nem illeszkedő osztályok
   ## 5. Tesztelés
+  * A szerver oldali teszteket minden deploy előtt lefuttatja a maven.
   ## 6. Felhasználói dokumentáció
-  
+  ### Futtatáshoz szükséges eszközök
+  * Futó MySQL szerver
+  * MySQL szerverben egy user aminek a felhasználóneve és jelszava root
+  * MySQL szerverben egy adatbázis a következő névvel: elte-airlines 
+  * Google Chrome
+  * Megjegyzés: Ezek az adatok alapértelmezettek, ha szeretnénk megváltoztatni, akkor a src/main/resources/application.properties fájlban tudjuk megtenni. 
+  ### Futtatás
+ * Megjegyezés: A szerver automatikusan létrehozza a táblákat!
+ * git clone a projektet vagy letölteni mint zip és kicsomagolni egy tetszőleges helyre
+ * CMD-ben elnavigálni a projekt főkönyvtárába
+ * Szerver:
+   * CMD-ben kiadni a következő parancsot: mvn clean package
+   * CMD-ben kiadni a következő parancsot: mvn cargo:run
+   * A főkönyvtárban található egy init.sql fájl, azt lefuttatni egy tetszőleges sql kliensel (javasolt: HeidiSQL)
+ * Klines:
+   * CMD-ben kiadni a következő parancsot: cd front-end
+   * CMD-ben kiadni a következő parancsot: npm install
+   * CMD-ben kiadni a következő parancsot: npm start
+ * Böngészőben megnyitni a localhost:5555 címet 

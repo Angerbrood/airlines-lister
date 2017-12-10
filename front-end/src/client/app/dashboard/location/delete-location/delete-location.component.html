@@ -1,0 +1,24 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">Delete Location</span>
+      </div>
+      <div *ngIf="errors" class="alert alert-danger">
+        {{ errors }}
+      </div>
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="delete-location-selector">Select location:</label>
+          <select class="form-control" id="delete-location-selector" #l (change)="updateLocation(l.value)" [(ngModel)]="locationToDelete">
+            <option *ngFor="let location of locations" [ngValue]="location.id">{{location.name + " - " + location.country}}</option>
+          </select>
+        <button type="button" value="Delete" class="btn btn-lg btn-primary" (click)="deleteLocation()">Delete</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

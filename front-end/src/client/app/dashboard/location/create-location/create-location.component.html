@@ -1,0 +1,28 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">Create Location</span>
+      </div>
+      <div *ngIf="errors" class="alert alert-danger">
+        {{ errors }}
+      </div>
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+      <div class="form-group">
+        <label for="locationCityName">City:</label>
+        <input id="locationCityName" type="text" class="form-control" required [(ngModel)]="city" placeholder="City">
+        <div *ngIf="!city" style="color: red">Required</div>
+
+        <label for="locationCountryName">Country:</label>
+        <input id="locationCountryName" type="text" class="form-control" required [(ngModel)]="country" placeholder="Country">
+        <div *ngIf="!country" style="color: red">Required</div>
+        <br>
+        <button type="button" value="Create" class="btn btn-lg btn-primary" (click)="createLocation()">Create</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

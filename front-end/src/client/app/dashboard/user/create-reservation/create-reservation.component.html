@@ -1,0 +1,50 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">Create Reservation</span>
+      </div>
+      <div *ngIf="errors" class="alert alert-danger">
+        {{ errors }}
+      </div>
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+      <div class="form-group">
+        <h2>Search for flights: </h2>
+        <label class="form-control-label" for="from-city-input">From :</label>
+        <input type="text" id="from-city-input" class="form-control" [(ngModel)]="fromCity">
+        <label class="form-control-label" for="to-city-input">To: </label>
+        <input type="text" id="to-city-input" class="form-control" [(ngModel)]="toCity">
+        <button type="button" value="Create" class="btn btn-lg btn-primary" (click)="findFlightsByGiveLocations()">Find</button>
+      </div>
+      <div class="form-group">
+        <label for="delete-airline-selector">Select Flight: </label>
+        <select id="delete-airline-selector" class="form-control" #l (change)="updateFlightForReservation(l.value)" [(ngModel)]="flightId">
+          <option *ngFor="let flight of flights" [ngValue]="flight.id">{{flight.flightNumber}}</option>
+        </select>
+        <button type="button" value="Create" class="btn btn-lg btn-primary" (click)="createReservation()">Reserve</button>
+      </div>
+      <h2>Flight info:</h2>
+      <div class="form-group">
+        <label class="form-control-label" for="view-flight-number">Number:</label>
+        <input type="text" id="view-flight-number" class="form-control" disabled readonly>
+        <label class="form-control-label" for="view-start-location">Start location:</label>
+        <input type="text" id="view-start-location" class="form-control" disabled readonly>
+        <label class="form-control-label" for="view-end-location">Land location:</label>
+        <input type="text" id="view-end-location" class="form-control" disabled readonly>
+        <label class="form-control-label" for="view-start-date-input">Start Date:</label>
+        <input type="date" class="form-control" id="view-start-date-input" disabled readonly>
+        <label class="form-control-label" for="view-land-date-input">Land Date:</label>
+        <input type="date" class="form-control" id="view-land-date-input" disabled readonly>
+        <label class="form-control-label" for="view-traveling-time-input">Traveling time:</label>
+        <input type="number" class="form-control" id="view-traveling-time-input" disabled readonly>
+        <label class="form-control-label" for="ticketprice-input">Ticket price:</label>
+        <input type="number" class="form-control" id="ticketprice-input" disabled readonly>
+        <br>
+      </div>
+    </div>
+
+
+  </div>
+</div>

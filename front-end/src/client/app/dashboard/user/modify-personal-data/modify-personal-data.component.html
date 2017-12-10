@@ -1,0 +1,62 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">Modify Personal Data</span>
+      </div>
+      <div *ngIf="errors" class="alert alert-danger">
+        {{ errors }}
+      </div>
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+      <div class="form-group">
+        <label class="col-md-3 control-lable" for="firstName">First Name</label>
+        <input type="text" id="firstName" class="form-control input-sm" [(ngModel)]="firstname" required/>
+        <div *ngIf="!firstname" style="color: red">Required</div>
+
+        <label class="col-md-3 control-lable" for="lastName">Last Name</label>
+        <input type="text"  id="lastName" class="form-control input-sm" [(ngModel)]="lastname"required/>
+        <div *ngIf="!lastname" style="color: red">Required</div>
+
+        <label class="col-md-3 control-lable" for="ssoId">SSO ID</label>
+        <input type="text"  id="ssoId" class="form-control input-sm" [(ngModel)]="ssoId" required/>
+        <div *ngIf="!ssoId" style="color: red">Required</div>
+
+        <label class="col-md-3 control-lable" for="password">Password</label>
+        <input type="password"  id="password" class="form-control input-sm" [(ngModel)]="password" required/>
+        <div *ngIf="!password" style="color: red">Required</div>
+
+        <label class="col-md-3 control-lable" for="email">Email</label>
+        <input type="text" id="email" class="form-control input-sm" [(ngModel)]="email" required/>
+        <div *ngIf="!email" style="color: red">Required</div>
+
+        <label class="col-md-3 control-lable" for="age">Age</label>
+        <input type="number" id="age" class="form-control input-sm" [(ngModel)]="age" required/>
+        <div *ngIf="!age" style="color: red">Required</div>
+
+        <label class="col-md-3 control-lable" for="address">Address</label>
+        <input type="text"  id="address" class="form-control input-sm" [(ngModel)]="address" required/>
+        <div *ngIf="!address" style="color: red">Required</div>
+
+        <label class="col-md-3 control-lable" for="accountNumber">Account Number</label>
+        <input type="number" id="accountNumber" class="form-control input-sm" [(ngModel)]="accountNumber" required/>
+        <div *ngIf="!accountNumber" style="color: red">Required</div>
+
+        <label class="col-md-3 control-lable" for="balance">Balance</label>
+        <input type="number"  id="balance" class="form-control input-sm" [(ngModel)]="balance" required/>
+        <div *ngIf="!balance" style="color: red">Required</div>
+
+        <label class="col-md-3 control-lable" for="dateOfBirth">Date of Birth</label>
+        <input type="date"  id="dateOfBirth" class="form-control input-sm" [(ngModel)]="dateOfBirth" required/>
+        <div *ngIf="!dateOfBirth" style="color: red">Required</div>
+
+        <br>
+        <button type="button" value="Create" class="btn btn-lg btn-primary" (click)="modifyPersonalData()">Modify</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+

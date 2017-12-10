@@ -1,0 +1,70 @@
+<div class="login-page animate">
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4">
+			<h1>Airline lister</h1>
+      <div *ngIf="errors" class="alert alert-danger">
+        {{ errors }}
+      </div>
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+				<div class="form-content">
+					<div class="form-group">
+						<input type="text" class="form-control input-underline input-lg" id="login_username" [(ngModel)]="username" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control input-underline input-lg" id="login_password" [(ngModel)]="password" placeholder="Password">
+					</div>
+				</div>
+				<a class="btn rounded-btn" (click)="login()"> Log in </a>
+      <a class="btn rounded-btn" (click)="register()"> Register
+      </a>
+		</div>
+	</div>
+  <div class="form-group" [hidden] = "!newUserCreation">
+    <br>
+
+    <label class="control-lable" for="firstName" >First Name</label>
+    <input type="text" id="firstName" class="form-control input-sm" [(ngModel)]="newfirstname" required/>
+    <div *ngIf="!newfirstname" style="color: red">Required</div>
+
+    <label class="control-lable" for="lastName">Last Name</label>
+    <input type="text"  id="lastName" class="form-control input-sm" [(ngModel)]="newlastname" required/>
+    <div *ngIf="!newlastname" style="color: red">Required</div>
+
+    <label class="control-lable" for="ssoId">SSO ID</label>
+    <input type="text"  id="ssoId" class="form-control input-sm" [(ngModel)]="newssoId" required/>
+    <div *ngIf="!newssoId" style="color: red">Required</div>
+
+    <label class="control-lable" for="password">Password</label>
+    <input type="password"  id="password" class="form-control input-sm" [(ngModel)]="newpassword" required/>
+    <div *ngIf="!newpassword" style="color: red">Required</div>
+
+    <label class="control-lable" for="email">Email</label>
+    <input type="text" id="email" class="form-control input-sm" [(ngModel)]="newemail" required/>
+    <div *ngIf="!newemail" style="color: red">Required</div>
+
+    <label class="control-lable" for="age">Age</label>
+    <input type="number" id="age" class="form-control input-sm" [(ngModel)]="newage" required/>
+    <div *ngIf="!newage" style="color: red">Required</div>
+
+    <label class="control-lable" for="address">Address</label>
+    <input type="text"  id="address" class="form-control input-sm" [(ngModel)]="newaddress" required/>
+    <div *ngIf="!newaddress" style="color: red">Required</div>
+
+    <label class="control-lable" for="accountNumber">Account Number</label>
+    <input type="number" id="accountNumber" class="form-control input-sm" [(ngModel)]="newaccountNumber" required/>
+    <div *ngIf="!newaccountNumber" style="color: red">Required</div>
+
+    <label class="control-lable" for="balance">Balance</label>
+    <input type="number"  id="balance" class="form-control input-sm" [(ngModel)]="newbalance" required/>
+    <div *ngIf="!newbalance" style="color: red">Required</div>
+
+    <label class="control-lable" for="dateOfBirth">Date of Birth</label>
+    <input type="date"  id="dateOfBirth" class="form-control input-sm" [(ngModel)]="newdateOfBirth" required/>
+    <div *ngIf="!newdateOfBirth" style="color: red">Required</div>
+
+    <br>
+    <button type="button" value="Create" (click)="registerNewUser()" class="btn btn-lg btn-primary">Register</button>
+  </div>
+</div>

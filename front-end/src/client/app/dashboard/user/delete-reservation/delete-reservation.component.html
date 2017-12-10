@@ -1,0 +1,42 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">Delete Reservation</span>
+      </div>
+      <div *ngIf="errors" class="alert alert-danger">
+        {{ errors }}
+      </div>
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+      <div class="form-group">
+        <label for="delete-airline-selector">Select Reservation: </label>
+        <select id="delete-airline-selector" class="form-control" #l (change)="updateReservationInfo(l.value)" [(ngModel)]="flightId">
+          <option *ngFor="let flight of flights" [ngValue]="flight.id">{{flight.flightNumber}}</option>
+        </select>
+        <button type="button" value="Create" class="btn btn-lg btn-primary" (click)="deleteReservation()">Delete</button>
+      </div>
+      <h2>Reservation info:</h2>
+      <div class="form-group">
+        <label class="form-control-label" for="flight-number">Number:</label>
+        <input type="text" id="flight-number" class="form-control" disabled readonly>
+        <label class="form-control-label" for="from-location">From:</label>
+        <input type="text" id="from-location" class="form-control" disabled readonly>
+        <label class="form-control-label" for="to-location">To:</label>
+        <input type="text" id="to-location" class="form-control" disabled readonly>
+        <label class="form-control-label" for="flight-date">Take off date:</label>
+        <input type="date" id="flight-date" class="form-control" disabled readonly>
+        <label class="form-control-label" for="landing-date">Take off date:</label>
+        <input type="date" id="landing-date" class="form-control" disabled readonly>
+        <label class="form-control-label" for="traveling-time-input">Traveling time:</label>
+        <input type="number" class="form-control" id="traveling-time-input" disabled readonly>
+        <label class="form-control-label" for="ticketprice-input">Ticket price:</label>
+        <input type="number" class="form-control" id="ticketprice-input" disabled readonly>
+        <br>
+      </div>
+    </div>
+
+
+  </div>
+</div>

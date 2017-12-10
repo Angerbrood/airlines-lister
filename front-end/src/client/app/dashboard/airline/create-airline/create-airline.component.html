@@ -1,0 +1,24 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">Create Airline</span>
+      </div>
+      <div *ngIf="errors" class="alert alert-danger">
+        {{ errors }}
+      </div>
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="airline-name">Name:</label>
+        <input type="text" id="airline-name" class="form-control" [(ngModel)]="name">
+        <div *ngIf="!name" style="color: red">Required</div>
+        <br>
+        <button  type="button" class="btn btn-lg btn-primary" (click)="createAirline()">Create</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

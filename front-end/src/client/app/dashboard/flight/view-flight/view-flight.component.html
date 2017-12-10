@@ -1,0 +1,51 @@
+<div class="animate">
+  <div class="col-md-20 col-lg-10">
+    <div class="card">
+      <div class="card-header card-primary card-inverse">
+        <span class="card-title">View Flight</span>
+      </div>
+
+      <div class="form-group">
+        <label for="delete-airline-selector">Select Flight: </label>
+        <select id="delete-airline-selector" class="form-control" #l (change)="updateFlightToView(l.value)" [(ngModel)]="flightToView">
+          <option *ngFor="let flight of flights" [ngValue]="flight.id">{{flight.flightNumber}}</option>
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label class="form-control-label" for="view-flight-number">Number:</label>
+        <input type="text" id="view-flight-number" class="form-control" disabled readonly>
+        <label class="form-control-label" for="view-start-location">Start location:</label>
+        <input type="text" id="view-start-location" class="form-control" disabled readonly>
+        <label class="form-control-label" for="view-end-location">Land location:</label>
+        <input type="text" id="view-end-location" class="form-control" disabled readonly>
+        <label class="form-control-label" for="view-start-date-input">Start Date:</label>
+        <input type="date" class="form-control" id="view-start-date-input" disabled readonly>
+        <label class="form-control-label" for="view-land-date-input">Land Date:</label>
+        <input type="date" class="form-control" id="view-land-date-input" disabled readonly>
+        <label class="form-control-label" for="view-traveling-time-input">Traveling time:</label>
+        <input type="number" class="form-control" id="view-traveling-time-input" disabled readonly>
+        <label class="form-control-label" for="ticketprice-input">Ticket price:</label>
+        <input type="number" class="form-control" id="ticketprice-input" disabled readonly>
+        <br>
+      </div>
+      <h2 align="center">Passengers on board: </h2>
+      <table class="table">
+        <tr>
+          <th>Id</th>
+          <th>Full Name</th>
+          <th>Age</th>
+          <th>Date of Birth</th>
+        </tr>
+        <tr *ngFor="let currentRow of passengersOnFlight">
+          <th>{{currentRow.id}}</th>
+          <th>{{currentRow.firstName + ' ' + currentRow.lastName}}</th>
+          <th>{{currentRow.age}}</th>
+          <th>{{parseDate(currentRow.dateOfBirth)}}</th>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+</div>

@@ -1,20 +1,38 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "baseUrl": "src",
-    "sourceMap": true,
+    "target": "es5",
+    "module": "commonjs",
     "declaration": false,
-    "moduleResolution": "node",
+    "removeComments": true,
+    "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "lib": ["es6", "es2015", "dom"],
+    "sourceMap": true,
+    "pretty": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "noFallthroughCasesInSwitch": true,
     "typeRoots": [
-      "node_modules/@types"
+      "./node_modules/@types",
+      "./node_modules"
     ],
-    "lib": [
-      "es2016",
-      "dom"
+    "types": [
+      "core-js",
+      "express",
+      "jasmine",
+      "node",
+      "protractor",
+      "systemjs"
     ]
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src"
+  ],
+  "compileOnSave": false
 }

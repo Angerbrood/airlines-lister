@@ -70,4 +70,24 @@ public class Airline implements EntityInterface<Integer> {
 				", flights=" + flights +
 				'}';
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Airline airline = (Airline) o;
+
+		if (id != null ? !id.equals(airline.id) : airline.id != null) return false;
+		if (name != null ? !name.equals(airline.name) : airline.name != null) return false;
+		return flights != null ? flights.equals(airline.flights) : airline.flights == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id != null ? id.hashCode() : 0;
+		result = 31 * result + (name != null ? name.hashCode() : 0);
+		result = 31 * result + (flights != null ? flights.hashCode() : 0);
+		return result;
+	}
 }

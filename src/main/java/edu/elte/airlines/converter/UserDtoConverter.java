@@ -9,6 +9,7 @@ import edu.elte.airlines.model.UserProfile;
 import edu.elte.airlines.model.UserProfileType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,7 +55,7 @@ public class UserDtoConverter implements Converter<UserDto, User> {
         passenger.setAddress(userDto.getAddress());
         passenger.setAccountNumber(userDto.getAccountNumber());
         passenger.setAge(Integer.parseInt(userDto.getAge()));
-        passenger.setBalance(userDto.getBalance());
+        passenger.setBalance(Long.parseLong(userDto.getBalance()));
         passenger.setDateOfBirth(LocalDate.parse(userDto.getDateOfBirth()));
         passenger.setFirstName(userDto.getFirstname());
         passenger.setLastName(userDto.getLastname());

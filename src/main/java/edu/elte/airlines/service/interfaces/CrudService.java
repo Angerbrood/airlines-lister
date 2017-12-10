@@ -1,6 +1,9 @@
 package edu.elte.airlines.service.interfaces;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface CrudService<IdType, EntityType> {
     IdType create(EntityType entityType);
@@ -10,5 +13,5 @@ public interface CrudService<IdType, EntityType> {
 
     boolean exists(IdType id);
 
-    List<EntityType> list();
+    Collection<EntityType> list();
 }

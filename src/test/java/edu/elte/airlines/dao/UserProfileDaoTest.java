@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
@@ -40,7 +41,7 @@ public class UserProfileDaoTest {
 
 
     @Test
-    public void testSave() {
+    public void nonNullUserProfileCreationSuccess() {
         UserProfile user = userProfileFactory.createOne();
         assertNull("Id should be null before save", user.getId());
         user.setType("TEMP_PRIVILAGE");
@@ -48,26 +49,26 @@ public class UserProfileDaoTest {
         assertNotNull("Id should not be null after save", user.getId());
     }
     @Test
-    public void testFindById() {
+    public void nonNullUserProfileIdFound() {
         int id = userProfileToModifyOrDelete.getId();
         UserProfile userPersonalData = userProfileDao.findById(id);
         assertNotNull("Airline should not be null", userPersonalData);
     }
     @Test
-    public void testUpdate() {
+    public void nonNullUserProfileUpdateSuccess() {
         userProfileToModifyOrDelete.setType("updated");
         assertNotNull("Id should not be null before update", userProfileToModifyOrDelete.getId());
         userProfileDao.update(userProfileToModifyOrDelete);
 
     }
     @Test
-    public void testDelete() {
+    public void nonNullUserProfileDeleteSuccess() {
         assertNotNull("Id should not be null before update", userProfileToModifyOrDelete.getId());
         userProfileDao.delete(userProfileToModifyOrDelete);
     }
     @Test
-    public void testList() {
-        List<UserProfile> result = userProfileDao.list();
+    public void userprofilesListSuccess() {
+        Collection<UserProfile> result = userProfileDao.list();
         assertNotNull("List should not be null", result);
     }
 

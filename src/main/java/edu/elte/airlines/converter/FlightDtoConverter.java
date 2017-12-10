@@ -38,6 +38,7 @@ public class FlightDtoConverter implements Converter<FlightDto, Flight> {
         String endLocationId = flightDto.getEndLocationId();
         result.setDestination(locationDao.findById(Integer.parseInt(endLocationId)));
         result.setTravelTime(Integer.parseInt(flightDto.getTravelingTime()));
+        result.setTicketPrice(Long.parseLong(flightDto.getTicketPrice()));
         return result;
     }
 }

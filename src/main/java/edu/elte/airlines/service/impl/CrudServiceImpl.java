@@ -7,8 +7,7 @@ import edu.elte.airlines.service.interfaces.CrudService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Transactional
 public class CrudServiceImpl<IdType extends Serializable, EntityType extends EntityInterface<IdType>> implements CrudService<IdType, EntityType> {
@@ -51,7 +50,7 @@ public class CrudServiceImpl<IdType extends Serializable, EntityType extends Ent
     }
 
     @Override
-    public List<EntityType> list() {
+    public Collection<EntityType> list() {
         return dao.list();
     }
 }

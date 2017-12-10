@@ -23,7 +23,7 @@ public class PassengerFactory extends AbstractFactory<Passenger> {
         result.setLastName(faker.name().lastName());
         result.setAge(faker.number().randomDigit());
         result.setAddress(faker.address().fullAddress());
-        result.setBalance(faker.number().digits(6));
+        result.setBalance(1000000);
         result.setAccountNumber(faker.number().digits(10));
         result.setDateOfBirth(LocalDate.of(1990,1,1));
         result.setEmail(result.getFirstName() + "_" + result.getLastName() + "@foo.com");

@@ -72,7 +72,7 @@ public class FlightTest extends AbstractIntegrationTest<Flight, Integer> {
     }
 
     @Test
-    public void testBookFlight() {
+    public void userHasEnoughMoneyToBookFlight() {
         FlightService flightService = (FlightService) getService();
         int oldPassengerSize = flight.getPassengers().size();
         flightService.bookFlight(loggedInUser.getSsoId(), flight.getId());
@@ -81,8 +81,22 @@ public class FlightTest extends AbstractIntegrationTest<Flight, Integer> {
         assertTrue("One passenger should be on board", flight.getPassengers().size() != oldPassengerSize);
 
     }
+    @Test(expected = RuntimeException.class)
+    public void poorUserBookFlightFails() {
+        FlightService flightService = (FlightService) getService();
+        loggedInUser.getUserPassengerData().setBalance(1);
+        userService.updateUser(loggedInUser);
+        flightService.bookFlight(loggedInUser.getSsoId(), flight.getId());
+
+    }
+    @Test(expected = RuntimeException.class)
+    public void addOnePassengerMoreThanOnceFails() {
+        FlightService flightService = (FlightService) getService();
+        flightService.bookFlight(loggedInUser.getSsoId(), flight.getId());
+        flightService.bookFlight(loggedInUser.getSsoId(), flight.getId());
+    }
     @Test
-    public void testRemovePassenger() {
+    public void passengerRemovalSuccess() {
         FlightService flightService = (FlightService) getService();
         flightService.bookFlight(loggedInUser.getSsoId(), flight.getId());
         int oldPassengerSize = flight.getPassengers().size();
@@ -93,11 +107,10 @@ public class FlightTest extends AbstractIntegrationTest<Flight, Integer> {
         assertFalse("user should not be on board", getService().findById(flight.getId()).getPassengers().contains(loggedInUser));
     }
     @Test
-    public void testFindReservedFlights() {
+    public void findFlightsByUserSuccess() {
         FlightService flightService = (FlightService) getService();
         List<Flight> result = flightService.getReservedFlightsByUser(loggedInUser.getSsoId());
         assertNotNull("Reserved flights should not be null", result);
-        //assertTrue("Reserved flights should not be empty", !result.isEmpty());
 
     }
 }

@@ -60,7 +60,7 @@ public class ServiceTestConfig {
     }
     @Bean
     FlightService flightService() {
-        return new FlightServiceImpl(flightDao, userDao, airlineDao);
+        return new FlightServiceImpl(flightDao, userDao, airlineDao, passengerDao);
     }
     @Bean
     LocationService locationService() {

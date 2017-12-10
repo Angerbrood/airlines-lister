@@ -38,7 +38,7 @@ public abstract class AbstractServiceTest<EntityType> {
     public ExpectedException expectedEx = ExpectedException.none();
 
     @Test
-    public void testCreateNull() throws Exception {
+    public void nullCreationFails() throws Exception {
         expectedEx.expect(RuntimeException.class);
         expectedEx.expectMessage("The entity to be created must not be null");
 
@@ -47,7 +47,7 @@ public abstract class AbstractServiceTest<EntityType> {
         verify(getDao(), times(0)).update(any());
     }
     @Test
-    public void testUpdateNull() throws Exception {
+    public void nullUpdateFails() throws Exception {
         expectedEx.expect(RuntimeException.class);
         expectedEx.expectMessage("The entity to be updated must not be null");
 
@@ -56,7 +56,7 @@ public abstract class AbstractServiceTest<EntityType> {
         verify(getDao(), times(0)).update(any());
     }
     @Test
-    public void testDeleteNull() throws Exception {
+    public void nullDeleteFails() throws Exception {
         expectedEx.expect(RuntimeException.class);
         expectedEx.expectMessage("The entity to be deleted must not be null");
         getService().delete(null);
@@ -65,7 +65,7 @@ public abstract class AbstractServiceTest<EntityType> {
         verify(getDao(), times(0)).update(any());
     }
     @Test
-    public void testCreateNonNull() {
+    public void nonNullCreationSuccess() {
         EntityType entityType = createEntity(false);
         getService().create(entityType);
         verify(getDao(), times(1)).persist(any());
@@ -73,14 +73,14 @@ public abstract class AbstractServiceTest<EntityType> {
 
     }
     @Test
-    public void testUpdateNonNull() {
+    public void nonNullUpdateSuccess() {
         EntityType entityType = createEntity(false);
         getService().update(entityType);
         verify(getDao(), times(1)).update(any());
         verify(getDao(), times(0)).persist(any());
     }
     @Test
-    public void testDeleteNonNull() {
+    public void nonNullDeleteSuccess() {
         EntityType entityType = createEntity(false);
         getService().delete(entityType);
         verify(getDao(), times(1)).delete(any());

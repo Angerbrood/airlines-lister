@@ -26,4 +26,5 @@ public enum UserProfileType implements Serializable{
 				throw new RuntimeException("Invalid user type");
 		}
 	}
+
 }

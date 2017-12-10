@@ -225,4 +225,15 @@ public class AdminService {
         }
         return response;
     }
+    public CustomResponse updateUser(User user) {
+        CustomResponse response;
+        try {
+            UserService userService = (UserService) crudService;
+            userService.updateUser(user);
+            response = customResponseFactory.successfullResponse();
+        } catch (Exception ex) {
+            response = customResponseFactory.errorResponse(ex);
+        }
+        return  response;
+    }
 }

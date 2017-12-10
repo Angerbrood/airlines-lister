@@ -55,12 +55,12 @@ public class UserController {
     @ResponseBody
     public CustomResponse updateUser(@RequestBody UserDto userDto) {
         User user = userDtoConverter.convert(userDto);
-        return serviceProvider.getService(User.class).update(user);
+        return serviceProvider.getService(User.class).updateUser(user);
     }
     @RequestMapping(value = "/admin/deleteUser", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @CrossOrigin
     @ResponseBody
-    public CustomResponse updateUser(@RequestBody Wrapper wrapper) {
+    public CustomResponse deleteUser(@RequestBody Wrapper wrapper) {
         return serviceProvider.getService(User.class).delete(wrapper.getData());
     }
     @RequestMapping(value = "/user/getPersonalData", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")

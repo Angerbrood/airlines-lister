@@ -69,4 +69,5 @@ public class UserProfile implements Serializable, EntityInterface<Integer> {
 			return false;
 		return true;
 	}
+
 }

@@ -33,6 +33,7 @@ public class FlightFactory extends AbstractFactory<Flight> {
         result.setLandingDate(endDate);
         result.setTravelTime(faker.number().randomDigit());
         result.setFlightNumber("11112222");
+        result.setTicketPrice(1000);
         List<Passenger> passengers = new LinkedList<>();
         for(int i = 0; i < 10; ++i) {
             passengers.add(userPersonalDataFactory.createOne());

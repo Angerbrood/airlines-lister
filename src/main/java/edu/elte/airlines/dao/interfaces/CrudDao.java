@@ -1,6 +1,6 @@
 package edu.elte.airlines.dao.interfaces;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface CrudDao<IdType, EntityType> {
     void persist(EntityType entity);
@@ -8,5 +8,5 @@ public interface CrudDao<IdType, EntityType> {
     void delete(EntityType entity);
     EntityType findById(IdType id);
     boolean exists(IdType id);
-    List<EntityType> list();
+    Collection<EntityType> list();
 }

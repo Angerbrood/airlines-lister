@@ -1,20 +1,16 @@
 package edu.elte.airlines.dao.impl;
 
-import java.io.Serializable;
-
-import java.lang.reflect.ParameterizedType;
-import java.util.List;
-
 import edu.elte.airlines.dao.interfaces.CrudDao;
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.Serializable;
+import java.util.Collection;
 @Transactional
 public abstract class AbstractDao<IdType extends Serializable, EntityType> extends HibernateDaoSupport implements CrudDao<IdType, EntityType> {
 	
@@ -59,7 +55,7 @@ public abstract class AbstractDao<IdType extends Serializable, EntityType> exten
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<EntityType> list() {
+	public Collection<EntityType> list() {
 		DetachedCriteria criteria = DetachedCriteria.forClass(entityTypeClass);
 		Criteria executeableCriteria = criteria.getExecutableCriteria(currentSession());
 		return executeableCriteria.list();

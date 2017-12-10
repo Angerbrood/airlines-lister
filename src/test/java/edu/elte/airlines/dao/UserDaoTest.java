@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
@@ -43,7 +44,7 @@ public class UserDaoTest {
 
 
     @Test
-    public void testSave() {
+    public void nonNullUserCreationSuccess() {
         User user = userFactory.createOne();
         assertNull("Id should be null before save", user.getId());
         passengerDao.persist(user.getUserPassengerData());
@@ -51,26 +52,26 @@ public class UserDaoTest {
         assertNotNull("Id should not be null after save", user.getId());
     }
     @Test
-    public void testFindById() {
+    public void nonNullUserIdFound() {
         int id = userToModifyOrDelete.getId();
         User userPersonalData = userDao.findById(id);
         assertNotNull("Airline should not be null", userPersonalData);
     }
     @Test
-    public void testUpdate() {
+    public void nonNullUserUpdateSuccess() {
         userToModifyOrDelete.getUserPassengerData().setEmail("updated");
         assertNotNull("Id should not be null before update", userToModifyOrDelete.getId());
         userDao.update(userToModifyOrDelete);
 
     }
     @Test
-    public void testDelete() {
+    public void nonNullUserDeleteSuccess() {
         assertNotNull("Id should not be null before update", userToModifyOrDelete.getId());
         userDao.delete(userToModifyOrDelete);
     }
     @Test
-    public void testList() {
-        List<User> result = userDao.list();
+    public void usersListSuccess() {
+        Collection<User> result = userDao.list();
         assertNotNull("List should not be null", result);
     }
 

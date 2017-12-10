@@ -1,34 +1,42 @@
 package edu.elte.airlines.service.impl;
 
-import edu.elte.airlines.dao.interfaces.AirlineDao;
-import edu.elte.airlines.dao.interfaces.FlightDao;
-import edu.elte.airlines.dao.interfaces.LocationDao;
-import edu.elte.airlines.dao.interfaces.UserDao;
+import edu.elte.airlines.dao.interfaces.*;
 import edu.elte.airlines.model.*;
 import edu.elte.airlines.service.interfaces.FlightService;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class FlightServiceImpl extends CrudServiceImpl<Integer, Flight> implements FlightService {
     private final AirlineDao airlineDao;
     private final FlightDao flightDao;
     private final UserDao userDao;
-    public FlightServiceImpl(FlightDao dao, UserDao userDao, AirlineDao airlineDao) {
+    private final PassengerDao passengerDao;
+    public FlightServiceImpl(FlightDao dao, UserDao userDao, AirlineDao airlineDao, PassengerDao passengerDao) {
         super(dao);
         flightDao = dao;
         this.userDao = userDao;
         this.airlineDao = airlineDao;
+        this.passengerDao = passengerDao;
     }
 
     @Override
     public void bookFlight(String ssoId, Integer flightId) {
         User user = userDao.findBySSO(ssoId);
         Flight flight = flightDao.findById(flightId);
-        flight.addPassenger(Passenger.copyPassenger(user.getUserPassengerData()));
-        flightDao.update(flight);
+        long ticketPrice = flight.getTicketPrice();
+        long userMoney = user.getUserPassengerData().getBalance();
+        long newMoney = userMoney - ticketPrice;
+        if(newMoney > 0) {
+            user.getUserPassengerData().setBalance(newMoney);
+            passengerDao.update(user.getUserPassengerData());
+            flight.addPassenger(Passenger.copyPassenger(user.getUserPassengerData()));
+            flightDao.update(flight);
+        } else {
+            throw new RuntimeException("User does not have enough money to buy a ticket");
+        }
+
+
     }
 
     @Override
@@ -42,7 +50,7 @@ public class FlightServiceImpl extends CrudServiceImpl<Integer, Flight> implemen
     @Override
     public List<Flight> getReservedFlightsByUser(String ssoId) {
         User user = userDao.findBySSO(ssoId);
-        List<Flight> flights = flightDao.list();
+        Set<Flight> flights = new HashSet<>(flightDao.list());
         List<Flight> result = new LinkedList<>();
         for(Flight currentFlight : flights) {
             for(Passenger currentPassenger : currentFlight.getPassengers()) {
@@ -73,7 +81,7 @@ public class FlightServiceImpl extends CrudServiceImpl<Integer, Flight> implemen
 
     @Override
     public void deleteFlight(Integer id) {
-        List<Airline> airlines = airlineDao.list();
+        Set<Airline> airlines = new HashSet<>( airlineDao.list());
         Flight flight = flightDao.findById(id);
         for(Airline currentAirline : airlines) {
             List<Flight> currentAirlineFlights = (List<Flight>) currentAirline.getFlights();

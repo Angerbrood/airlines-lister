@@ -22,4 +22,13 @@ public class CustomResponse {
     public String getMessage() {
         return message;
     }
+
+    @Override
+    public String toString() {
+        return "CustomResponse{" +
+                "responseEnum=" + responseEnum +
+                ", data=" + data +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }

@@ -35,7 +35,7 @@ public class Passenger implements EntityInterface<Integer>, Serializable {
     private String accountNumber;
 
     @Column(name="BALANCE", nullable=false)
-    private String balance;
+    private long balance;
 
     @Column(name="EMAIL", nullable=false)
     private String email;
@@ -98,11 +98,11 @@ public class Passenger implements EntityInterface<Integer>, Serializable {
         this.accountNumber = accountNumber;
     }
 
-    public String getBalance() {
+    public long getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(long balance) {
         this.balance = balance;
     }
 
@@ -135,6 +135,7 @@ public class Passenger implements EntityInterface<Integer>, Serializable {
 
         Passenger passenger = (Passenger) o;
 
+        if (balance != passenger.balance) return false;
         if (id != null ? !id.equals(passenger.id) : passenger.id != null) return false;
         if (firstName != null ? !firstName.equals(passenger.firstName) : passenger.firstName != null) return false;
         if (lastName != null ? !lastName.equals(passenger.lastName) : passenger.lastName != null) return false;
@@ -144,7 +145,6 @@ public class Passenger implements EntityInterface<Integer>, Serializable {
             return false;
         if (accountNumber != null ? !accountNumber.equals(passenger.accountNumber) : passenger.accountNumber != null)
             return false;
-        if (balance != null ? !balance.equals(passenger.balance) : passenger.balance != null) return false;
         return email != null ? email.equals(passenger.email) : passenger.email == null;
     }
 
@@ -157,7 +157,7 @@ public class Passenger implements EntityInterface<Integer>, Serializable {
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (dateOfBirth != null ? dateOfBirth.hashCode() : 0);
         result = 31 * result + (accountNumber != null ? accountNumber.hashCode() : 0);
-        result = 31 * result + (balance != null ? balance.hashCode() : 0);
+        result = 31 * result + (int) (balance ^ (balance >>> 32));
         result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
     }

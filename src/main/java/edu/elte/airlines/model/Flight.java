@@ -30,9 +30,12 @@ public class Flight implements EntityInterface<Integer> {
 	private LocalDate landingDate;
 	@Column()
 	private Integer travelTime;
+	@Column
+	private long ticketPrice;
 	@ManyToMany(fetch = FetchType.EAGER)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Collection<Passenger> passengers;
+
 	
 	public Flight() {
 		
@@ -137,5 +140,44 @@ public class Flight implements EntityInterface<Integer> {
 				", travelTime=" + travelTime +
 				", passengers=" + passengers +
 				'}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Flight flight = (Flight) o;
+
+		if (id != null ? !id.equals(flight.id) : flight.id != null) return false;
+		if (flightNumber != null ? !flightNumber.equals(flight.flightNumber) : flight.flightNumber != null)
+			return false;
+		if (start != null ? !start.equals(flight.start) : flight.start != null) return false;
+		if (destination != null ? !destination.equals(flight.destination) : flight.destination != null) return false;
+		if (startDate != null ? !startDate.equals(flight.startDate) : flight.startDate != null) return false;
+		if (landingDate != null ? !landingDate.equals(flight.landingDate) : flight.landingDate != null) return false;
+		if (travelTime != null ? !travelTime.equals(flight.travelTime) : flight.travelTime != null) return false;
+		return passengers != null ? passengers.equals(flight.passengers) : flight.passengers == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id != null ? id.hashCode() : 0;
+		result = 31 * result + (flightNumber != null ? flightNumber.hashCode() : 0);
+		result = 31 * result + (start != null ? start.hashCode() : 0);
+		result = 31 * result + (destination != null ? destination.hashCode() : 0);
+		result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
+		result = 31 * result + (landingDate != null ? landingDate.hashCode() : 0);
+		result = 31 * result + (travelTime != null ? travelTime.hashCode() : 0);
+		result = 31 * result + (passengers != null ? passengers.hashCode() : 0);
+		return result;
+	}
+
+	public long getTicketPrice() {
+		return ticketPrice;
+	}
+
+	public void setTicketPrice(long ticketPrice) {
+		this.ticketPrice = ticketPrice;
 	}
 }

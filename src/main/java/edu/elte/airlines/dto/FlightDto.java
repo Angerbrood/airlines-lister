@@ -9,6 +9,7 @@ public class FlightDto {
     private String startDate;
     private String endDate;
     private String travelingTime;
+    private String ticketPrice;
 
     public FlightDto() {
 
@@ -76,5 +77,13 @@ public class FlightDto {
 
     public void setTravelingTime(String travelingTime) {
         this.travelingTime = travelingTime;
+    }
+
+    public String getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(String ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 }

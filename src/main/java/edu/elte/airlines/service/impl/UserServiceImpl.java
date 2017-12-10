@@ -1,5 +1,6 @@
 package edu.elte.airlines.service.impl;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -56,7 +57,7 @@ public class UserServiceImpl extends CrudServiceImpl<Integer, User> implements U
 	}
 
 	public List<User> findAllUsers() {
-		List<User> temp =  super.list();
+		Set<User> temp = new HashSet<>(super.list());
 		List<User> result = new LinkedList<>();
 		for(User currentUser : temp) {
 			Hibernate.initialize(currentUser.getUserPassengerData());
@@ -97,8 +98,6 @@ public class UserServiceImpl extends CrudServiceImpl<Integer, User> implements U
 		if(dao.findBySSO(user.getSsoId()) != null) {
 			throw new RuntimeException("Username already taken");
 		}
-		String finalPassword = passwordEncoder.encode(user.getPassword());
-		user.setPassword(finalPassword);
 		dao.persist(user);
 	}
 

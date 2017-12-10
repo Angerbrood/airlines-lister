@@ -7,7 +7,6 @@
 	<artifactId>elteAirlines</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>ElteAirlines</name>
 
   	<properties>
 		<springframework.version>4.3.2.RELEASE</springframework.version>
@@ -186,8 +185,8 @@
 					<artifactId>maven-war-plugin</artifactId>
 					<version>2.4</version>
 					<configuration>
-						<warSourceDirectory>src/main/webapp</warSourceDirectory>
-						<warName>elte-airlines</warName>
+						<warSourceDirectory>src/main/</warSourceDirectory>
+						<warName>elteAirlines-1.0.0-SNAPSHOT</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>

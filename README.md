@@ -116,6 +116,7 @@ A program egy reptéri jegykezelő rendszer egyszerűsített változatát valós
   * service: Service réteg.
   * util: Egyéb máshova nem illeszkedő osztályok
   ## 5. Tesztelés
+  * A szerver oldali teszteket minden deploy előtt lefuttatja a maven.
   ## 6. Felhasználói dokumentáció
   ### Futtatáshoz szükséges eszközök
   * Futó MySQL szerver

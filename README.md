@@ -117,4 +117,14 @@ A program egy reptéri jegykezelő rendszer egyszerűsített változatát valós
   * util: Egyéb máshova nem illeszkedő osztályok
   ## 5. Tesztelés
   ## 6. Felhasználói dokumentáció
-  
+  ### Futtatás
+ * git clone a projektet vagy letölteni mint zip és kicsomagolni egy tetszőlegegs helyre
+ * CMD-ben elnavigálni a projekt főkönyvtárába
+ * Szerver:
+   * CMD-ben kiadni a következő parancsot: mvn clean package
+   * CMD-ben kiadni a következő parancsot: mvn cargo:run
+ * Klines:
+   * CMD-ben kiadni a következő parancsot: cd front-end
+   * CMD-ben kiadni a következő parancsot: npm install
+   * CMD-ben kiadni a következő parancsot: npm start
+ * Böngészőben megnyitni a localhost:5555 címet 
